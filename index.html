@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GK1 Energy — Energy Advisor | Bill Geyer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-dusk:#10182c;
+    --bg-panel:#182446;
+    --bg-panel-2:#1d2c53;
+    --sun:#f2a33b;
+    --sun-dim:#c9832c;
+    --sky:#7fb0be;
+    --mint:#47e0b8;
+    --text-hi:#eef0f6;
+    --text-mid:#a4adc4;
+    --text-low:#6d7896;
+    --line:rgba(255,255,255,0.09);
+    --radius:14px;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; }
+  }
+  body{
+    margin:0; background:var(--bg-dusk); color:var(--text-hi);
+    font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased; line-height:1.55;
+  }
+  h1,h2,h3{ font-family:'Fraunces',serif; font-weight:600; letter-spacing:-0.01em; margin:0; }
+  a{ color:inherit; }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--sky);
+  }
+  :focus-visible{ outline:2px solid var(--sun); outline-offset:3px; border-radius:4px; }
+  .wrap{ max-width:1040px; margin:0 auto; padding:0 24px; }
+
+  .nav{
+    position:sticky; top:0; z-index:20; background:rgba(16,24,44,0.86);
+    backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1040px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-name{ font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; }
+  .nav-name .mint{ color:var(--mint); }
+  .nav-cta{
+    font-family:'IBM Plex Mono',monospace; font-size:0.78rem; letter-spacing:0.04em;
+    color:var(--sun); border:1px solid var(--sun-dim); padding:8px 14px;
+    border-radius:999px; text-decoration:none; white-space:nowrap;
+  }
+  .nav-cta:hover{ background:rgba(242,163,59,0.1); }
+
+  .hero{ padding:72px 0 40px; position:relative; overflow:hidden; }
+  .hero-eyebrow{ margin-bottom:18px; }
+  .hero h1{ font-size:clamp(2rem, 5vw, 3.1rem); color:var(--text-hi); max-width:17ch; }
+  .hero p.lede{ margin-top:20px; max-width:56ch; color:var(--text-mid); font-size:1.05rem; }
+  .hero-ctas{ margin-top:32px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-primary{
+    background:var(--sun); color:#1a1300; font-weight:600; padding:13px 24px;
+    border-radius:999px; text-decoration:none; font-size:0.95rem; border:1px solid var(--sun);
+  }
+  .btn-primary:hover{ background:#ffb54e; }
+  .btn-ghost{ color:var(--text-hi); border:1px solid var(--line); padding:13px 24px; border-radius:999px; text-decoration:none; font-size:0.95rem; }
+  .btn-ghost:hover{ border-color:var(--sky); }
+
+  .arc-wrap{ margin-top:56px; width:100%; max-width:640px; }
+  .arc-caption{
+    display:flex; justify-content:space-between; font-family:'IBM Plex Mono',monospace;
+    font-size:0.68rem; color:var(--text-low); letter-spacing:0.08em; margin-top:4px;
+  }
+  #sunDot{ offset-path: path("M20,150 Q320,-40 620,150"); animation: track 14s linear infinite; }
+  @keyframes track{ 0%{ offset-distance:0%; } 100%{ offset-distance:100%; } }
+
+  .section{ padding:60px 0; border-top:1px solid var(--line); }
+  .section-head{ margin-bottom:36px; max-width:58ch; }
+  .section-head h2{ font-size:clamp(1.5rem,3vw,2rem); margin-top:10px; }
+  .section-head p{ color:var(--text-mid); margin-top:12px; }
+
+  .contact-panel{ background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); padding:36px; }
+  @media (max-width:600px){ .contact-panel{ padding:24px; } }
+
+  /* Tiles — native details/summary, no JS */
+  .tiles{ display:flex; flex-direction:column; gap:10px; }
+  .tile{ background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; }
+  .tile summary{
+    list-style:none; cursor:pointer; padding:20px 24px; display:flex; align-items:center;
+    gap:16px; -webkit-tap-highlight-color:transparent;
+  }
+  .tile summary::-webkit-details-marker{ display:none; }
+  .tile-icon{ flex:0 0 auto; width:34px; height:34px; color:var(--sun); }
+  .tile-title{ flex:1 1 auto; font-family:'Fraunces',serif; font-weight:600; font-size:1.08rem; }
+  .tile-plus{
+    flex:0 0 auto; width:22px; height:22px; position:relative; color:var(--text-mid);
+    transition:transform 0.2s ease;
+  }
+  .tile-plus::before, .tile-plus::after{
+    content:''; position:absolute; background:currentColor; top:50%; left:50%;
+  }
+  .tile-plus::before{ width:14px; height:2px; transform:translate(-50%,-50%); }
+  .tile-plus::after{ width:2px; height:14px; transform:translate(-50%,-50%); }
+  .tile[open] .tile-plus{ transform:rotate(45deg); }
+  .tile-body{ padding:0 24px 22px 74px; color:var(--text-mid); font-size:0.95rem; }
+  .tile-body p{ margin:0 0 10px; }
+  .tile-body p:last-child{ margin-bottom:0; }
+
+  .note-line{ margin-top:16px; color:var(--text-low); font-size:0.88rem; max-width:60ch; }
+
+  .cards-2{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media (max-width:760px){ .cards-2{ grid-template-columns:1fr; } }
+
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+  @media (max-width:600px){ .form-row{ grid-template-columns:1fr; } }
+  label{
+    display:block; font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--text-mid); margin-bottom:6px;
+  }
+  input,select,textarea{
+    width:100%; background:var(--bg-dusk); border:1px solid var(--line); color:var(--text-hi);
+    padding:11px 13px; border-radius:8px; font-family:'Inter',sans-serif; font-size:0.95rem;
+  }
+  input::placeholder, textarea::placeholder{ color:var(--text-low); }
+  textarea{ resize:vertical; min-height:80px; }
+  .form-full{ margin-bottom:16px; }
+  .dropzone{
+    border:1.5px dashed var(--line); border-radius:10px; padding:22px; text-align:center;
+    cursor:pointer; transition:border-color 0.15s, background 0.15s;
+  }
+  .dropzone:hover, .dropzone.drag-over{ border-color:var(--sun); background:rgba(242,163,59,0.05); }
+  .dropzone p{ margin:0; color:var(--text-mid); font-size:0.9rem; }
+  .dropzone .dz-sub{ font-size:0.78rem; color:var(--text-low); margin-top:4px; }
+  #fileList{ margin-top:8px; font-size:0.85rem; color:var(--sky); }
+  .submit-btn{
+    background:var(--sun); color:#1a1300; font-weight:600; border:none; padding:13px 26px;
+    border-radius:999px; font-size:0.95rem; cursor:pointer; font-family:'Inter',sans-serif;
+  }
+  .submit-btn:hover{ background:#ffb54e; }
+  #formMsg{ margin-top:16px; font-size:0.9rem; color:var(--sky); display:none; }
+
+  footer{ border-top:1px solid var(--line); padding:36px 0 48px; }
+  .footer-inner{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; font-size:0.82rem; color:var(--text-low); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-name">GK1<span class="mint">.energy</span></div>
+    <div style="display:flex; align-items:center; gap:18px;">
+      <a href="./bill-geyer-business-solar.html" style="font-size:0.85rem; color:var(--text-mid); text-decoration:none;">For businesses &amp; nonprofits →</a>
+      <a class="nav-cta" href="#contact">Request a consultation</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow eyebrow">Primary service area: New England — with relationships beyond</div>
+    <h1>Solar and energy strategy for your home — explained plainly, by someone who's worked inside the equipment industry.</h1>
+    <p class="lede">I'm Bill Geyer of GK1 Energy — an independent Energy Advisor. I work with homeowners and residential landlords deciding whether solar, battery storage, a heat pump, or a backup generator makes sense for their property, then place the project with the right regional partner. No sales pitch for one product — just a straight answer.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#contact">Request a free consultation</a>
+      <a class="btn-ghost" href="#serve">Who I help</a>
+    </div>
+    <div class="arc-wrap" aria-hidden="true">
+      <svg viewBox="0 0 640 170" width="100%" height="auto" role="presentation">
+        <path d="M20,150 Q320,-40 620,150" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-dasharray="2 6"/>
+        <circle cx="20" cy="150" r="2.5" fill="var(--text-low)"/>
+        <circle cx="170" cy="42" r="2.5" fill="var(--text-low)"/>
+        <circle cx="320" cy="10" r="2.5" fill="var(--text-low)"/>
+        <circle cx="470" cy="42" r="2.5" fill="var(--text-low)"/>
+        <circle cx="620" cy="150" r="2.5" fill="var(--text-low)"/>
+        <circle id="sunDot" cx="0" cy="0" r="7" fill="var(--sun)"/>
+      </svg>
+      <div class="arc-caption"><span>6AM</span><span>9AM</span><span>NOON</span><span>3PM</span><span>6PM</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="section" style="border-top:none;">
+  <div class="wrap">
+    <div class="contact-panel">
+      <div class="eyebrow">How this works</div>
+      <h2 style="font-size:clamp(1.3rem,2.6vw,1.7rem); margin-top:10px;">Independent, and not shopping the market.</h2>
+      <p style="color:var(--text-mid); margin-top:14px; max-width:64ch;">I work in close partnership with a small number of established regional installers — not dozens, and not whichever one happens to be cheapest. That closeness means I know exactly what each partner does well, and I place your project with the right one for your location and your property.</p>
+      <p style="color:var(--text-mid); margin-top:10px; max-width:64ch;">Outside New England? I also have relationships beyond the region — call me anyway. I'll connect you with the right partner and stay your point of contact the whole way through.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="serve">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Who I serve</div>
+      <h2>Residential properties — owner-occupied and rental</h2>
+      <p>Single-family homes and multifamily rental properties, side by side — the underlying analysis is the same property-level question, even though the economics differ for an owner-occupant versus a landlord.</p>
+    </div>
+    <div class="tiles">
+      <details class="tile">
+        <summary>
+          <svg class="tile-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 20 L20 8 L34 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 17 V32 H30 V17" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+            <rect x="17" y="23" width="6" height="9" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span class="tile-title">Single-Family Homeowners</span>
+          <span class="tile-plus" aria-hidden="true"></span>
+        </summary>
+        <div class="tile-body">
+          <p>Deciding whether solar, storage, a heat pump, or a backup generator makes sense for your property — a well-informed decision, not a fast one.</p>
+          <p>I walk through the financing paths that genuinely fit your situation (cash, loan, or lease/PPA where it applies) plainly, and I'll tell you honestly if a quote you've already got is a fair deal.</p>
+        </div>
+      </details>
+      <details class="tile">
+        <summary>
+          <svg class="tile-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="9" y="6" width="22" height="28" stroke="currentColor" stroke-width="2.2"/>
+            <line x1="9" y1="16" x2="31" y2="16" stroke="currentColor" stroke-width="2"/>
+            <line x1="9" y1="25" x2="31" y2="25" stroke="currentColor" stroke-width="2"/>
+            <rect x="13" y="9" width="4" height="4" stroke="currentColor" stroke-width="1.6"/>
+            <rect x="23" y="9" width="4" height="4" stroke="currentColor" stroke-width="1.6"/>
+            <rect x="13" y="19" width="4" height="4" stroke="currentColor" stroke-width="1.6"/>
+            <rect x="23" y="19" width="4" height="4" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
+          <span class="tile-title">Multifamily &amp; Rental Property</span>
+          <span class="tile-plus" aria-hidden="true"></span>
+        </summary>
+        <div class="tile-body">
+          <p>Two- and three-family buildings and small rental portfolios — common throughout New England's older housing stock, including the triple-deckers found across Massachusetts.</p>
+          <p>Structured around the split-incentive problem: you cover the capital cost, but tenants on individual meters see the electric savings unless the deal is set up to capture value for both sides.</p>
+        </div>
+      </details>
+    </div>
+    <p class="note-line">Own a business, nonprofit, or commercial property instead? <a href="./bill-geyer-business-solar.html" style="color:var(--sky);">See commercial solar →</a></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">What I offer</div>
+      <h2>One coordinated electrification strategy, not four separate purchases</h2>
+      <p>Solar, storage, heating and cooling, and backup power work best planned together — I stay involved from the first conversation through the day your system is running.</p>
+    </div>
+    <div class="tiles">
+      <details class="tile">
+        <summary>
+          <svg class="tile-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="7" stroke="currentColor" stroke-width="2.2"/>
+            <line x1="20" y1="4" x2="20" y2="9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="20" y1="31" x2="20" y2="36" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="4" y1="20" x2="9" y2="20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="31" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+          <span class="tile-title">Solar &amp; Battery Storage</span>
+          <span class="tile-plus" aria-hidden="true"></span>
+        </summary>
+        <div class="tile-body">
+          <p>A straight look at whether your roof, usage, and budget make solar worth it, including realistic numbers on financing versus cash purchase.</p>
+        </div>
+      </details>
+      <details class="tile">
+        <summary>
+          <svg class="tile-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 6 C12 14 8 20 8 25 a12 12 0 0 0 24 0 c0 -5 -4 -11 -12 -19z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+          </svg>
+          <span class="tile-title">Heating &amp; Cooling</span>
+          <span class="tile-plus" aria-hidden="true"></span>
+        </summary>
+        <div class="tile-body">
+          <p>Heat pumps and mini-splits, facilitated through installation partners, for homes moving off oil or propane — often paired with solar, sometimes on its own.</p>
+        </div>
+      </details>
+      <details class="tile">
+        <summary>
+          <svg class="tile-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="7" y="14" width="26" height="14" rx="2" stroke="currentColor" stroke-width="2.2"/>
+            <line x1="12" y1="28" x2="12" y2="32" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="28" y1="28" x2="28" y2="32" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M15 21 L19 21 L17 25 L23 25" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="tile-title">Backup Generators</span>
+          <span class="tile-plus" aria-hidden="true"></span>
+        </summary>
+        <div class="tile-body">
+          <p>Sales, installation, and service background with Onan, Kohler, WinCo, and Generac standby generators — real equipment experience, not just a spec sheet.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Background &amp; credentials</div>
+      <h2>Three vantage points on the same industry</h2>
+      <p>Most solar conversations happen with someone who's only ever seen one side of the business. Here's the path that shaped mine.</p>
+    </div>
+    <div class="tiles">
+      <details class="tile">
+        <summary>
+          <svg class="tile-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="9" width="24" height="22" rx="2" stroke="currentColor" stroke-width="2.2"/>
+            <line x1="8" y1="16" x2="32" y2="16" stroke="currentColor" stroke-width="2"/>
+            <circle cx="14" cy="12.5" r="1.4" fill="currentColor"/>
+          </svg>
+          <span class="tile-title">Commander Electric Generator — Long Island, NY</span>
+          <span class="tile-plus" aria-hidden="true"></span>
+        </summary>
+        <div class="tile-body">
+          <p>Started at a small authorized dealer for Onan, Kohler, WinCo, and Generac — selling, installing, and servicing standby generators. Hands-on, brand-by-brand experience with backup power equipment.</p>
+        </div>
+      </details>
+      <details class="tile">
+        <summary>
+          <svg class="tile-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 30 L14 18 L20 24 L34 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M27 8 H34 V15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="tile-title">Residential Inverter &amp; Battery Manufacturer — Sales &amp; Business Development</span>
+          <span class="tile-plus" aria-hidden="true"></span>
+        </summary>
+        <div class="tile-body">
+          <p>Represented the largest global manufacturer of residential solar inverters and batteries to residential and commercial EPCs — string inverters, microinverters, power optimizers, and battery storage, plus the honest pros and cons of each.</p>
+          <p>Additional experience with utility-scale inverter manufacturers rounded out a view spanning residential, commercial, community, and utility scale.</p>
+        </div>
+      </details>
+      <details class="tile">
+        <summary>
+          <svg class="tile-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="24" width="6" height="10" stroke="currentColor" stroke-width="2"/>
+            <rect x="17" y="16" width="6" height="18" stroke="currentColor" stroke-width="2"/>
+            <rect x="28" y="9" width="6" height="25" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span class="tile-title">Utility-Scale &amp; Community Solar</span>
+          <span class="tile-plus" aria-hidden="true"></span>
+        </summary>
+        <div class="tile-body">
+          <p>Additional experience on the utility-scale and community solar development side — a broader view of how the industry works at every scale, beyond the residential property level.</p>
+        </div>
+      </details>
+      <details class="tile">
+        <summary>
+          <svg class="tile-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 5 L33 11 V19 C33 27 27.5 32.5 20 35 C12.5 32.5 7 27 7 19 V11 Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M14 20 L18 24 L26 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="tile-title">Recheck Verified &amp; Certified</span>
+          <span class="tile-plus" aria-hidden="true"></span>
+        </summary>
+        <div class="tile-body">
+          <p>Identity verified and Recheck Certified through Recheck, the trust and compliance platform used by leading residential solar finance companies — built around SEIA's ANSI/SEIA 401 Consumer Protection Standard, including ethical sales training, a background check built specifically for in-home sales, and an ongoing public code of conduct.</p>
+          <p><a href="https://recheck.co/id/870998999/bill-geyer/" style="color:var(--sky);">View my Recheck profile (ID #870998999) →</a></p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="incentives">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Education</div>
+      <h2>State-by-state incentives</h2>
+      <p>A plain-language starting point for each state — always verify current terms with the linked source before relying on any figure.</p>
+    </div>
+    <div class="tiles">
+      <details class="tile"><summary><span class="tile-title">Connecticut</span><span class="tile-plus" aria-hidden="true"></span></summary>
+        <div class="tile-body"><p>[Plain-language summary in your own words — still stub content.]</p><p>Source: <a href="#" style="color:var(--sky);">[link to CT state energy office]</a></p></div></details>
+      <details class="tile"><summary><span class="tile-title">Massachusetts</span><span class="tile-plus" aria-hidden="true"></span></summary>
+        <div class="tile-body"><p>[Plain-language summary — Mass Save / SMART Program. Still stub content.]</p><p>Source: <a href="#" style="color:var(--sky);">[link to Mass Save / SMART official page]</a></p></div></details>
+      <details class="tile"><summary><span class="tile-title">New Hampshire</span><span class="tile-plus" aria-hidden="true"></span></summary>
+        <div class="tile-body"><p>[Plain-language summary — note the federal ITC as primary driver given NH's thinner state-level incentives. Still stub content.]</p><p>Source: <a href="#" style="color:var(--sky);">[link to NH state energy office]</a></p></div></details>
+      <details class="tile"><summary><span class="tile-title">Maine</span><span class="tile-plus" aria-hidden="true"></span></summary>
+        <div class="tile-body"><p>[Plain-language summary in your own words — still stub content.]</p><p>Source: <a href="#" style="color:var(--sky);">[link to Efficiency Maine or state source]</a></p></div></details>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Get in touch</div>
+      <h2>Request a free, no-pressure consultation</h2>
+      <p>Tell me a bit about your property and what you're considering. I'll follow up directly — usually within a day.</p>
+    </div>
+    <div class="contact-panel">
+      <form id="leadForm">
+        <div class="form-row">
+          <div><label for="name">Name</label><input id="name" name="name" type="text" placeholder="Jane Smith" required></div>
+          <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" placeholder="(555) 555-0123" required></div>
+        </div>
+        <div class="form-row">
+          <div><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" required></div>
+          <div><label for="state">Town &amp; State</label><input id="state" name="state" type="text" placeholder="North Hampton, NH" required></div>
+        </div>
+        <div class="form-full">
+          <label for="type">I'm interested in</label>
+          <select id="type" name="type">
+            <option>Residential solar &amp; storage</option>
+            <option>Multifamily / rental property</option>
+            <option>Commercial / business solar</option>
+            <option>Heating, cooling &amp; generators</option>
+            <option>Second opinion on a quote I already have</option>
+            <option>Not sure yet — just exploring</option>
+          </select>
+        </div>
+        <div class="form-full">
+          <label for="referredBy">Referred by (optional)</label>
+          <input id="referredBy" name="referredBy" type="text" placeholder="Name of whoever sent you here">
+        </div>
+        <input type="hidden" id="refCode" name="refCode" value="">
+        <div class="form-full">
+          <label for="fileUpload">Upload a quote or your electric bill (optional)</label>
+          <div id="dropzone" class="dropzone">
+            <p id="dropzoneText">Drag a file here, or tap to choose one</p>
+            <p class="dz-sub">PDF, JPG, PNG, or HEIC</p>
+            <input type="file" id="fileUpload" name="fileUpload" accept=".pdf,.jpg,.jpeg,.png,.heic,image/*,application/pdf" multiple style="display:none;">
+          </div>
+          <div id="fileList"></div>
+        </div>
+        <div class="form-full">
+          <label for="message">Anything else worth knowing</label>
+          <textarea id="message" name="message" placeholder="Roof age, current fuel type, average electric bill — whatever's relevant."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Request a consultation</button>
+        <div id="formMsg">Thanks — that came through. I'll be in touch shortly.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div><strong>GK1 Energy</strong> · © 2026</div>
+    <div>[phone placeholder] · bill@gk1.energy</div>
+    <div>Primary service area: New England — with relationships beyond · <a href="./bill-geyer-business-solar.html" style="color:var(--text-low); text-decoration:underline;">Commercial &amp; nonprofit solar →</a></div>
+  </div>
+</footer>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const refCode = params.get('ref');
+  if (refCode){ document.getElementById('refCode').value = refCode; }
+
+  const interest = params.get('interest');
+  if (interest === 'commercial'){
+    const typeSelect = document.getElementById('type');
+    for (const opt of typeSelect.options){
+      if (opt.text.indexOf('Commercial') !== -1){ typeSelect.value = opt.value; break; }
+    }
+  }
+
+  const form = document.getElementById('leadForm');
+  const msg = document.getElementById('formMsg');
+  const dropzone = document.getElementById('dropzone');
+  const fileInput = document.getElementById('fileUpload');
+  const fileList = document.getElementById('fileList');
+
+  function renderFileList(){
+    if (fileInput.files.length === 0){ fileList.textContent = ''; return; }
+    fileList.textContent = Array.from(fileInput.files).map(f => f.name).join(', ');
+  }
+  dropzone.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', renderFileList);
+  ['dragenter','dragover'].forEach(evt => dropzone.addEventListener(evt, (e) => { e.preventDefault(); dropzone.classList.add('drag-over'); }));
+  ['dragleave','drop'].forEach(evt => dropzone.addEventListener(evt, (e) => { e.preventDefault(); dropzone.classList.remove('drag-over'); }));
+  dropzone.addEventListener('drop', (e) => {
+    if (e.dataTransfer.files.length){ fileInput.files = e.dataTransfer.files; renderFileList(); }
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    // NOTE: client-side placeholder only — wire to a real backend before this
+    // goes live on a QR code (see handoff doc, open action items).
+    msg.style.display = 'block';
+    form.reset();
+    fileList.textContent = '';
+  });
+</script>
+
+</body>
+</html>

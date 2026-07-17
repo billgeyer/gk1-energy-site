@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GK1 Energy — Commercial &amp; Nonprofit Solar | Bill Geyer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-dusk:#10182c;
+    --bg-panel:#182446;
+    --bg-panel-2:#1d2c53;
+    --sun:#f2a33b;
+    --sun-dim:#c9832c;
+    --sky:#7fb0be;
+    --mint:#47e0b8;
+    --text-hi:#eef0f6;
+    --text-mid:#a4adc4;
+    --text-low:#6d7896;
+    --line:rgba(255,255,255,0.09);
+    --radius:14px;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; }
+  }
+  body{
+    margin:0; background:var(--bg-dusk); color:var(--text-hi);
+    font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased; line-height:1.55;
+  }
+  h1,h2,h3{ font-family:'Fraunces',serif; font-weight:600; letter-spacing:-0.01em; margin:0; }
+  a{ color:inherit; }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--sky);
+  }
+  :focus-visible{ outline:2px solid var(--sun); outline-offset:3px; border-radius:4px; }
+  .wrap{ max-width:1040px; margin:0 auto; padding:0 24px; }
+
+  .nav{
+    position:sticky; top:0; z-index:20; background:rgba(16,24,44,0.86);
+    backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1040px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-name{ font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; }
+  .nav-name .mint{ color:var(--mint); }
+  .nav-links{ display:flex; align-items:center; gap:18px; }
+  .nav-sub{ font-size:0.85rem; color:var(--text-mid); text-decoration:none; }
+  .nav-sub:hover{ color:var(--text-hi); }
+  .nav-cta{
+    font-family:'IBM Plex Mono',monospace; font-size:0.78rem; letter-spacing:0.04em;
+    color:var(--sun); border:1px solid var(--sun-dim); padding:8px 14px;
+    border-radius:999px; text-decoration:none; white-space:nowrap;
+  }
+  .nav-cta:hover{ background:rgba(242,163,59,0.1); }
+
+  .hero{ padding:72px 0 48px; position:relative; overflow:hidden; }
+  .hero-eyebrow{ margin-bottom:18px; }
+  .hero h1{ font-size:clamp(1.9rem, 4.6vw, 2.9rem); color:var(--text-hi); max-width:18ch; }
+  .hero p.lede{ margin-top:20px; max-width:56ch; color:var(--text-mid); font-size:1.05rem; }
+  .hero-ctas{ margin-top:32px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-primary{
+    background:var(--sun); color:#1a1300; font-weight:600; padding:13px 24px;
+    border-radius:999px; text-decoration:none; font-size:0.95rem; border:1px solid var(--sun);
+  }
+  .btn-primary:hover{ background:#ffb54e; }
+  .btn-ghost{ color:var(--text-hi); border:1px solid var(--line); padding:13px 24px; border-radius:999px; text-decoration:none; font-size:0.95rem; }
+  .btn-ghost:hover{ border-color:var(--sky); }
+
+  /* Signature graphic — a rooftop panel array, standing in for the commercial thesis:
+     "large roof, high usage" — distinct from the residential page's sun-arc signature */
+  .array-wrap{ margin-top:56px; width:100%; max-width:640px; }
+  .array-caption{
+    font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--text-low);
+    letter-spacing:0.08em; margin-top:10px;
+  }
+  .panel-cell{ animation: glint 5s ease-in-out infinite; }
+  .panel-cell:nth-child(3n+1){ animation-delay:0s; }
+  .panel-cell:nth-child(3n+2){ animation-delay:0.6s; }
+  .panel-cell:nth-child(3n+3){ animation-delay:1.2s; }
+  @keyframes glint{ 0%,100%{ opacity:0.55; } 50%{ opacity:1; } }
+
+  .section{ padding:60px 0; border-top:1px solid var(--line); }
+  .section-head{ margin-bottom:36px; max-width:60ch; }
+  .section-head h2{ font-size:clamp(1.5rem,3vw,2rem); margin-top:10px; }
+  .section-head p{ color:var(--text-mid); margin-top:12px; }
+
+  .contact-panel{ background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); padding:36px; }
+  @media (max-width:600px){ .contact-panel{ padding:24px; } }
+
+  .tiles{ display:flex; flex-direction:column; gap:10px; }
+  .tile{ background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; }
+  .tile summary{
+    list-style:none; cursor:pointer; padding:20px 24px; display:flex; align-items:center;
+    gap:16px; -webkit-tap-highlight-color:transparent;
+  }
+  .tile summary::-webkit-details-marker{ display:none; }
+  .tile-icon{ flex:0 0 auto; width:34px; height:34px; color:var(--sun); }
+  .tile-title{ flex:1 1 auto; font-family:'Fraunces',serif; font-weight:600; font-size:1.08rem; }
+  .tile-plus{
+    flex:0 0 auto; width:22px; height:22px; position:relative; color:var(--text-mid);
+    transition:transform 0.2s ease;
+  }
+  .tile-plus::before, .tile-plus::after{
+    content:''; position:absolute; background:currentColor; top:50%; left:50%;
+  }
+  .tile-plus::before{ width:14px; height:2px; transform:translate(-50%,-50%); }
+  .tile-plus::after{ width:2px; height:14px; transform:translate(-50%,-50%); }
+  .tile[open] .tile-plus{ transform:rotate(45deg); }
+  .tile-body{ padding:0 24px 22px 74px; color:var(--text-mid); font-size:0.95rem; }
+  .tile-body p{ margin:0 0 10px; }
+  .tile-body p:last-child{ margin-bottom:0; }
+
+  .segment{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  @media (max-width:760px){ .segment{ grid-template-columns:1fr; } }
+  .segment-card{ background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
+  .segment-card .tag{ font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--sun); letter-spacing:0.08em; text-transform:uppercase; }
+  .segment-card h3{ font-size:1.05rem; margin-top:8px; }
+  .segment-card p{ color:var(--text-mid); margin-top:8px; font-size:0.9rem; }
+
+  .note-line{ margin-top:16px; color:var(--text-low); font-size:0.88rem; max-width:60ch; }
+
+  footer{ border-top:1px solid var(--line); padding:36px 0 48px; }
+  .footer-inner{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; font-size:0.82rem; color:var(--text-low); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-name">GK1<span class="mint">.energy</span></div>
+    <div class="nav-links">
+      <a class="nav-sub" href="./bill-geyer-solar-energy.html">Residential site →</a>
+      <a class="nav-cta" href="./bill-geyer-solar-energy.html?interest=commercial#contact">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Commercial &amp; Nonprofit Solar · Primary service area: New England — with relationships beyond</div>
+    <h1>Solar evaluated the way you'd evaluate any capital project.</h1>
+    <p class="lede">I'm Bill Geyer of GK1 Energy — an independent Energy Advisor. I work with business owners, property managers, and nonprofit leaders on the numbers that actually matter to a P&amp;L or a budget: cost savings, ESG impact, and available tax incentives — not a generic sales pitch.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="./bill-geyer-solar-energy.html?interest=commercial#contact">Get in touch</a>
+      <a class="btn-ghost" href="#what-counts">What counts as commercial</a>
+    </div>
+    <div class="array-wrap" aria-hidden="true">
+      <svg viewBox="0 0 640 140" width="100%" height="auto" role="presentation">
+        <rect x="20" y="20" width="600" height="90" rx="4" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
+        <g stroke="var(--sun)" stroke-width="1.4" fill="none">
+          <!-- 8x3 grid of panel cells -->
+          <g id="panelGrid"></g>
+        </g>
+      </svg>
+      <div class="array-caption">A large roof, fully arrayed — the commercial thesis in one picture.</div>
+    </div>
+  </div>
+</header>
+
+<section class="section" style="border-top:none;">
+  <div class="wrap">
+    <div class="contact-panel">
+      <div class="eyebrow">How this works</div>
+      <h2 style="font-size:clamp(1.3rem,2.6vw,1.7rem); margin-top:10px;">Independent, and not tied to one installer.</h2>
+      <p style="color:var(--text-mid); margin-top:14px; max-width:64ch;">I work in close partnership with a small number of established regional EPC firms suited to commercial-scale work — not whichever one is easiest, and not a generic residential crew scaled up. I'll walk you through cash purchase, loan, lease/PPA, or (where applicable) tax-equity structures, based on what actually fits your property and your organization.</p>
+      <p style="color:var(--text-mid); margin-top:10px; max-width:64ch;">Outside New England? I also have relationships beyond the region — get in touch anyway. I'll connect you with the right partner and stay your point of contact throughout.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="what-counts">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Who this is for</div>
+      <h2>Any building where people don't live — with a large roof and high electric usage</h2>
+      <p>That's the test. It's simpler than a list of industries, and it covers more ground than you might expect.</p>
+    </div>
+    <div class="segment">
+      <div class="segment-card">
+        <div class="tag">Offices &amp; Operations</div>
+        <h3>Professional &amp; Industrial</h3>
+        <p>Medical, dental, and legal offices, manufacturers, breweries, and dealerships — anywhere electricity is a real, recurring line item and the roof has real surface area to work with.</p>
+      </div>
+      <div class="segment-card">
+        <div class="tag">Open Land</div>
+        <h3>Agricultural</h3>
+        <p>Working farms and farm stands, where a ground-mounted system often makes more sense than a rooftop array, sized around irrigation, cold storage, and equipment loads.</p>
+      </div>
+      <div class="segment-card">
+        <div class="tag">Overnight, Not Residential</div>
+        <h3>Hospitality</h3>
+        <p>Hotels and motels — guests stay overnight, but the building isn't anyone's residence, and usage patterns often make it a strong commercial candidate.</p>
+      </div>
+      <div class="segment-card">
+        <div class="tag">Community</div>
+        <h3>Nonprofits</h3>
+        <p>Churches and other nonprofit organizations — the same large-roof, high-usage test applies, along with nonprofit-specific financing considerations.</p>
+      </div>
+      <div class="segment-card">
+        <div class="tag">Not a current fit</div>
+        <h3>Schools &amp; Government</h3>
+        <p>Excluded by design — the bid/RFP procurement process for this segment isn't part of my current practice, not a reflection of project size or fit.</p>
+      </div>
+    </div>
+    <p class="note-line">If your property doesn't fit neatly into one of these — get in touch anyway. The underlying test is simple: non-residential, large roof, high usage.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">What it usually delivers</div>
+      <h2>System types and core benefits</h2>
+    </div>
+    <div class="tiles">
+      <details class="tile">
+        <summary>
+          <svg class="tile-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="14" width="28" height="20" stroke="currentColor" stroke-width="2.2"/>
+            <line x1="6" y1="20" x2="34" y2="20" stroke="currentColor" stroke-width="1.8"/>
+            <line x1="13" y1="20" x2="13" y2="34" stroke="currentColor" stroke-width="1.6"/>
+            <line x1="20" y1="20" x2="20" y2="34" stroke="currentColor" stroke-width="1.6"/>
+            <line x1="27" y1="20" x2="27" y2="34" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M6 14 L20 6 L34 14" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+          </svg>
+          <span class="tile-title">System Types</span>
+          <span class="tile-plus" aria-hidden="true"></span>
+        </summary>
+        <div class="tile-body">
+          <p><strong>Rooftop:</strong> systems on large, flat warehouse or office roofs — using space that's otherwise unused.</p>
+          <p><strong>Ground-mounted:</strong> for properties with open land, like farms or facilities with room to spare.</p>
+          <p>Solar carports are not part of my current commercial scope.</p>
+        </div>
+      </details>
+      <details class="tile">
+        <summary>
+          <svg class="tile-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 6 L33 13 V27 L20 34 L7 27 V13 Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M20 14 V26 M14 20 H26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="tile-title">Cost Savings</span>
+          <span class="tile-plus" aria-hidden="true"></span>
+        </summary>
+        <div class="tile-body">
+          <p>Lower monthly utility bills, with predictable energy rates locked in for decades instead of exposure to rising or volatile rates.</p>
+        </div>
+      </details>
+      <details class="tile">
+        <summary>
+          <svg class="tile-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 6 C12 14 8 20 8 25 a12 12 0 0 0 24 0 c0 -5 -4 -11 -12 -19z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+          </svg>
+          <span class="tile-title">Sustainability &amp; ESG</span>
+          <span class="tile-plus" aria-hidden="true"></span>
+        </summary>
+        <div class="tile-body">
+          <p>Cuts your organization's carbon footprint, lowers Scope 2 emissions, and helps meet ESG (Environmental, Social, and Governance) goals — increasingly relevant to lenders, tenants, and stakeholders alike.</p>
+        </div>
+      </details>
+      <details class="tile">
+        <summary>
+          <svg class="tile-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="10" width="24" height="20" rx="2" stroke="currentColor" stroke-width="2.2"/>
+            <line x1="8" y1="16" x2="32" y2="16" stroke="currentColor" stroke-width="1.8"/>
+            <line x1="14" y1="22" x2="26" y2="22" stroke="currentColor" stroke-width="1.6"/>
+            <line x1="14" y1="26" x2="22" y2="26" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
+          <span class="tile-title">Tax Incentives</span>
+          <span class="tile-plus" aria-hidden="true"></span>
+        </summary>
+        <div class="tile-body">
+          <p>Businesses can claim the Federal Investment Tax Credit (ITC) and use accelerated depreciation to reduce tax bills. Tax specifics are always confirmed with your accountant — never estimated here.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="contact-panel" style="background:var(--bg-panel-2); text-align:center;">
+      <div class="eyebrow">Get in touch</div>
+      <h2 style="font-size:clamp(1.3rem,2.6vw,1.7rem); margin-top:10px;">Tell me about your property.</h2>
+      <p style="color:var(--text-mid); margin-top:14px; max-width:56ch; margin-left:auto; margin-right:auto;">One quick form — I'll follow up directly, usually within a day.</p>
+      <a class="btn-primary" style="display:inline-block; margin-top:20px;" href="./bill-geyer-solar-energy.html?interest=commercial#contact">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div><strong>GK1 Energy</strong> · © 2026</div>
+    <div>[phone placeholder] · bill@gk1.energy</div>
+    <div><a href="./bill-geyer-solar-energy.html" style="color:var(--text-low); text-decoration:underline;">← Back to residential site</a></div>
+  </div>
+</footer>
+
+<script>
+  // Draw an 8x3 grid of panel cells for the hero signature graphic
+  const svgNS = "http://www.w3.org/2000/svg";
+  const grid = document.getElementById('panelGrid');
+  const cols = 8, rows = 3, x0 = 32, y0 = 30, cw = 68, ch = 24, gap = 4;
+  for (let r = 0; r < rows; r++){
+    for (let c = 0; c < cols; c++){
+      const rect = document.createElementNS(svgNS, 'rect');
+      rect.setAttribute('x', x0 + c * (cw + gap));
+      rect.setAttribute('y', y0 + r * (ch + gap));
+      rect.setAttribute('width', cw);
+      rect.setAttribute('height', ch);
+      rect.setAttribute('rx', 2);
+      rect.setAttribute('class', 'panel-cell');
+      grid.appendChild(rect);
+    }
+  }
+</script>
+
+</body>
+</html>
