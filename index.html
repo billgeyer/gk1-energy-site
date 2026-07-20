@@ -63,6 +63,19 @@
   .hero h1{ font-size:clamp(2rem, 5vw, 3.1rem); color:var(--text-hi); max-width:17ch; }
   .hero p.lede{ margin-top:20px; max-width:56ch; color:var(--text-mid); font-size:1.05rem; }
   .hero-ctas{ margin-top:32px; display:flex; gap:14px; flex-wrap:wrap; }
+
+  .hero-grid{ display:grid; grid-template-columns:1fr 240px; gap:40px; align-items:start; }
+  @media (max-width:760px){ .hero-grid{ grid-template-columns:1fr; } }
+  .hero-photo-wrap{ text-align:center; }
+  @media (max-width:760px){ .hero-photo-wrap{ order:-1; max-width:200px; margin:0 auto; } }
+  .hero-photo{
+    width:100%; aspect-ratio:4/5; object-fit:cover; object-position:top center;
+    border-radius:var(--radius); border:1px solid var(--line); display:block;
+  }
+  .hero-photo-caption{
+    margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--text-low);
+    letter-spacing:0.05em; line-height:1.5;
+  }
   .btn-primary{
     background:var(--sun); color:#1a1300; font-weight:600; padding:13px 24px;
     border-radius:999px; text-decoration:none; font-size:0.95rem; border:1px solid var(--sun);
@@ -116,6 +129,16 @@
   .cards-2{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
   @media (max-width:760px){ .cards-2{ grid-template-columns:1fr; } }
 
+  .process-steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  @media (max-width:760px){ .process-steps{ grid-template-columns:1fr; } }
+  .process-step{ background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
+  .process-num{
+    font-family:'IBM Plex Mono',monospace; font-size:0.78rem; color:var(--sun); border:1px solid var(--sun-dim);
+    width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  }
+  .process-step h3{ font-size:1.05rem; margin-top:12px; }
+  .process-step p{ color:var(--text-mid); margin-top:8px; font-size:0.9rem; }
+
   .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
   @media (max-width:600px){ .form-row{ grid-template-columns:1fr; } }
   label{
@@ -162,12 +185,20 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="hero-eyebrow eyebrow">Primary service area: New England — with relationships beyond</div>
-    <h1>Solar and energy strategy for your home — explained plainly, by someone who's worked inside the equipment industry.</h1>
-    <p class="lede">I'm Bill Geyer of GK1 Energy — an independent Energy Advisor. I work with homeowners and residential landlords deciding whether solar, battery storage, a heat pump, or a backup generator makes sense for their property, then place the project with the right regional partner. No sales pitch for one product — just a straight answer.</p>
-    <div class="hero-ctas">
-      <a class="btn-primary" href="#contact">Request a free consultation</a>
-      <a class="btn-ghost" href="#serve">Who I help</a>
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow eyebrow">Primary service area: New England — with relationships beyond</div>
+        <h1>Solar and energy strategy for your home — explained plainly, by someone who's worked inside the equipment industry.</h1>
+        <p class="lede">I'm Bill Geyer of GK1 Energy — an independent Energy Advisor. I work with homeowners and residential landlords deciding whether solar, battery storage, a heat pump, or a backup generator makes sense for their property, then place the project with the right regional partner. No sales pitch for one product — just a straight answer.</p>
+        <div class="hero-ctas">
+          <a class="btn-primary" href="#contact">Request a free consultation</a>
+          <a class="btn-ghost" href="#serve">Who I help</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <img class="hero-photo" src="./images/bill-geyer-headshot.jpg" alt="Bill Geyer, independent Energy Advisor at GK1 Energy" width="240" height="300">
+        <div class="hero-photo-caption">Bill Geyer<br>Energy Advisor, GK1 Energy</div>
+      </div>
     </div>
     <div class="arc-wrap" aria-hidden="true">
       <svg viewBox="0 0 640 170" width="100%" height="auto" role="presentation">
@@ -295,6 +326,39 @@
         </div>
       </details>
     </div>
+  </div>
+</section>
+
+<section class="section" id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The Process</div>
+      <h2>Going solar has never been easier</h2>
+      <p>It starts with a plain conversation, not a sales pitch — here's exactly what happens along the way.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-num">1</div>
+        <h3>Discovery</h3>
+        <p>A plain-language conversation about your property, usage, and goals — no jargon, no pressure, just enough to know if solar makes sense for you.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">2</div>
+        <h3>Matched with the right partner</h3>
+        <p>I place your project with the regional installer suited to your property and situation — not whichever one happens to be easiest for me.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">3</div>
+        <h3>Engineering, permitting &amp; installation</h3>
+        <p>Your installation partner handles the site survey, utility and AHJ approvals, and the licensed crews who put the system on your roof.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">4</div>
+        <h3>I stay your point of contact</h3>
+        <p>Through commissioning and turn-on — not gone the moment the contract's signed.</p>
+      </div>
+    </div>
+    <p class="note-line">Old roof? Not a dealbreaker — my installation partners can coordinate a roof replacement as part of the project, so an aging roof doesn't rule solar out.</p>
   </div>
 </section>
 
