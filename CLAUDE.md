@@ -92,6 +92,13 @@ description-based slugs (e.g. `commercial-solar.html`), not
 
 ## Open checklist, roughly in priority order
 
+**Sequencing note**: Bill's actual stated priority right now is Zoho
+Web-to-Lead wiring (#1 below) **then** business cards next, since printing
+and shipping takes several days and he doesn't want that on the critical
+path. Items #3 (CTA phrasing) and #6 (QR destination) below are what's
+actually blocking the card design from being final — worth resolving those
+two before he goes to order, even out of strict priority order.
+
 1. **Lead form has no backend.** `#leadForm` in `index.html` is a client-side
    placeholder (see the JS comment near the submit handler) — submissions
    currently go nowhere. Highest-priority gap; nothing else matters if a real
@@ -136,10 +143,19 @@ don't push anything live without confirming first.
   as overkill for current lead volume/complexity). Bill needs to generate
   the Web-to-Lead form inside Zoho CRM (Setup → Developer Space → Webforms)
   and send the generated HTML/field mapping back so the existing styled
-  `#leadForm` can be rewired to POST to it. Still need to confirm whether
-  Zoho's form builder supports a file-upload field (for the "upload a quote
-  or electric bill" field) — if not, that one field needs a separate
-  solution, not dropped.
+  `#leadForm` can be rewired to POST to it.
+- **File upload field — removed, not just deferred.** Zoho's Web-to-Lead
+  file-attachment support is grayed out on Bill's current 15-day trial
+  (paid editions only) — but separately, Bill decided it's not worth
+  having regardless, since asking someone to dig up and upload a bill cuts
+  against the site's low-pressure positioning. `#leadForm` no longer has
+  an upload/dropzone field (nor the JS/CSS that supported it). In its
+  place: a **"LOWEST monthly electric bill (rough estimate)"** dropdown
+  (Under $100 / $100–150 / $150–200 / $200–300 / $300–400 / $400+ / Not
+  sure) — asks for the *lowest* month specifically so a summer-inflated
+  bill doesn't skew the estimate. Don't reintroduce file upload later
+  without checking in first; this was a deliberate choice, not a
+  temporary workaround.
 - **Acknowledgement email**: to be handled by a Zoho CRM Workflow Rule
   (Setup → Automation) firing on new Lead creation — not a separate tool.
   Should include the Cal.com booking link.
