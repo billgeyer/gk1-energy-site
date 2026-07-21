@@ -129,7 +129,7 @@ description-based slugs (e.g. `commercial-solar.html`), not
 Bill is planning a broader round of content rewrites across both pages;
 don't push anything live without confirming first.
 
-## Lead capture & scheduling architecture (decided, not yet implemented)
+## Lead capture & scheduling architecture
 
 - **CRM**: Zoho CRM (standard plan), via direct **Web-to-Lead** integration —
   no middleman automation tool (n8n was considered and deliberately rejected
@@ -160,9 +160,17 @@ don't push anything live without confirming first.
   lead's location and can judge drive time himself (his home base means
   drive time varies hugely — e.g. Newburyport MA vs. Fairfield County CT
   — and evening/weekend slots are scarce given the day job).
-- Once the Cal.com booking link exists, it needs to be wired into the site
-  (placement not yet decided — likely near the hero CTAs and/or in "Get in
-  touch," as a lower-friction alternative next to the qualification form).
+- **Cal.com — implemented.** Booking link is
+  `https://cal.com/bill-geyer-ragr8q/15min`. Wired into `index.html`'s
+  "Get in touch" section as a note-line above the form ("Already know you
+  want to talk? Book a 15-minute call directly →"), so it's the first
+  thing visible when reaching that section, before the longer form. Since
+  commercial visitors also route to this same `#contact` section via
+  `?interest=commercial`, they see it too — no separate commercial-page
+  implementation was needed.
+- **Zoho Web-to-Lead — still pending.** This is the one piece of the
+  architecture not yet implemented; waiting on Bill to generate the
+  Web-to-Lead form in Zoho CRM and send back the details (see above).
 
 ## Do not use: Helio Solar internal finance training PDF
 
