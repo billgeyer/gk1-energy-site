@@ -139,17 +139,14 @@ two before he goes to order, even out of strict priority order.
    opinion. That's a distinct (often more skeptical, further-along)
    audience from the main funnel and probably deserves its own visible
    line/section, not full copy yet — flagged as backlog, not urgent.
-10. **SMS/contact consent checkbox on `#leadForm` — not yet added.**
-    `privacy-policy.html` exists and is linked from both footers, but the
-    lead form itself still has no explicit consent checkbox/language near
-    the submit button. Should be written to match actual practice (Bill
-    personally following up by phone/text/email, not automated marketing
-    texts) rather than copied from other installers' TCPA-style
-    disclaimers, which describe automated SMS campaigns Bill isn't running.
-    Worth doing before the form goes live on Zoho, and this and the
-    privacy policy page should stay in sync if practices change (e.g. if
-    Cal.com appointment-reminder texts or any automated texting gets
-    added later).
+10. ~~SMS/contact consent checkbox on `#leadForm`~~ — **done.** Required,
+    unchecked-by-default checkbox above the submit button ("I agree to
+    receive calls and texts from GK1 Energy regarding my inquiry...")
+    linking to `privacy-policy.html`. Written to match actual practice
+    (personal follow-up, not automated marketing texts), not copied from
+    other installers' bulk-SMS-style disclaimers. **Keep this and
+    `privacy-policy.html` in sync** if practices change later (e.g. Cal.com
+    appointment-reminder texts or any automated texting gets added).
 
 Bill is planning a broader round of content rewrites across both pages;
 don't push anything live without confirming first.
