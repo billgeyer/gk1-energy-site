@@ -152,6 +152,12 @@
   input::placeholder, textarea::placeholder{ color:var(--text-low); }
   textarea{ resize:vertical; min-height:80px; }
   .form-full{ margin-bottom:16px; }
+  input[type="checkbox"]{ width:16px; height:16px; padding:0; accent-color:var(--sun); flex:0 0 auto; margin-top:3px; }
+  .consent-row{ display:flex; align-items:flex-start; gap:10px; margin-bottom:18px; }
+  .consent-row label{
+    text-transform:none; font-family:'Inter',sans-serif; font-size:0.85rem; letter-spacing:normal;
+    color:var(--text-mid); margin-bottom:0;
+  }
   .submit-btn{
     background:var(--sun); color:#1a1300; font-weight:600; border:none; padding:13px 26px;
     border-radius:999px; font-size:0.95rem; cursor:pointer; font-family:'Inter',sans-serif;
@@ -532,6 +538,10 @@
         <div class="form-full">
           <label for="message">Anything else worth knowing</label>
           <textarea id="message" name="message" placeholder="Roof age, current fuel type — whatever's relevant."></textarea>
+        </div>
+        <div class="consent-row">
+          <input type="checkbox" id="smsConsent" name="smsConsent" required>
+          <label for="smsConsent">I agree to receive calls and texts from GK1 Energy regarding my inquiry. Msg &amp; data rates may apply. Reply STOP to opt out. <a href="./privacy-policy.html" style="color:var(--sky);">View our Privacy Policy</a>.</label>
         </div>
         <button type="submit" class="submit-btn">Request a consultation</button>
         <div id="formMsg">Thanks — that came through. I'll be in touch shortly.</div>
