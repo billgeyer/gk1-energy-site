@@ -29,6 +29,13 @@ land here. It's not optimized for cold organic search traffic.
   for the pattern/tone).
 - `images/` — site assets (currently just the headshot). Not committed
   casually; keep images compressed (<500KB) before adding.
+- `privacy-policy.html` — plain-language privacy policy, linked from both
+  pages' footers. Written to match actual current practice (Zoho CRM +
+  Cal.com as the only data processors named, no analytics/cookies claimed
+  since none exist yet, no automated marketing texts claimed since none
+  exist). **Keep this accurate as things change** — if analytics, SMS
+  automation, or new third-party tools get added, this page needs updating
+  to match, not left describing an earlier state.
 
 Naming convention: keep `index.html` at the root (best for SEO/bookmarks — a
 deliberate choice, not an oversight). New sub-pages should use plain,
@@ -132,6 +139,17 @@ two before he goes to order, even out of strict priority order.
    opinion. That's a distinct (often more skeptical, further-along)
    audience from the main funnel and probably deserves its own visible
    line/section, not full copy yet — flagged as backlog, not urgent.
+10. **SMS/contact consent checkbox on `#leadForm` — not yet added.**
+    `privacy-policy.html` exists and is linked from both footers, but the
+    lead form itself still has no explicit consent checkbox/language near
+    the submit button. Should be written to match actual practice (Bill
+    personally following up by phone/text/email, not automated marketing
+    texts) rather than copied from other installers' TCPA-style
+    disclaimers, which describe automated SMS campaigns Bill isn't running.
+    Worth doing before the form goes live on Zoho, and this and the
+    privacy policy page should stay in sync if practices change (e.g. if
+    Cal.com appointment-reminder texts or any automated texting gets
+    added later).
 
 Bill is planning a broader round of content rewrites across both pages;
 don't push anything live without confirming first.
