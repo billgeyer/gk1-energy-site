@@ -152,14 +152,6 @@
   input::placeholder, textarea::placeholder{ color:var(--text-low); }
   textarea{ resize:vertical; min-height:80px; }
   .form-full{ margin-bottom:16px; }
-  .dropzone{
-    border:1.5px dashed var(--line); border-radius:10px; padding:22px; text-align:center;
-    cursor:pointer; transition:border-color 0.15s, background 0.15s;
-  }
-  .dropzone:hover, .dropzone.drag-over{ border-color:var(--sun); background:rgba(242,163,59,0.05); }
-  .dropzone p{ margin:0; color:var(--text-mid); font-size:0.9rem; }
-  .dropzone .dz-sub{ font-size:0.78rem; color:var(--text-low); margin-top:4px; }
-  #fileList{ margin-top:8px; font-size:0.85rem; color:var(--sky); }
   .submit-btn{
     background:var(--sun); color:#1a1300; font-weight:600; border:none; padding:13px 26px;
     border-radius:999px; font-size:0.95rem; cursor:pointer; font-family:'Inter',sans-serif;
@@ -526,17 +518,20 @@
         </div>
         <input type="hidden" id="refCode" name="refCode" value="">
         <div class="form-full">
-          <label for="fileUpload">Upload a quote or your electric bill (optional)</label>
-          <div id="dropzone" class="dropzone">
-            <p id="dropzoneText">Drag a file here, or tap to choose one</p>
-            <p class="dz-sub">PDF, JPG, PNG, or HEIC</p>
-            <input type="file" id="fileUpload" name="fileUpload" accept=".pdf,.jpg,.jpeg,.png,.heic,image/*,application/pdf" multiple style="display:none;">
-          </div>
-          <div id="fileList"></div>
+          <label for="lowestBill">LOWEST monthly electric bill (rough estimate)</label>
+          <select id="lowestBill" name="lowestBill">
+            <option>Under $100</option>
+            <option>$100–$150</option>
+            <option>$150–$200</option>
+            <option>$200–$300</option>
+            <option>$300–$400</option>
+            <option>$400+</option>
+            <option>Not sure</option>
+          </select>
         </div>
         <div class="form-full">
           <label for="message">Anything else worth knowing</label>
-          <textarea id="message" name="message" placeholder="Roof age, current fuel type, average electric bill — whatever's relevant."></textarea>
+          <textarea id="message" name="message" placeholder="Roof age, current fuel type — whatever's relevant."></textarea>
         </div>
         <button type="submit" class="submit-btn">Request a consultation</button>
         <div id="formMsg">Thanks — that came through. I'll be in touch shortly.</div>
@@ -568,21 +563,6 @@
 
   const form = document.getElementById('leadForm');
   const msg = document.getElementById('formMsg');
-  const dropzone = document.getElementById('dropzone');
-  const fileInput = document.getElementById('fileUpload');
-  const fileList = document.getElementById('fileList');
-
-  function renderFileList(){
-    if (fileInput.files.length === 0){ fileList.textContent = ''; return; }
-    fileList.textContent = Array.from(fileInput.files).map(f => f.name).join(', ');
-  }
-  dropzone.addEventListener('click', () => fileInput.click());
-  fileInput.addEventListener('change', renderFileList);
-  ['dragenter','dragover'].forEach(evt => dropzone.addEventListener(evt, (e) => { e.preventDefault(); dropzone.classList.add('drag-over'); }));
-  ['dragleave','drop'].forEach(evt => dropzone.addEventListener(evt, (e) => { e.preventDefault(); dropzone.classList.remove('drag-over'); }));
-  dropzone.addEventListener('drop', (e) => {
-    if (e.dataTransfer.files.length){ fileInput.files = e.dataTransfer.files; renderFileList(); }
-  });
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
@@ -590,7 +570,6 @@
     // goes live on a QR code (see handoff doc, open action items).
     msg.style.display = 'block';
     form.reset();
-    fileList.textContent = '';
   });
 </script>
 
