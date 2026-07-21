@@ -171,6 +171,17 @@ don't push anything live without confirming first.
 - **Zoho Web-to-Lead — still pending.** This is the one piece of the
   architecture not yet implemented; waiting on Bill to generate the
   Web-to-Lead form in Zoho CRM and send back the details (see above).
+- **Backlog: Cal.com bookings aren't captured as Zoho Leads.** The website
+  form and Cal.com are two separate systems — someone who books directly
+  via Cal.com never touches the Web-to-Lead form, so no Lead record gets
+  created for them. Unlike the form, there's no native direct-submit path
+  for this, so some connector is genuinely needed (not optional
+  complexity). Options to check, in order: (1) Zoho Flow, since Bill's
+  already on Zoho CRM and it may support Cal.com as a trigger app; (2)
+  Zapier or Make as a fallback — both have mature Cal.com triggers and
+  Zoho CRM "create Lead" actions; (3) Cal.com webhooks feeding something
+  custom, as a last resort. Not yet researched which of these Cal.com/Zoho
+  actually support — flagged for later, not blocking anything else.
 
 ## Do not use: Helio Solar internal finance training PDF
 
