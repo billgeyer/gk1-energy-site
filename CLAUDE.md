@@ -117,6 +117,14 @@ description-based slugs (e.g. `commercial-solar.html`), not
    finalized, update his bio to match on **both** his Recheck profile
    (recheck.co) and his Cal.com profile — keep all three (site, Recheck,
    Cal.com) consistent. Bill does this himself, no site access needed.
+9. **Backlog: standalone "already have a quote?" second-opinion CTA**,
+   residential page (`index.html`) only. Right now this angle only exists
+   buried inside the "Single-Family Homeowners" accordion tile and as one
+   option in the contact form's dropdown — neither is a prominent, direct
+   path for someone who already has a competing quote and wants a second
+   opinion. That's a distinct (often more skeptical, further-along)
+   audience from the main funnel and probably deserves its own visible
+   line/section, not full copy yet — flagged as backlog, not urgent.
 
 Bill is planning a broader round of content rewrites across both pages;
 don't push anything live without confirming first.
