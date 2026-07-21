@@ -113,13 +113,48 @@ description-based slugs (e.g. `commercial-solar.html`), not
 6. Decide the QR code destination (likely a deep link straight to
    `#contact`) — lower urgency until the physical card is being finalized.
 7. *(Optional)* basic analytics — currently no tracking at all.
-8. **Reminder for Bill, not a site task**: once the "About" bio copy on the
-   site is finalized, sync the same wording to his Recheck profile
-   (recheck.co) so both stay consistent — Bill does this himself, no site
-   access needed.
+8. **Reminder for Bill, not a site task**: once all the copy on the site is
+   finalized, update his bio to match on **both** his Recheck profile
+   (recheck.co) and his Cal.com profile — keep all three (site, Recheck,
+   Cal.com) consistent. Bill does this himself, no site access needed.
 
 Bill is planning a broader round of content rewrites across both pages;
 don't push anything live without confirming first.
+
+## Lead capture & scheduling architecture (decided, not yet implemented)
+
+- **CRM**: Zoho CRM (standard plan), via direct **Web-to-Lead** integration —
+  no middleman automation tool (n8n was considered and deliberately rejected
+  as overkill for current lead volume/complexity). Bill needs to generate
+  the Web-to-Lead form inside Zoho CRM (Setup → Developer Space → Webforms)
+  and send the generated HTML/field mapping back so the existing styled
+  `#leadForm` can be rewired to POST to it. Still need to confirm whether
+  Zoho's form builder supports a file-upload field (for the "upload a quote
+  or electric bill" field) — if not, that one field needs a separate
+  solution, not dropped.
+- **Acknowledgement email**: to be handled by a Zoho CRM Workflow Rule
+  (Setup → Automation) firing on new Lead creation — not a separate tool.
+  Should include the Cal.com booking link.
+- **Cal.com**: a **separate, dedicated Cal.com account for GK1 Energy**
+  (not Bill's existing account, which is set up for a different, unrelated
+  use case) — connect Bill's other calendars (day job, personal, existing
+  Cal.com account's calendar) purely for conflict-checking; new GK1
+  bookings write to their own destination calendar. Only **one event type**
+  is needed: a phone/Google Meet "touchpoint" call, with Cal.com's
+  "Phone Call" location type configured so **Bill calls the attendee**
+  (not the reverse) — avoids conference bridges/PINs, which was a
+  deliberate choice for an older/less-tech-comfortable audience. Bill
+  should place the call from his existing Google Voice number (already
+  public on the site) for caller-ID consistency. Availability should be
+  evenings/weekends only (Bill has a day job). The actual in-person first
+  appointment ("SIT1") is intentionally **not** self-service bookable —
+  Bill schedules that manually after the initial call, once he knows the
+  lead's location and can judge drive time himself (his home base means
+  drive time varies hugely — e.g. Newburyport MA vs. Fairfield County CT
+  — and evening/weekend slots are scarce given the day job).
+- Once the Cal.com booking link exists, it needs to be wired into the site
+  (placement not yet decided — likely near the hero CTAs and/or in "Get in
+  touch," as a lower-friction alternative next to the qualification form).
 
 ## Do not use: Helio Solar internal finance training PDF
 
