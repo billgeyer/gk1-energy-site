@@ -158,6 +158,13 @@
     text-transform:none; font-family:'Inter',sans-serif; font-size:0.85rem; letter-spacing:normal;
     color:var(--text-mid); margin-bottom:0;
   }
+  .checkbox-group{ display:flex; flex-direction:column; gap:10px; margin-top:8px; }
+  .checkbox-option{
+    display:flex; align-items:center; gap:10px; cursor:pointer;
+    text-transform:none; font-family:'Inter',sans-serif; font-size:0.9rem;
+    letter-spacing:normal; color:var(--text-hi); margin-bottom:0;
+  }
+  .checkbox-option input[type="checkbox"]{ margin-top:0; }
   .submit-btn{
     background:var(--sun); color:#1a1300; font-weight:600; border:none; padding:13px 26px;
     border-radius:999px; font-size:0.95rem; cursor:pointer; font-family:'Inter',sans-serif;
@@ -501,29 +508,35 @@
     <div class="contact-panel">
       <form id="leadForm">
         <div class="form-row">
-          <div><label for="name">Name</label><input id="name" name="name" type="text" placeholder="Jane Smith" required></div>
-          <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" placeholder="(555) 555-0123" required></div>
+          <div><label for="firstName">First Name</label><input id="firstName" name="firstName" type="text" placeholder="Jane" required></div>
+          <div><label for="lastName">Last Name</label><input id="lastName" name="lastName" type="text" placeholder="Smith" required></div>
         </div>
         <div class="form-row">
+          <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" placeholder="(555) 555-0123" required></div>
           <div><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" required></div>
-          <div><label for="state">Town &amp; State</label><input id="state" name="state" type="text" placeholder="North Hampton, NH" required></div>
         </div>
         <div class="form-full">
-          <label for="type">I'm interested in</label>
-          <select id="type" name="type">
-            <option>Residential solar &amp; storage</option>
-            <option>Multifamily / rental property</option>
-            <option>Commercial / business solar</option>
-            <option>Heating, cooling &amp; generators</option>
-            <option>Second opinion on a quote I already have</option>
-            <option>Not sure yet — just exploring</option>
-          </select>
+          <label for="state">Town &amp; State</label>
+          <input id="state" name="state" type="text" placeholder="North Hampton, NH" required>
+        </div>
+        <div class="form-full">
+          <label>Which of these are you interested in? (check all that apply)</label>
+          <div class="checkbox-group">
+            <label class="checkbox-option"><input type="checkbox" name="techInterest" value="Solar & Battery Storage"> Solar &amp; Battery Storage</label>
+            <label class="checkbox-option"><input type="checkbox" name="techInterest" value="Heating & Cooling"> Heating &amp; Cooling</label>
+            <label class="checkbox-option"><input type="checkbox" name="techInterest" value="Backup Generators"> Backup Generators</label>
+            <label class="checkbox-option"><input type="checkbox" name="techInterest" value="Not sure yet"> Not sure yet — just exploring</label>
+          </div>
+        </div>
+        <div class="form-full">
+          <label class="checkbox-option" for="secondOpinion"><input type="checkbox" id="secondOpinion" name="secondOpinion" value="yes"> I already have a quote from another company and want a second opinion</label>
         </div>
         <div class="form-full">
           <label for="referredBy">Referred by (optional)</label>
           <input id="referredBy" name="referredBy" type="text" placeholder="Name of whoever sent you here">
         </div>
         <input type="hidden" id="refCode" name="refCode" value="">
+        <input type="hidden" id="propertySegment" name="propertySegment" value="">
         <div class="form-full">
           <label for="lowestBill">LOWEST monthly electric bill (rough estimate)</label>
           <select id="lowestBill" name="lowestBill">
@@ -566,10 +579,7 @@
 
   const interest = params.get('interest');
   if (interest === 'commercial'){
-    const typeSelect = document.getElementById('type');
-    for (const opt of typeSelect.options){
-      if (opt.text.indexOf('Commercial') !== -1){ typeSelect.value = opt.value; break; }
-    }
+    document.getElementById('propertySegment').value = 'commercial';
   }
 
   const form = document.getElementById('leadForm');
