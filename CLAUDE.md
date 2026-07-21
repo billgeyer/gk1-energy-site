@@ -131,14 +131,11 @@ two before he goes to order, even out of strict priority order.
    finalized, update his bio to match on **both** his Recheck profile
    (recheck.co) and his Cal.com profile — keep all three (site, Recheck,
    Cal.com) consistent. Bill does this himself, no site access needed.
-9. **Backlog: standalone "already have a quote?" second-opinion CTA**,
-   residential page (`index.html`) only. Right now this angle only exists
-   buried inside the "Single-Family Homeowners" accordion tile and as one
-   option in the contact form's dropdown — neither is a prominent, direct
-   path for someone who already has a competing quote and wants a second
-   opinion. That's a distinct (often more skeptical, further-along)
-   audience from the main funnel and probably deserves its own visible
-   line/section, not full copy yet — flagged as backlog, not urgent.
+9. ~~Backlog: standalone "already have a quote?" second-opinion CTA~~ —
+   **done.** Added as its own note-line in "Who I Serve" ("Already have a
+   quote from another company? Get a second opinion →"), plus a matching
+   optional checkbox on the form itself (`#secondOpinion`) so the intent
+   is captured even if someone lands straight on the form.
 10. ~~SMS/contact consent checkbox on `#leadForm`~~ — **done.** Required,
     unchecked-by-default checkbox above the submit button ("I agree to
     receive calls and texts from GK1 Energy regarding my inquiry...")
@@ -171,6 +168,20 @@ don't push anything live without confirming first.
   bill doesn't skew the estimate. Don't reintroduce file upload later
   without checking in first; this was a deliberate choice, not a
   temporary workaround.
+- **Form field structure — current state**, for whoever maps this into
+  Zoho's Web-to-Lead form builder: `firstName` / `lastName` (split, not a
+  single Name field), `phone`, `email`, `state` (Town & State combined),
+  four `techInterest` checkboxes sharing one `name` (Solar & Battery
+  Storage / Heating & Cooling / Backup Generators / Not sure yet) — a
+  multi-select, not single-select, so more than one can be checked —
+  `secondOpinion` (optional checkbox), `referredBy` (optional), hidden
+  `refCode` and `propertySegment` (silently set to `"commercial"` via JS
+  when arriving from `commercial-solar.html`'s `?interest=commercial`
+  link — replaces the old single-dropdown prefill logic), `lowestBill`,
+  `message`, and the required `smsConsent` checkbox. Zoho's multi-select
+  checkbox handling may need a specific `name`/`value` convention once
+  the Web-to-Lead form is generated — check what Zoho outputs for a
+  multi-select picklist field before assuming `techInterest` as-is works.
 - **Acknowledgement email**: to be handled by a Zoho CRM Workflow Rule
   (Setup → Automation) firing on new Lead creation — not a separate tool.
   Should include the Cal.com booking link.
