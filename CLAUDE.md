@@ -250,3 +250,12 @@ that's the ceiling for this topic unless Bill decides otherwise.
   amount → calculation) was discussed and confirmed as a good idea, but
   explicitly deferred — it needs real backend logic, out of scope until
   Bill says otherwise. Don't stub it in unprompted.
+- **Separate, unrelated CRM build-out exists — not tracked in this repo.**
+  Bill is also building out Zoho CRM (Contact, Property, and Lead object
+  design — field lists, picklist rationalization, referral commission
+  structure, etc.) for the same business. That work is deliberately kept
+  out of git and lives as its own set of versioned handoff docs in Google
+  Drive: `My Drive (bill@gk1.energy)\02_AREAS\Marketing_Brand\GK1-CRM-Decision-Handoff_*.md`.
+  Pointer only — don't pull that content into this repo or this file; only
+  relevant here if a future task explicitly involves the CRM/lead-data side
+  of the business rather than the website itself.
