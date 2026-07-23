@@ -163,8 +163,10 @@ don't push anything live without confirming first.
   against the site's low-pressure positioning. `#leadForm` no longer has
   an upload/dropzone field (nor the JS/CSS that supported it). In its
   place: a **"LOWEST monthly electric bill (rough estimate)"** dropdown
-  (Under $100 / $100–150 / $150–200 / $200–300 / $300–400 / $400+ / Not
-  sure) — asks for the *lowest* month specifically so a summer-inflated
+  (Under $100 / $100–149 / $150–199 / $200–299 / $300–399 / $400+ / Not
+  sure — rationalized to non-overlapping bands; the original list had
+  boundary values like 150/200/300 double-counted between adjacent
+  options) — asks for the *lowest* month specifically so a summer-inflated
   bill doesn't skew the estimate. Don't reintroduce file upload later
   without checking in first; this was a deliberate choice, not a
   temporary workaround.
