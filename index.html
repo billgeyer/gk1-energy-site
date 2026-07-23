@@ -507,35 +507,38 @@
       <p class="note-line">Already know you want to talk? <a href="https://cal.com/bill-geyer-ragr8q/15min" style="color:var(--sky);">Book a 15-minute call directly →</a> I'll call you at the time you pick.</p>
     </div>
     <div class="contact-panel">
-      <form id="leadForm">
+      <form id="leadForm" class="crmWebToEntityForm" name="WebToLeads7504064000000701086" action="https://crm.zoho.com/crm/WebToLeadForm" method="POST" onsubmit="javascript:document.charset='UTF-8'; return checkMandatory7504064000000701086();" accept-charset="UTF-8">
+        <input type="hidden" name="xnQsjsdp" value="737b0e34176d827ee4a70d85f9827c9ce14629656b0960a9ba765e62445be6dc">
+        <input type="hidden" name="zc_gad" id="zc_gad" value="">
+        <input type="hidden" name="xmIwtLD" value="4c6b912b51f338ca54d8be38be699e40069adca04a5e9d1f104ea4294bc7e0c80c039199dc421cced8e4a8ff95058a1b">
+        <input type="hidden" name="actionType" value="TGVhZHM=">
+        <input type="hidden" name="returnURL" value="https://gk1.energy/?submitted=true#contact">
+        <input type="hidden" name="aG9uZXlwb3Q" style="display:none;" value="">
         <div class="form-row">
-          <div><label for="firstName">First Name</label><input id="firstName" name="firstName" type="text" placeholder="Jane" required></div>
-          <div><label for="lastName">Last Name</label><input id="lastName" name="lastName" type="text" placeholder="Smith" required></div>
+          <div><label for="firstName">First Name</label><input id="firstName" name="First Name" type="text" placeholder="Jane" required></div>
+          <div><label for="lastName">Last Name</label><input id="lastName" name="Last Name" type="text" placeholder="Smith" required></div>
         </div>
         <div class="form-row">
-          <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" placeholder="(555) 555-0123" required></div>
-          <div><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" required></div>
+          <div><label for="phone">Phone</label><input id="phone" name="Phone" type="tel" placeholder="(555) 555-0123" required></div>
+          <div><label for="email">Email</label><input id="email" name="Email" ftype="email" type="email" placeholder="you@example.com" required></div>
         </div>
         <div class="form-full">
           <label for="streetAddress">Street Address</label>
-          <input id="streetAddress" name="streetAddress" type="text" placeholder="123 Main St" required>
+          <input id="streetAddress" name="Address - Street Address" type="text" placeholder="123 Main St" required>
         </div>
         <div class="form-row-3">
-          <div><label for="city">City</label><input id="city" name="city" type="text" placeholder="North Hampton" required></div>
+          <div><label for="city">City</label><input id="city" name="Address - City" type="text" placeholder="North Hampton" required></div>
           <div>
             <label for="state">State</label>
-            <select id="state" name="state" required>
+            <select id="state" name="LEADCF6" required>
               <option value="" disabled selected>Select</option>
+              <option value="CT">CT — Connecticut</option>
+              <option value="MA">MA — Massachusetts</option>
               <option value="ME">ME — Maine</option>
               <option value="NH">NH — New Hampshire</option>
-              <option value="VT">VT — Vermont</option>
-              <option value="RI">RI — Rhode Island</option>
-              <option value="MA">MA — Massachusetts</option>
-              <option value="CT">CT — Connecticut</option>
               <option value="NY">NY — New York</option>
-              <option value="NJ">NJ — New Jersey</option>
-              <option value="PA">PA — Pennsylvania</option>
-              <option value="MD">MD — Maryland</option>
+              <option value="RI">RI — Rhode Island</option>
+              <option value="VT">VT — Vermont</option>
               <option disabled>──────────</option>
               <option value="AL">AL — Alabama</option>
               <option value="AK">AK — Alaska</option>
@@ -555,6 +558,7 @@
               <option value="KS">KS — Kansas</option>
               <option value="KY">KY — Kentucky</option>
               <option value="LA">LA — Louisiana</option>
+              <option value="MD">MD — Maryland</option>
               <option value="MI">MI — Michigan</option>
               <option value="MN">MN — Minnesota</option>
               <option value="MS">MS — Mississippi</option>
@@ -562,12 +566,14 @@
               <option value="MT">MT — Montana</option>
               <option value="NE">NE — Nebraska</option>
               <option value="NV">NV — Nevada</option>
+              <option value="NJ">NJ — New Jersey</option>
               <option value="NM">NM — New Mexico</option>
               <option value="NC">NC — North Carolina</option>
               <option value="ND">ND — North Dakota</option>
               <option value="OH">OH — Ohio</option>
               <option value="OK">OK — Oklahoma</option>
               <option value="OR">OR — Oregon</option>
+              <option value="PA">PA — Pennsylvania</option>
               <option value="SC">SC — South Carolina</option>
               <option value="SD">SD — South Dakota</option>
               <option value="TN">TN — Tennessee</option>
@@ -580,30 +586,32 @@
               <option value="WY">WY — Wyoming</option>
             </select>
           </div>
-          <div><label for="zip">Zip Code</label><input id="zip" name="zip" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="03862" required></div>
+          <div><label for="zip">Zip Code</label><input id="zip" name="Address - Zip / Postal Code" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="03862" required></div>
         </div>
         <div class="form-full">
           <label>Which of these are you interested in? (check all that apply)</label>
           <div class="checkbox-group">
-            <label class="checkbox-option"><input type="checkbox" name="techInterest" value="Solar panels"> Solar panels</label>
-            <label class="checkbox-option"><input type="checkbox" name="techInterest" value="Solar panels + battery backup"> Solar panels + battery backup</label>
-            <label class="checkbox-option"><input type="checkbox" name="techInterest" value="EV charger"> EV charger</label>
-            <label class="checkbox-option"><input type="checkbox" name="techInterest" value="Heat pumps (heating & AC)"> Heat pumps (heating &amp; AC)</label>
-            <label class="checkbox-option"><input type="checkbox" name="techInterest" value="Heat pump water heater"> Heat pump water heater</label>
-            <label class="checkbox-option"><input type="checkbox" name="techInterest" value="Generators"> Generators</label>
-            <label class="checkbox-option"><input type="checkbox" name="techInterest" value="Not sure yet"> Not sure yet — just exploring</label>
-            <label class="checkbox-option" for="secondOpinion"><input type="checkbox" id="secondOpinion" name="secondOpinion" value="yes"> Want a second opinion on my quote</label>
+            <label class="checkbox-option"><input type="checkbox" name="LEADCF1" value="Solar panels"> Solar panels</label>
+            <label class="checkbox-option"><input type="checkbox" name="LEADCF1" value="Solar panels + battery backup"> Solar panels + battery backup</label>
+            <label class="checkbox-option"><input type="checkbox" name="LEADCF1" value="EV charger"> EV charger</label>
+            <label class="checkbox-option"><input type="checkbox" name="LEADCF1" value="Heat pumps (heating & AC)"> Heat pumps (heating &amp; AC)</label>
+            <label class="checkbox-option"><input type="checkbox" name="LEADCF1" value="Heat pump water heater"> Heat pump water heater</label>
+            <label class="checkbox-option"><input type="checkbox" name="LEADCF1" value="Generators"> Generators</label>
+            <label class="checkbox-option"><input type="checkbox" name="LEADCF1" value="Not sure yet"> Not sure yet — just exploring</label>
+            <label class="checkbox-option" for="secondOpinion"><input type="checkbox" id="secondOpinion" name="LEADCF52" value="true" onclick="addAriaChecked7504064000000701086()"> Want a second opinion on my quote</label>
           </div>
         </div>
         <div class="form-full">
           <label for="referredBy">Referred by (optional)</label>
-          <input id="referredBy" name="referredBy" type="text" placeholder="Name of whoever sent you here">
+          <input id="referredBy" name="LEADCF2" type="text" placeholder="Name of whoever sent you here">
         </div>
-        <input type="hidden" id="refCode" name="refCode" value="">
-        <input type="hidden" id="propertySegment" name="propertySegment" value="">
+        <input type="hidden" id="refCode" name="LEADCF3" value="">
+        <input type="hidden" id="propertySegment" name="LEADCF5" value="Residential">
+        <input type="hidden" name="Lead Source" value="Website Form">
+        <input type="hidden" name="Lead Status" value="New">
         <div class="form-full">
           <label for="lowestBill">LOWEST monthly electric bill (rough estimate)</label>
-          <select id="lowestBill" name="lowestBill">
+          <select id="lowestBill" name="LEADCF4">
             <option>Under $100</option>
             <option>$100–$149</option>
             <option>$150–$199</option>
@@ -615,13 +623,13 @@
         </div>
         <div class="form-full">
           <label for="message">Anything else worth knowing</label>
-          <textarea id="message" name="message" placeholder="Roof age, current fuel type — whatever's relevant."></textarea>
+          <textarea id="message" name="Description" placeholder="Roof age, current fuel type — whatever's relevant."></textarea>
         </div>
         <div class="consent-row">
-          <input type="checkbox" id="smsConsent" name="smsConsent" required>
+          <input type="checkbox" id="smsConsent" name="LEADCF53" required onclick="addAriaChecked7504064000000701086()">
           <label for="smsConsent">I agree to receive calls and texts from GK1 Energy regarding my inquiry. Msg &amp; data rates may apply. Reply STOP to opt out. <a href="./privacy-policy.html" style="color:var(--sky);">View our Privacy Policy</a>.</label>
         </div>
-        <button type="submit" class="submit-btn">Request a consultation</button>
+        <button type="submit" id="formsubmit" class="submit-btn formsubmit">Request a consultation</button>
         <div id="formMsg">Thanks — that came through. I'll be in touch shortly.</div>
       </form>
     </div>
@@ -643,20 +651,114 @@
 
   const interest = params.get('interest');
   if (interest === 'commercial'){
-    document.getElementById('propertySegment').value = 'commercial';
+    document.getElementById('propertySegment').value = 'Commercial';
   }
 
-  const form = document.getElementById('leadForm');
-  const msg = document.getElementById('formMsg');
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    // NOTE: client-side placeholder only — wire to a real backend before this
-    // goes live on a QR code (see handoff doc, open action items).
-    msg.style.display = 'block';
-    form.reset();
-  });
+  if (params.get('submitted') === 'true'){
+    document.getElementById('formMsg').style.display = 'block';
+    history.replaceState(null, '', window.location.pathname + window.location.hash);
+  }
 </script>
+
+<!-- Zoho Web-to-Lead integration — generated by Zoho, do not modify without
+     regenerating from Setup → Developer Space → Webforms. One line changed
+     from Zoho's original output: getElementById('webform7504064000000701086')
+     was retargeted to getElementById('leadForm') to match this form's real id,
+     since Zoho's own generated id/markup wasn't otherwise used. -->
+<script>
+  function addAriaChecked7504064000000701086(){
+    var checkboxElem = event.target;
+    if (checkboxElem != undefined && checkboxElem.checked) {
+      checkboxElem.ariaChecked = 'true';
+    } else if (checkboxElem != undefined && !checkboxElem.checked) {
+      checkboxElem.ariaChecked = 'false';
+    }
+  }
+  function addAriaSelected7504064000000701086(){
+    var optionElem = event.target;
+    var previousSelectedOption = optionElem.querySelector('[aria-selected=true]');
+    if (previousSelectedOption) {
+      previousSelectedOption.removeAttribute('aria-selected');
+    }
+    optionElem.querySelectorAll('option') [optionElem.selectedIndex] .ariaSelected = 'true';
+  }
+  function validateEmail7504064000000701086(){
+    var form = document.forms['WebToLeads7504064000000701086'];
+    var emailFld = form.querySelectorAll('[ftype=email]');
+    var i;
+    for(i = 0; i < emailFld.length; i++ ) {
+      var emailVal = emailFld[i].value;
+      if ((emailVal.replace (/^\s+|\s+$/g,'') ) .length != 0) {
+        var atpos = emailVal.indexOf('@');
+        var dotpos = emailVal.lastIndexOf('.');
+        if(atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= emailVal.length) {
+          alert('Please enter a valid email address. ');
+          emailFld[i].focus();
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+  function checkMandatory7504064000000701086(isAjax){
+    var mndFileds = new Array('First Name', 'Last Name', 'Email', 'Phone', 'LEADCF53', 'LEADCF6', 'Address - Street Address', 'Address - City', 'Address - Zip / Postal Code');
+    var fldLangVal = new Array('First Name', 'Last Name', 'Email', 'Phone', 'SMS\/Contact Consent', 'State (2\-Letter)', 'Address \- Street Address', 'Address \- City', 'Address \- Zip \/ Postal Code');
+    for (i = 0; i < mndFileds.length; i++ ) {
+      var fieldObj = document.forms['WebToLeads7504064000000701086'] [mndFileds[i]];
+      if (fieldObj) {
+        if(((fieldObj.value) .replace (/^\s+|\s+$/g,'') ) .length == 0) {
+          if (fieldObj.type == 'file') {
+            alert('Please select a file to upload.');
+            fieldObj.focus();
+            return false;
+          }
+          alert(fldLangVal[i] + ' cannot be empty.');
+          fieldObj.focus();
+          return false;
+        } else if (fieldObj.nodeName == 'SELECT') {
+          if (fieldObj.options[fieldObj.selectedIndex].value == '-None-') {
+            alert(fldLangVal[i] + ' cannot be none.');
+            fieldObj.focus();
+            return false;
+          }
+        } else if (fieldObj.type == 'checkbox') {
+          if (fieldObj.checked == false) {
+            alert('Please accept  ' + fldLangVal[i]);
+            fieldObj.focus();
+            return false;
+          }
+        }
+        try{
+          if (fieldObj.name == 'Last Name') {
+            name = fieldObj.value;
+          }
+        } catch (e){}
+      }
+    }
+    if ( !validateEmail7504064000000701086 () ) {
+      return false;
+    }
+    var urlparams = new URLSearchParams(window.location.search);
+    if (urlparams.has ('service') && (urlparams.get ('service') === 'smarturl') ) {
+      var webform = document.getElementById('leadForm');
+      var service = urlparams.get('service');
+      var smarturlfield = document.createElement('input');
+      smarturlfield.setAttribute('type', 'hidden');
+      smarturlfield.setAttribute('value', service);
+      smarturlfield.setAttribute('name', 'service');
+      webform.appendChild(smarturlfield);
+    }
+    document.querySelector('.crmWebToEntityForm .formsubmit').setAttribute('disabled', true);
+  }
+  _wFa_ajax_will_be_replaced = false;
+  if (typeof _wfa_fstprtcken == 'undefined') {
+    _wfa_fstprtcken = {};
+  }
+  _wfa_fstprtcken[7504064000000701086] = true;
+</script>
+<!-- Do not remove this --- Analytics Tracking code starts -->
+<script id="wf_anal" src="https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=60f80a0150af78f1a51d17207856b47359a8c313bf9c5fd1c15b68652a0905bedb35d756b931f3d23ded8f9e55017addgid8dfecd47de40170b3901ebf18e396a576b8e51b20bb5744c01f34bf672ed967agid22af5aa44706e1e01efa58f82142f9c541b14159611985e49110b7ad3471b4dagidb0c7326139905654e6515b64fb50009acf20202b1edb8f3d4d15a9fe501b520d&tw=cdc3dfb0e9f686519ba90a27c93c534bb36155c207dc4306208638be06f4f351&version=v2"></script>
+<!-- Do not remove this --- Analytics Tracking code ends. -->
 
 </body>
 </html>

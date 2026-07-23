@@ -106,10 +106,18 @@ path. Items #3 (CTA phrasing) and #6 (QR destination) below are what's
 actually blocking the card design from being final — worth resolving those
 two before he goes to order, even out of strict priority order.
 
-1. **Lead form has no backend.** `#leadForm` in `index.html` is a client-side
-   placeholder (see the JS comment near the submit handler) — submissions
-   currently go nowhere. Highest-priority gap; nothing else matters if a real
-   visitor's form fill vanishes.
+1. ~~Lead form has no backend~~ — **wired to Zoho CRM via Web-to-Lead, both
+   known blockers fixed.** `#leadForm` in `index.html` now POSTs directly to
+   Zoho (real `action`/`method`, all field `name` attributes matched to
+   Zoho's Lead fields, Zoho's required hidden tokens and validation script
+   included). The locked native Address-State field was replaced with a new
+   custom field (State (2-Letter), `LEADCF6`) instead of being fought, and
+   the Wants-Second-Opinion / SMS-Consent required flags are now correct on
+   both the Zoho side and in the merged code. See
+   `GK1-CRM-Decision-Handoff_2026-07-22_Opportunity-Lead-Referral.md` Part 5
+   for the full history. **Still not uploaded to Spaceship, and not yet
+   tested end-to-end with a real submission** — do a live test before
+   trusting this fully.
 2. **CT/MA/NH/ME incentive tiles are still stub/placeholder copy** (visible
    `[bracketed placeholder]` text) — needs real state-specific content and
    source links, or the section should be hidden until ready.
