@@ -170,13 +170,17 @@ don't push anything live without confirming first.
   temporary workaround.
 - **Form field structure — current state**, for whoever maps this into
   Zoho's Web-to-Lead form builder: `firstName` / `lastName` (split, not a
-  single Name field), `phone`, `email`, `state` (Town & State combined),
-  four `techInterest` checkboxes sharing one `name` (Solar & Battery
-  Storage / Heating & Cooling / Backup Generators / Not sure yet) — a
-  multi-select, not single-select, so more than one can be checked —
-  `secondOpinion` (optional checkbox), `referredBy` (optional), hidden
-  `refCode` and `propertySegment` (silently set to `"commercial"` via JS
-  when arriving from `commercial-solar.html`'s `?interest=commercial`
+  single Name field), `phone`, `email`, `streetAddress`, `city`, `state`
+  (2-letter abbreviation via a `<select>`, ME/NH/VT/RI/MA/CT/NY/NJ/PA/MD
+  prioritized at top then the rest alphabetical — split out from the
+  original single "Town & State" text field so it maps straight onto
+  Zoho's native Street/City/State/Zip Lead fields), `zip` (5-digit,
+  numeric-patterned), four `techInterest` checkboxes sharing one `name`
+  (Solar & Battery Storage / Heating & Cooling / Backup Generators / Not
+  sure yet) — a multi-select, not single-select, so more than one can be
+  checked — `secondOpinion` (optional checkbox), `referredBy` (optional),
+  hidden `refCode` and `propertySegment` (silently set to `"commercial"`
+  via JS when arriving from `commercial-solar.html`'s `?interest=commercial`
   link — replaces the old single-dropdown prefill logic), `lowestBill`,
   `message`, and the required `smsConsent` checkbox. Zoho's multi-select
   checkbox handling may need a specific `name`/`value` convention once
