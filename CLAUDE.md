@@ -177,9 +177,16 @@ don't push anything live without confirming first.
   prioritized at top then the rest alphabetical — split out from the
   original single "Town & State" text field so it maps straight onto
   Zoho's native Street/City/State/Zip Lead fields), `zip` (5-digit,
-  numeric-patterned), four `techInterest` checkboxes sharing one `name`
-  (Solar & Battery Storage / Heating & Cooling / Backup Generators / Not
-  sure yet) — a multi-select, not single-select, so more than one can be
+  numeric-patterned), seven `techInterest` checkboxes sharing one `name`
+  (Solar panels / Solar panels + battery backup / EV charger / Heat pumps
+  (heating & AC) / Heat pump water heater / Generators / Not sure yet —
+  **sentence case throughout** (capitalize only the first word of each
+  option, plus genuine acronyms EV/AC — not Title Case), matching Bill's
+  Zoho Multi-Pick field values so a future Web-to-Lead submission maps
+  correctly. Heat pump water heater was added as its own option rather
+  than folded into the heating/cooling item, since Bill wanted it
+  explicitly captured, not left to the free-text notes field) — a
+  multi-select, not single-select, so more than one can be
   checked — `secondOpinion` (optional checkbox), `referredBy` (optional),
   hidden `refCode` and `propertySegment` (silently set to `"commercial"`
   via JS when arriving from `commercial-solar.html`'s `?interest=commercial`
