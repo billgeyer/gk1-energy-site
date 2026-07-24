@@ -304,6 +304,29 @@ the remaining thing to clear before it's safe to print/scan.
    naming the state. CT/NH/ME still need their own content and sources,
    nothing usable for those three surfaced in this particular digest since
    it was Massachusetts-specific.
+
+   The MA card later grew further with Mass Save heat pump rebate detail
+   (up to $8,500 standard / $16,000 income-qualified, 0% HEAT Loan up to
+   $25,000) from a second batch Bill provided, plus a "these rebates
+   shrink, not grow" urgency note: the standard whole-home rate dropped
+   from $3,000/ton (capped at $10,000) in 2025 to $2,650/ton (capped at
+   $8,500) for 2026. **One correction made before publishing**: Bill
+   remembered the $16,000 figure as having dropped to $8,500, but those
+   are two different tiers, $16,000 is the income-qualified cap and hasn't
+   changed; $8,500 is the current standard-tier cap, down from $10,000.
+   The urgency framing is accurate, just needed to be anchored to the
+   right tier. Also note: that second batch ended with "AI responses may
+   include mistakes" (unlike the first Ohm Analytics digest, which linked
+   directly to primary source documents), so the specific dollar figures
+   were independently WebSearch-verified against Mass Save's own program
+   pages before publishing, rather than trusted from the pasted summary
+   alone.
+
+   **Known visual issue, not yet resolved**: the MA card is now
+   noticeably taller than the CT/NH/ME stub cards in the `.cards-2` grid,
+   making the 2x2 layout look lopsided. Fine once all four states have
+   comparable content; worth trimming MA back down if the others are
+   going to stay stub for a while.
 3. ~~CTA phrasing inconsistency~~ — **done.** Both pages now standardize on
    "Request a Consultation" / "Request a free consultation" for actual CTA
    buttons and links (site + business card + QR tag, replacing "free
