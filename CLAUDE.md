@@ -18,10 +18,10 @@ land here. It's not optimized for cold organic search traffic.
   Process (4 steps) → Background & Credentials (includes Recheck
   verification as a 4th tile) → Financing (4 equipment-agnostic ways to
   afford your project, plus a State-by-state incentives sub-block rendered
-  as a compact `.cards-2` grid rather than accordion tiles, CT/MA/NH/ME —
-  still stub content) → Get in touch (the lead form, `#leadForm`, no
-  longer asks for Street Address or City). Trimmed from 11 sections to 8
-  — see "Index.html
+  as a compact `.cards-2` grid rather than accordion tiles, all four
+  states — CT/MA/NH/ME — now have real sourced content) → Get in touch
+  (the lead form, `#leadForm`, no longer asks for Street Address or
+  City). Trimmed from 11 sections to 8 — see "Index.html
   section consolidation" below for why.
 - `business-solar.html` — Business Solar site for local business owners
   with owner-occupied buildings (`gk1.energy/business-solar.html` — renamed
@@ -143,7 +143,7 @@ why the copy reads the way it does:
   copy on purpose** (e.g. CT's NRES size brackets) since those figures are
   time-sensitive and expire; the state-by-state incentives section on
   `index.html` is the intended home for citable, sourced state program
-  detail, and it's still stub content (see checklist #2).
+  detail, and now has that content for all four states (see checklist #2).
 - **File renamed**: `commercial-solar.html` → `business-solar.html`, closing
   out what had been an open question flagged more than once. The
   `?interest=commercial` query param value was deliberately left unchanged
@@ -254,14 +254,14 @@ the "I'm Bill Geyer" introduction entirely to the lede.
 ## Open checklist, roughly in priority order
 
 **`index.html` copy/structure is finalized** as of this pass (8-section
-consolidation, Rate News live with a real sourced example, lead form
-trimmed, all icons/wording pushes described elsewhere in this file). What
-genuinely remains open on this page specifically: the CT/MA/NH/ME
-incentive tiles (#2 below, still stub), the hero "what I do" tagline line
-(#4), favicon/OG tags (#5), and an actual live end-to-end form submission
-test (#1). Everything else has been through at least one full read-through
-audit (checked for stray em dashes, dead CSS, broken anchors, stale
-wording) with no issues found. Next work moves to `business-solar.html`,
+consolidation, Rate News live with real sourced examples, all four state
+incentive cards filled in, lead form trimmed, all icons/wording pushes
+described elsewhere in this file). What genuinely remains open on this
+page specifically: the hero "what I do" tagline line (#4), favicon/OG
+tags (#5), and an actual live end-to-end form submission test (#1).
+Everything else has been through at least one full read-through audit
+(checked for stray em dashes, dead CSS, broken anchors, stale wording)
+with no issues found. Next work moves to `business-solar.html`,
 bringing the same terminology/structure lessons over.
 
 **Sequencing note**: Bill's actual stated priority right now is Zoho
@@ -287,46 +287,50 @@ the remaining thing to clear before it's safe to print/scan.
    are now confirmed matching by diffing Zoho's regenerated export.
    **Still not uploaded to Spaceship, and not yet tested end-to-end with a
    real submission** — do a live test before trusting this fully.
-2. ~~CT/MA/NH/ME incentive tiles are stub/placeholder copy~~ — **MA done,
-   CT/NH/ME still stub.** Massachusetts now has real content (SMART
-   Program per-kWh production incentive, the 15%/$1,000 state income tax
-   credit, and a mention of Eversource's ConnectedSolutions battery
-   incentive), sourced from a Massachusetts policy digest Bill provided
-   (originally compiled by Ohm Analytics, each item links to a primary
-   `.mass.gov` or utility source) rather than independently
-   WebSearch-verified from scratch, the digest's own source links were
-   trusted as sufficient given they're official state/utility URLs, not
-   ambiguous secondhand claims. The same digest also surfaced a concrete
-   MA rate-hike example (Unitil's 2026 DPU-approved ~6% residential
-   increase), added into the Rate News card alongside the NJ story to back
-   up its "pressure is the same across Maine, New Hampshire,
-   Massachusetts, and Connecticut" line with real evidence instead of just
-   naming the state. CT/NH/ME still need their own content and sources,
-   nothing usable for those three surfaced in this particular digest since
-   it was Massachusetts-specific.
-
-   The MA card later grew further with Mass Save heat pump rebate detail
-   (up to $8,500 standard / $16,000 income-qualified, 0% HEAT Loan up to
-   $25,000) from a second batch Bill provided, plus a "these rebates
-   shrink, not grow" urgency note: the standard whole-home rate dropped
-   from $3,000/ton (capped at $10,000) in 2025 to $2,650/ton (capped at
-   $8,500) for 2026. **One correction made before publishing**: Bill
-   remembered the $16,000 figure as having dropped to $8,500, but those
-   are two different tiers, $16,000 is the income-qualified cap and hasn't
-   changed; $8,500 is the current standard-tier cap, down from $10,000.
-   The urgency framing is accurate, just needed to be anchored to the
-   right tier. Also note: that second batch ended with "AI responses may
-   include mistakes" (unlike the first Ohm Analytics digest, which linked
-   directly to primary source documents), so the specific dollar figures
-   were independently WebSearch-verified against Mass Save's own program
-   pages before publishing, rather than trusted from the pasted summary
-   alone.
-
-   **Known visual issue, not yet resolved**: the MA card is now
-   noticeably taller than the CT/NH/ME stub cards in the `.cards-2` grid,
-   making the 2x2 layout look lopsided. Fine once all four states have
-   comparable content; worth trimming MA back down if the others are
-   going to stay stub for a while.
+2. ~~CT/MA/NH/ME incentive tiles are stub/placeholder copy~~ — **all four
+   states now have real content**, and the `.cards-2` grid visual
+   imbalance flagged earlier resolved itself once CT/NH/ME were filled in
+   too. Sourcing history, since it's a mix of methods:
+   - **Massachusetts** (solar/battery/tax-credit content): sourced from a
+     Massachusetts-specific Ohm Analytics policy digest Bill provided,
+     each item links to a primary `.mass.gov` or utility source, trusted
+     as sufficient given the digest itself only cites official URLs.
+   - **Massachusetts** (heat pump detail, added later): sourced from a
+     second, separate Bill-provided summary that ended with "AI responses
+     may include mistakes" (unlike the Ohm digest). Because of that, the
+     specific dollar figures ($8,500 standard / $16,000 income-qualified /
+     $25,000 0% HEAT Loan, and the 2025→2026 standard-tier cut from
+     $3,000/ton-$10,000 to $2,650/ton-$8,500) were independently
+     WebSearch-verified against Mass Save's own program pages before
+     publishing. **One correction made in the process**: Bill remembered
+     the $16,000 figure as having dropped to $8,500, but those are two
+     different tiers, $16,000 is the income-qualified cap and hasn't
+     moved; $8,500 is the standard-tier cap, down from $10,000. The
+     "rebates shrink, not grow" urgency framing he wanted is accurate,
+     it just needed to be anchored to the right tier.
+   - **Connecticut, New Hampshire, Maine**: solar/battery content sourced
+     from state-specific Ohm Analytics digests Bill provided (same
+     official-source-linked format as the MA one). Heat pump content for
+     all three wasn't in any Ohm digest (those are solar/storage/EV
+     focused, no state's summary mentioned heat pumps), so it was
+     independently researched via WebSearch and cross-checked against each
+     state's own program page (energizect.com, nhsaves.com,
+     efficiencymaine.com) rather than trusted from third-party HVAC
+     contractor blogs alone.
+   - **Rate News card**: also expanded with a bulleted multi-state list
+     (Unitil MA ~6%, NH Liberty 17.54% + Eversource 10.3%, CT United
+     Illuminating ~7-8%, ME Versant Power ~23%, all approved rate cases
+     from the same state-specific Ohm digests) backing up the "pressure is
+     the same across Maine, New Hampshire, Massachusetts, and Connecticut"
+     line with real evidence instead of just naming the states. Central
+     Maine Power's pending ~11% rate case was deliberately left out since
+     it's filed but not yet approved, don't present it as settled without
+     checking its status first.
+   - All state incentive card content should be treated as a snapshot,
+     not evergreen: rebate amounts, caps, and per-ton rates in these
+     programs change yearly (as the MA heat pump history itself shows), so
+     don't assume these figures are still current without checking before
+     citing them again.
 3. ~~CTA phrasing inconsistency~~ — **done.** Both pages now standardize on
    "Request a Consultation" / "Request a free consultation" for actual CTA
    buttons and links (site + business card + QR tag, replacing "free
