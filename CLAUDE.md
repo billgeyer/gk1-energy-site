@@ -323,9 +323,12 @@ the remaining thing to clear before it's safe to print/scan.
      from the same state-specific Ohm digests) backing up the "pressure is
      the same across Maine, New Hampshire, Massachusetts, and Connecticut"
      line with real evidence instead of just naming the states. Central
-     Maine Power's pending ~11% rate case was deliberately left out since
-     it's filed but not yet approved, don't present it as settled without
-     checking its status first.
+     Maine Power's pending ~11% rate case was initially left out since it's
+     filed but not yet approved, then added back in at Bill's explicit
+     request with its status clearly marked "pending approval, not yet
+     decided" (not stated as settled fact) and a note that CMP is Maine's
+     largest utility, since that context is what makes a still-pending
+     filing worth including at all.
    - All state incentive card content should be treated as a snapshot,
      not evergreen: rebate amounts, caps, and per-ton rates in these
      programs change yearly (as the MA heat pump history itself shows), so
