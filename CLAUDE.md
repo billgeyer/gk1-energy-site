@@ -16,12 +16,16 @@ land here. It's not optimized for cold organic search traffic.
   Background & Credentials → Verified & Certified (full Recheck writeup) →
   Financing (4 ways to pay) → State-by-state incentives (CT/MA/NH/ME — still
   stub content) → Get in touch (the lead form, `#leadForm`).
-- `commercial-solar.html` — commercial & nonprofit site
-  (`gk1.energy/commercial-solar.html`). Sections: hero → How This Works → Who
-  This Is For → What It Delivers → The Process (commercial-flavored, 4 steps)
-  → Get in touch. Its CTAs route to `index.html`'s shared contact form via
-  `?interest=commercial#contact`, which `index.html` reads via JS to prefill
-  the interest field.
+- `commercial-solar.html` — Business Solar site for local business owners
+  with owner-occupied buildings (`gk1.energy/commercial-solar.html` — the
+  filename didn't change even though the positioning did; see "Business
+  Solar repositioning" below). Sections: hero → How This Works → Who This Is
+  For (a 3-question owner-occupied / good-roof / high-enough-bill test, not
+  an industry list) → What It Delivers → The Process (business-flavored, 4
+  steps) → Get in touch. Its CTAs route to `index.html`'s shared contact form
+  via `?interest=commercial#contact` (the query param's value stays
+  `commercial` since it's an internal/functional value, not visible copy),
+  which `index.html` reads via JS to prefill the interest field.
 - Almost every major section on both pages ends with a short contextual
   "Let's talk it through →" line linking to the contact form — this was a
   deliberate fix for the long single-page scroll. When adding a new section,
@@ -68,6 +72,57 @@ description-based slugs (e.g. `commercial-solar.html`), not
   battery there just absorbs load spikes, it doesn't carry the building.
   Don't "fix" this to match the residential wording; it's describing two
   genuinely different use cases.
+- **Word choice: "commercial" is reserved for citing actual external
+  legal/tax-code terminology or established industry classifications**
+  (e.g. "Section 48E," "commercial EPCs," a utility's "commercial rate
+  class"), **never for describing GK1's own offering.** GK1's own copy says
+  "business solar" / "business-scale," not "commercial solar" /
+  "commercial-scale" — a deliberate marketing lane, not a legal distinction.
+  See "Business Solar repositioning" below for the full history.
+- **No em dashes in visible copy, site-wide.** Bill's explicit call ("makes
+  it look like AI wrote it") — use a comma, a period splitting into two
+  sentences, or a colon depending on what reads best, never a mechanical
+  find-replace. Scope is reader-facing copy only; internal CSS/HTML code
+  comments (invisible to visitors) were deliberately left alone. Title tags
+  and footer/eyebrow separators use `·` instead. Watch for this drifting
+  back in on future edits, since it's a stylistic tic that's easy to lapse
+  into.
+
+## Business Solar repositioning (commercial-solar.html)
+
+`commercial-solar.html` was rewritten from "Commercial & Nonprofit Solar" to
+"Business Solar" — same file, same URL, new positioning and copy throughout
+(hero, nav CTA, tile content, footer link text). Key decisions, for context
+on why the copy reads the way it does:
+
+- **Audience test is the building and the bill, not the business type.**
+  Bill was explicit: "It's all about qualifying the building, not the
+  business, not the person, not the industry." The old "Who This Is For"
+  section (5 segment cards: Professional & Industrial, Agricultural,
+  Hospitality, Nonprofits, a Schools & Government exclusion) was **removed
+  entirely**, not demoted, and replaced with three plain yes/no questions:
+  is it owner-occupied, does it have a good roof, is the electric bill high
+  enough to justify doing something about it. Anyone who doesn't fit is
+  told to call anyway, no pressure either way.
+- **Tax/incentive content** cites the federal Section 48E credit's
+  Dec 31, 2027 placed-in-service deadline, plus 100% first-year bonus
+  depreciation under current law, heavily caveated as general information
+  (not tax advice) with an explicit "confirm with your accountant" line.
+  **Deliberately does not mention** the earlier July 4, 2026
+  "begin-construction" safe-harbor pathway to 2030, since independent
+  verification (WebSearch, not just trusting a pasted AI summary) confirmed
+  that deadline has already passed as of this repositioning — Bill's
+  instruction was to drop it entirely as stale information, not explain
+  that it closed.
+- **CT/MA state-specific program numbers were kept out of the evergreen
+  copy on purpose** (e.g. CT's NRES size brackets) since those figures are
+  time-sensitive and expire; the state-by-state incentives section on
+  `index.html` is the intended home for citable, sourced state program
+  detail, and it's still stub content (see checklist #2).
+- **Still open, never explicitly confirmed by Bill**: whether to rename
+  `commercial-solar.html` → `business-solar.html` to match the new
+  positioning. Flagged more than once; worth asking again directly rather
+  than assuming either way.
 
 ## Hosting & deployment (Spaceship / cPanel)
 
@@ -114,9 +169,10 @@ description-based slugs (e.g. `commercial-solar.html`), not
 **Sequencing note**: Bill's actual stated priority right now is Zoho
 Web-to-Lead wiring (#1 below) **then** business cards next, since printing
 and shipping takes several days and he doesn't want that on the critical
-path. Items #3 (CTA phrasing) and #6 (QR destination) below are what's
-actually blocking the card design from being final — worth resolving those
-two before he goes to order, even out of strict priority order.
+path. Item #3 (CTA phrasing) is now done and #6 (QR destination) was already
+decided, so the two things that were blocking the card design from being
+final are resolved; the live-site staleness (see Hosting & deployment) is
+the remaining thing to clear before it's safe to print/scan.
 
 1. ~~Lead form has no backend~~ — **wired to Zoho CRM via Web-to-Lead, both
    known blockers fixed.** `#leadForm` in `index.html` now POSTs directly to
@@ -133,11 +189,12 @@ two before he goes to order, even out of strict priority order.
 2. **CT/MA/NH/ME incentive tiles are still stub/placeholder copy** (visible
    `[bracketed placeholder]` text) — needs real state-specific content and
    source links, or the section should be hidden until ready.
-3. **CTA phrasing inconsistency**: the decision was to standardize on
-   "Request a Consultation" everywhere (site + business card + QR tag,
-   replacing "free estimate"). `index.html` mostly already uses this;
-   `commercial-solar.html` still says "Get in touch" throughout — not yet
-   reconciled.
+3. ~~CTA phrasing inconsistency~~ — **done.** Both pages now standardize on
+   "Request a Consultation" / "Request a free consultation" for actual CTA
+   buttons and links (site + business card + QR tag, replacing "free
+   estimate" and "Get in touch"). Note: "Get in touch" is still used as a
+   section *eyebrow label* on both pages' contact sections, that's a
+   different, non-CTA usage and was left alone.
 4. Add a compact, scannable "what I do" line near the top of the hero —
    exact wording now confirmed via the business card work: **"Solar ·
    Battery Backup · Heat Pumps · Generators" / "Residential ·
@@ -176,6 +233,26 @@ two before he goes to order, even out of strict priority order.
     other installers' bulk-SMS-style disclaimers. **Keep this and
     `privacy-policy.html` in sync** if practices change later (e.g. Cal.com
     appointment-reminder texts or any automated texting gets added).
+11. **Backlog: a "Rate News" section on `index.html`.** Bill's framing:
+    residential solar's real hook isn't just savings, it's that homeowners
+    have zero control over utility rate increases (no contract, no
+    leverage, it just happens to them), and solar hands some of that
+    control back via a predictable payment. He wants a section that keeps
+    this front and center, refreshed periodically (monthly) so it doesn't
+    read as stale, potentially sourced from state PUC filings, EIA data, or
+    ISO-New England. Recommendation given (not yet built or agreed in
+    detail): don't try to automate the sourcing/searching, this is a
+    static site with no backend, and content meant to alarm readers needs a
+    human judgment call on whether a source is actually authoritative
+    before it's published, similar to why the OBBBA tax content above was
+    independently verified rather than trusted from a pasted summary.
+    Instead, structure the section so a manual monthly update is a fast
+    copy-paste job, and anchor every claim to a linked, named source. Not
+    yet scoped or built.
+12. **Backlog, CRM side not website (pointer only)**: Bill separately noted
+    a monthly "rate news" email to his CRM database as a related idea. That
+    belongs with the Zoho/Cal.com workflow decisions, not this repo, see
+    "Other context" below for where that work is tracked.
 
 Bill is planning a broader round of content rewrites across both pages;
 don't push anything live without confirming first.
