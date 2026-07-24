@@ -56,6 +56,18 @@ description-based slugs (e.g. `commercial-solar.html`), not
   never cite a specific lender's rates, FICO minimums, or program terms as if
   they're Bill's own offer, since he isn't bound to one EPC's negotiated
   partner terms and those numbers go stale fast.
+- **Battery framing is deliberately different between the two pages — not
+  an inconsistency.** `index.html`'s "What I Offer" tile says "Solar &
+  Battery Backup" because most residential buyers are shopping for
+  resilience (keeping the lights on), and that wording also matches the
+  lead form's "Solar panels + battery backup" checkbox.
+  `commercial-solar.html`'s tile instead says "Battery Storage" and
+  explains that commercial batteries are mainly about mitigating demand
+  charges (peak shaving), with true outage backup for critical
+  infrastructure normally being a separate standby generator — the
+  battery there just absorbs load spikes, it doesn't carry the building.
+  Don't "fix" this to match the residential wording; it's describing two
+  genuinely different use cases.
 
 ## Hosting & deployment (Spaceship / cPanel)
 
