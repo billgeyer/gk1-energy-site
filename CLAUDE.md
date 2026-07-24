@@ -16,9 +16,9 @@ land here. It's not optimized for cold organic search traffic.
   Background & Credentials → Verified & Certified (full Recheck writeup) →
   Financing (4 ways to pay) → State-by-state incentives (CT/MA/NH/ME — still
   stub content) → Get in touch (the lead form, `#leadForm`).
-- `commercial-solar.html` — Business Solar site for local business owners
-  with owner-occupied buildings (`gk1.energy/commercial-solar.html` — the
-  filename didn't change even though the positioning did; see "Business
+- `business-solar.html` — Business Solar site for local business owners
+  with owner-occupied buildings (`gk1.energy/business-solar.html` — renamed
+  from `commercial-solar.html` to match the positioning; see "Business
   Solar repositioning" below). Sections: hero → How This Works → Who This Is
   For (a 3-question owner-occupied / good-roof / high-enough-bill test, not
   an industry list) → What It Delivers → The Process (business-flavored, 4
@@ -43,7 +43,7 @@ land here. It's not optimized for cold organic search traffic.
 
 Naming convention: keep `index.html` at the root (best for SEO/bookmarks — a
 deliberate choice, not an oversight). New sub-pages should use plain,
-description-based slugs (e.g. `commercial-solar.html`), not
+description-based slugs (e.g. `business-solar.html`), not
 `bill-geyer-*`-style filenames — cleaner URLs were an explicit ask.
 
 ## Site strategy (why the copy reads the way it does)
@@ -65,7 +65,7 @@ description-based slugs (e.g. `commercial-solar.html`), not
   Battery Backup" because most residential buyers are shopping for
   resilience (keeping the lights on), and that wording also matches the
   lead form's "Solar panels + battery backup" checkbox.
-  `commercial-solar.html`'s tile instead says "Battery Storage" and
+  `business-solar.html`'s tile instead says "Battery Storage" and
   explains that commercial batteries are mainly about mitigating demand
   charges (peak shaving), with true outage backup for critical
   infrastructure normally being a separate standby generator — the
@@ -88,12 +88,14 @@ description-based slugs (e.g. `commercial-solar.html`), not
   back in on future edits, since it's a stylistic tic that's easy to lapse
   into.
 
-## Business Solar repositioning (commercial-solar.html)
+## Business Solar repositioning (business-solar.html)
 
 `commercial-solar.html` was rewritten from "Commercial & Nonprofit Solar" to
-"Business Solar" — same file, same URL, new positioning and copy throughout
-(hero, nav CTA, tile content, footer link text). Key decisions, for context
-on why the copy reads the way it does:
+"Business Solar" (new positioning and copy throughout: hero, nav CTA, tile
+content, footer link text), and then the file itself was renamed to
+`business-solar.html` to match, with every internal link across the site
+updated (git history preserved via `git mv`). Key decisions, for context on
+why the copy reads the way it does:
 
 - **Audience test is the building and the bill, not the business type.**
   Bill was explicit: "It's all about qualifying the building, not the
@@ -119,10 +121,10 @@ on why the copy reads the way it does:
   time-sensitive and expire; the state-by-state incentives section on
   `index.html` is the intended home for citable, sourced state program
   detail, and it's still stub content (see checklist #2).
-- **Still open, never explicitly confirmed by Bill**: whether to rename
-  `commercial-solar.html` → `business-solar.html` to match the new
-  positioning. Flagged more than once; worth asking again directly rather
-  than assuming either way.
+- **File renamed**: `commercial-solar.html` → `business-solar.html`, closing
+  out what had been an open question flagged more than once. The
+  `?interest=commercial` query param value was deliberately left unchanged
+  (it's internal/functional, not visible copy, see the Pages section above).
 
 ## Hosting & deployment (Spaceship / cPanel)
 
@@ -298,7 +300,7 @@ don't push anything live without confirming first.
   multi-select, not single-select, so more than one can be
   checked — `secondOpinion` (optional checkbox), `referredBy` (optional),
   hidden `refCode` and `propertySegment` (silently set to `"commercial"`
-  via JS when arriving from `commercial-solar.html`'s `?interest=commercial`
+  via JS when arriving from `business-solar.html`'s `?interest=commercial`
   link — replaces the old single-dropdown prefill logic), `lowestBill`,
   `message`, and the required `smsConsent` checkbox. Zoho's multi-select
   checkbox handling may need a specific `name`/`value` convention once
