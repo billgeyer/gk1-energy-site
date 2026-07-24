@@ -11,15 +11,17 @@ land here. It's not optimized for cold organic search traffic.
 ## Pages
 
 - `index.html` — residential site, lives at the site root (`gk1.energy/`).
-  Sections top to bottom: hero (headshot + headline) → How This Works (+
-  Recheck trust strip) → Rate News (short rate-volatility hook, stub
-  content) → What I Offer (absorbs the old Who I Serve audience framing) →
-  The Process (4 steps) → Background & Credentials (includes Recheck
+  Sections top to bottom: hero (headshot + headline) → How This Works
+  (plain section-head, not boxed, + Recheck trust strip) → Rate News
+  (rate-volatility hook + a real sourced example, refresh periodically) →
+  What I Offer (absorbs the old Who I Serve audience framing) → The
+  Process (4 steps) → Background & Credentials (includes Recheck
   verification as a 4th tile) → Financing (4 equipment-agnostic ways to
-  pay, plus a State-by-state incentives sub-block rendered as a compact
-  `.cards-2` grid rather than accordion tiles, CT/MA/NH/ME — still stub
-  content) → Get in touch (the lead form, `#leadForm`, no longer asks for
-  Street Address or City). Trimmed from 11 sections to 8 — see "Index.html
+  afford your project, plus a State-by-state incentives sub-block rendered
+  as a compact `.cards-2` grid rather than accordion tiles, CT/MA/NH/ME —
+  still stub content) → Get in touch (the lead form, `#leadForm`, no
+  longer asks for Street Address or City). Trimmed from 11 sections to 8
+  — see "Index.html
   section consolidation" below for why.
 - `business-solar.html` — Business Solar site for local business owners
   with owner-occupied buildings (`gk1.energy/business-solar.html` — renamed
@@ -186,10 +188,21 @@ content into an existing section rather than cutting the underlying ideas:
 **Rate News stayed its own short section** rather than merging, on
 purpose: Bill wants it as an urgency hook early in the page, right after
 How This Works, not buried in the money-focused cluster near Financing.
-Its stub content (the bracketed placeholder + source link) moved out
-though, that level of detail now lives with the state-incentive tiles;
-Rate News itself is just the headline, one framing paragraph, and a CTA
-line.
+Its original placeholder content moved out at first (that level of detail
+was meant to live with the state-incentive tiles), but it later got real
+content instead of staying a stub, see checklist #11 for the current NJ
+rate-hike example and the source-verification history behind it.
+
+**How This Works lost its `.contact-panel` box** in a later pass, to
+match Rate News's plain, unboxed treatment right below it and reduce
+visual weight. The Recheck trust-strip line (the one-line teaser, not the
+full writeup in Background & Credentials) stayed in this section; it
+earns its place here because How This Works is the first substantive
+trust content after the hero, and a compact early signal is cheap
+insurance for anyone who won't scroll as far as the fuller Background &
+Credentials tile. Watch the width if this section gets edited again: the
+Recheck line and the two intro paragraphs need matching `max-width` (58ch)
+or they visibly misalign, that happened once already.
 
 **Hero H1 rewritten** to stop duplicating the lede: the old H1 listed the
 same products ("solar, backup power...") the lede immediately re-lists by
@@ -310,21 +323,31 @@ the remaining thing to clear before it's safe to print/scan.
     other installers' bulk-SMS-style disclaimers. **Keep this and
     `privacy-policy.html` in sync** if practices change later (e.g. Cal.com
     appointment-reminder texts or any automated texting gets added).
-11. ~~Backlog: a "Rate News" section on `index.html`~~ — **stubbed in.**
-    Added as its own section (`id="rate-news"`, right after How This Works,
-    before What I Offer) framing the hook Bill wanted: homeowners have zero
-    control over utility rate increases (no contract, no leverage, it just
-    happens to them), and solar hands some of that control back via a
-    predictable payment. The actual content is still `[bracketed
-    placeholder]` text plus a placeholder source link, same stub convention
-    as the state incentives section. **Still needs a real monthly update**
-    before it's live-ready: don't automate the sourcing, this is a static
-    site with no backend, and content meant to create urgency needs a human
-    judgment call on whether a source is actually authoritative before
-    publishing, similar to why the OBBBA tax content above was
-    independently verified rather than trusted from a pasted summary.
-    Anchor every future update to a linked, named source (state PUC
-    filings, EIA data, ISO-New England).
+11. ~~Backlog: a "Rate News" section on `index.html`~~ — **live with a real
+    example.** Its own section (`id="rate-news"`, right after How This
+    Works, before What I Offer) frames the hook Bill wanted: homeowners
+    have zero control over utility rate increases (no contract, no
+    leverage, it just happens to them), and solar hands some of that
+    control back via a predictable payment. The example underneath is New
+    Jersey's 2025-2026 rate-hike story (JCP&L up 39.7%, PSE&G up 38.5%,
+    Atlantic City Electric up 40.6%, Orange & Rockland up 37%, Gov.
+    Sherrill's day-one state of emergency on energy costs), tied back to
+    the shared grid pressures (aging infrastructure, PJM capacity auctions,
+    data center demand, natural gas volatility) that also apply to
+    Maine/NH/MA/CT. **Bill's percentages needed a framing correction
+    before publishing**: he'd attributed them to "all four utilities
+    raising rates the same month in June 2025," but those specific numbers
+    are Rep. Josh Gottheimer's office's framing of the increase *over the
+    past year*, not a single June 2025 action (the June 1 BGS-auction
+    increase most utility-industry sources cite was closer to 17-20% per
+    utility). Verified via WebSearch before publishing, consistent with
+    how the OBBBA tax content was independently checked rather than
+    trusted from a pasted summary. Both source links are cited on the
+    card. **This needs the same discipline going forward**: don't automate
+    the sourcing, this is a static site with no backend, and content meant
+    to create urgency needs a human judgment call on source authority each
+    time it's refreshed. Update it periodically with a new example and
+    always anchor to a linked, named source.
 12. **Backlog, CRM side not website (pointer only)**: Bill separately noted
     a monthly "rate news" email to his CRM database as a related idea. That
     belongs with the Zoho/Cal.com workflow decisions, not this repo, see
