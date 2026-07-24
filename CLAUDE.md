@@ -257,9 +257,12 @@ the remaining thing to clear before it's safe to print/scan.
    the Wants-Second-Opinion / SMS-Consent required flags are now correct on
    both the Zoho side and in the merged code. See
    `GK1-CRM-Decision-Handoff_2026-07-22_Opportunity-Lead-Referral.md` Part 5
-   for the full history. **Still not uploaded to Spaceship, and not yet
-   tested end-to-end with a real submission** — do a live test before
-   trusting this fully.
+   for the full history. Street Address / City / Zip were later dropped as
+   required fields on both sides too (see "Lead capture & scheduling
+   architecture" below), form fields and Zoho's own required-field list
+   are now confirmed matching by diffing Zoho's regenerated export.
+   **Still not uploaded to Spaceship, and not yet tested end-to-end with a
+   real submission** — do a live test before trusting this fully.
 2. **CT/MA/NH/ME incentive tiles are still stub/placeholder copy** (visible
    `[bracketed placeholder]` text) — needs real state-specific content and
    source links, or the section should be hidden until ready.
@@ -362,13 +365,25 @@ don't push anything live without confirming first.
   low-friction geographic signal) rather than being cut too. Zoho's
   client-side mandatory-field JS (`checkMandatory7504064000000701086`) was
   updated to match, Street Address/City/Zip were removed from its
-  `mndFileds`/`fldLangVal` arrays. **Still needs a Zoho-side check**: if
-  the Web-to-Lead form Bill built in Zoho's own form builder (Setup →
-  Developer Space → Webforms) still has Street Address or City marked
-  required there, submissions could fail server-side even though the
-  client-side check no longer blocks them, since those fields no longer
-  exist in the HTML to POST at all. Mark those non-required on Zoho's side
-  too before trusting a live test (see checklist #1).
+  `mndFileds`/`fldLangVal` arrays. **Zoho-side check: done.** Bill marked
+  Street Address, City, and Zip as `aria-required="false"` on Zoho's own
+  Web-to-Lead form builder and sent back the regenerated source; it now
+  matches our client-side validation exactly (same 6 mandatory fields:
+  First Name, Last Name, Email, Phone, LEADCF53, LEADCF6). Confirmed by
+  diffing Zoho's fresh export against `#leadForm`: field names/ids, the
+  `LEADCF1` tech-interest values, `LEADCF52`/`LEADCF5`/`Lead Source`/`Lead
+  Status` defaults, and the honeypot field all already matched, no other
+  changes needed there. Two things were deliberately **not** copied from
+  Zoho's regenerated export: (1) `returnURL` — Zoho's fresh default is
+  bare `https://gk1.energy/`, but `#leadForm` intentionally keeps
+  `https://gk1.energy/?submitted=true#contact` so the on-page "Thanks,
+  that came through" message still fires; (2) Zoho's own multi-select
+  `<select multiple>` markup for `LEADCF1` and bare state-code options for
+  `LEADCF6` — our checkbox-group and `CT · Connecticut`-style labels are
+  better UX and POST the identical wire format, so no functional risk in
+  keeping our version. The two Web-to-Lead security tokens (`xnQsjsdp`,
+  `xmIwtLD`) and the analytics script's `rid`/`tw` values *were* refreshed
+  to match Zoho's new export, those aren't safe to diverge on.
 - **Form field structure — current state**, for whoever maps this into
   Zoho's Web-to-Lead form builder: `firstName` / `lastName` (split, not a
   single Name field), `phone`, `email`, `state`
