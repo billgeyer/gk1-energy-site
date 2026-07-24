@@ -190,8 +190,9 @@ purpose: Bill wants it as an urgency hook early in the page, right after
 How This Works, not buried in the money-focused cluster near Financing.
 Its original placeholder content moved out at first (that level of detail
 was meant to live with the state-incentive tiles), but it later got real
-content instead of staying a stub, see checklist #11 for the current NJ
-rate-hike example and the source-verification history behind it.
+content instead of staying a stub, see checklist #11 for the current
+New England rate-hike examples and the source-verification history
+behind them.
 
 **How This Works lost its `.contact-panel` box** in a later pass, to
 match Rate News's plain, unboxed treatment right below it and reduce
@@ -378,31 +379,33 @@ the remaining thing to clear before it's safe to print/scan.
     other installers' bulk-SMS-style disclaimers. **Keep this and
     `privacy-policy.html` in sync** if practices change later (e.g. Cal.com
     appointment-reminder texts or any automated texting gets added).
-11. ~~Backlog: a "Rate News" section on `index.html`~~ — **live with a real
-    example.** Its own section (`id="rate-news"`, right after How This
-    Works, before What I Offer) frames the hook Bill wanted: homeowners
-    have zero control over utility rate increases (no contract, no
-    leverage, it just happens to them), and solar hands some of that
-    control back via a predictable payment. The example underneath is New
-    Jersey's 2025-2026 rate-hike story (JCP&L up 39.7%, PSE&G up 38.5%,
-    Atlantic City Electric up 40.6%, Orange & Rockland up 37%, Gov.
-    Sherrill's day-one state of emergency on energy costs), tied back to
-    the shared grid pressures (aging infrastructure, PJM capacity auctions,
-    data center demand, natural gas volatility) that also apply to
-    Maine/NH/MA/CT. **Bill's percentages needed a framing correction
-    before publishing**: he'd attributed them to "all four utilities
-    raising rates the same month in June 2025," but those specific numbers
-    are Rep. Josh Gottheimer's office's framing of the increase *over the
-    past year*, not a single June 2025 action (the June 1 BGS-auction
-    increase most utility-industry sources cite was closer to 17-20% per
-    utility). Verified via WebSearch before publishing, consistent with
-    how the OBBBA tax content was independently checked rather than
-    trusted from a pasted summary. Both source links are cited on the
-    card. **This needs the same discipline going forward**: don't automate
-    the sourcing, this is a static site with no backend, and content meant
-    to create urgency needs a human judgment call on source authority each
-    time it's refreshed. Update it periodically with a new example and
-    always anchor to a linked, named source.
+11. ~~Backlog: a "Rate News" section on `index.html`~~ — **live, New
+    England-only.** Its own section (`id="rate-news"`, right after How
+    This Works, before What I Offer) frames the hook Bill wanted:
+    homeowners have zero control over utility rate increases (no contract,
+    no leverage, it just happens to them), and solar hands some of that
+    control back via a predictable payment. The boxed card underneath
+    leads with the grid-problem causes (aging infrastructure, PJM capacity
+    auctions, data center demand, natural gas volatility), then a bulleted
+    list of approved (and one pending) New England rate cases: Unitil MA
+    ~6% (2026), NH Liberty 17.54% + Eversource 10.3% (2025), CT United
+    Illuminating ~7-8% (2025), ME Versant Power ~23% (2025) plus Central
+    Maine Power's pending ~11% filing, each with its own inline source
+    link. **New Jersey's rate-hike story was in this card at first but
+    was deliberately removed** at Bill's request, it's not his core
+    market, so the section now opens directly with the causes instead of
+    an out-of-region anecdote. (History, in case a similar out-of-region
+    example gets considered again: Bill's original NJ percentages needed a
+    framing correction before publishing, he'd attributed them to "all
+    four utilities raising rates the same month," but those numbers were
+    actually Rep. Josh Gottheimer's office's framing of the increase *over
+    the past year*, not a single-month action. Verified via WebSearch
+    before publishing, same discipline as the OBBBA tax content.) **This
+    needs the same discipline going forward regardless of region**: don't
+    automate the sourcing, this is a static site with no backend, and
+    content meant to create urgency needs a human judgment call on source
+    authority each time it's refreshed. Update periodically and always
+    anchor to a linked, named source.
 12. **Backlog, CRM side not website (pointer only)**: Bill separately noted
     a monthly "rate news" email to his CRM database as a related idea. That
     belongs with the Zoho/Cal.com workflow decisions, not this repo, see
