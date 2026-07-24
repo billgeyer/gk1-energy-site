@@ -126,14 +126,26 @@ two before he goes to order, even out of strict priority order.
    replacing "free estimate"). `index.html` mostly already uses this;
    `commercial-solar.html` still says "Get in touch" throughout — not yet
    reconciled.
-4. Add a compact, scannable "what I do" line near the top of the hero
-   (Solar · Batteries · Heat Pumps · Generators / Residential · Commercial),
-   mirroring the business card tagline — not yet done (we added the
-   headshot instead, this is still separate/outstanding).
+4. Add a compact, scannable "what I do" line near the top of the hero —
+   exact wording now confirmed via the business card work: **"Solar ·
+   Battery Backup · Heat Pumps · Generators" / "Residential ·
+   Commercial"** (two lines). Not yet added to the site — we added the
+   headshot instead, this is still separate/outstanding.
 5. Add a favicon + Open Graph/Twitter card meta tags — needed before links
-   get shared via text/QR/social, currently missing entirely.
-6. Decide the QR code destination (likely a deep link straight to
-   `#contact`) — lower urgency until the physical card is being finalized.
+   get shared via text/QR/social, currently missing entirely. **A usable
+   icon now exists** — a hexagon badge + lightning bolt mark (mint
+   `#47e0b8` hex, orange `#f2a33b` bolt), built for the business card in
+   the separate `gk1-business-card` repo
+   (`C:\Dev\clients\bill-geyer\gk1-business-card\images\gk1-icon-transparent.svg`
+   and `gk1-icon-navy-bg.svg`). It doesn't appear anywhere on the live
+   site yet — this item is now really "wire the existing icon in as
+   favicon/OG image (and maybe nav lockup)," not "design one from
+   scratch."
+6. QR code destination — **decided**: `https://gk1.energy/#contact`
+   (straight to the "Get in touch" section — Cal.com link + lead form).
+   Already used in the business card QR codes. Still blocked on the live
+   site actually being deployed (see staleness note above) before it's
+   safe to print/scan.
 7. *(Optional)* basic analytics — currently no tracking at all.
 8. **Reminder for Bill, not a site task**: once all the copy on the site is
    finalized, update his bio to match on **both** his Recheck profile
