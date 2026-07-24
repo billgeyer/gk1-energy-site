@@ -12,10 +12,12 @@ land here. It's not optimized for cold organic search traffic.
 
 - `index.html` — residential site, lives at the site root (`gk1.energy/`).
   Sections top to bottom: hero (headshot + headline) → How This Works (+
-  Recheck trust strip) → Who I Serve → What I Offer → The Process (4 steps) →
-  Background & Credentials → Verified & Certified (full Recheck writeup) →
-  Financing (4 ways to pay) → State-by-state incentives (CT/MA/NH/ME — still
-  stub content) → Get in touch (the lead form, `#leadForm`).
+  Recheck trust strip) → Rate News (rate-volatility hook, stub content) →
+  Who I Serve (single-family homeowners only) → What I Offer → The Process
+  (4 steps) → Background & Credentials → Verified & Certified (collapsed
+  into a single expandable tile) → Financing (4 equipment-agnostic ways to
+  pay) → State-by-state incentives (CT/MA/NH/ME — still stub content) →
+  Get in touch (the lead form, `#leadForm`).
 - `business-solar.html` — Business Solar site for local business owners
   with owner-occupied buildings (`gk1.energy/business-solar.html` — renamed
   from `commercial-solar.html` to match the positioning; see "Business
@@ -72,6 +74,21 @@ description-based slugs (e.g. `business-solar.html`), not
   battery there just absorbs load spikes, it doesn't carry the building.
   Don't "fix" this to match the residential wording; it's describing two
   genuinely different use cases.
+- **Multifamily & Rental Property angle deliberately dropped from
+  `index.html`** (it used to be its own tile in Who I Serve, built around
+  the split-incentive problem: owner covers the capital cost, tenants on
+  individual meters see the electric savings). Bill's call: landlord/rental
+  economics aren't his current expertise right now, and keeping the angle
+  in blurred an otherwise straightforward pitch. Who I Serve covers
+  single-family homeowners only. He may come back to landlords later if he
+  builds that expertise; don't reintroduce the tile without checking first.
+- **Financing section is deliberately equipment-agnostic, not solar-only.**
+  Bill arranges financing for heat pumps and generators too (e.g. Team
+  Sunshine's HVAC loan program in Massachusetts), so Cash Purchase and Loan
+  are written generically. PPA and Lease stay solar-specific language
+  though: PPA doesn't have an HVAC/generator equivalent, and Lease is
+  explicitly flagged solar-first with a pointer to "comfort solution
+  plans," the HVAC-world term for lease-style heat pump financing.
 - **Word choice: "commercial" is reserved for citing actual external
   legal/tax-code terminology or established industry classifications**
   (e.g. "Section 48E," "commercial EPCs," a utility's "commercial rate
@@ -235,22 +252,21 @@ the remaining thing to clear before it's safe to print/scan.
     other installers' bulk-SMS-style disclaimers. **Keep this and
     `privacy-policy.html` in sync** if practices change later (e.g. Cal.com
     appointment-reminder texts or any automated texting gets added).
-11. **Backlog: a "Rate News" section on `index.html`.** Bill's framing:
-    residential solar's real hook isn't just savings, it's that homeowners
-    have zero control over utility rate increases (no contract, no
-    leverage, it just happens to them), and solar hands some of that
-    control back via a predictable payment. He wants a section that keeps
-    this front and center, refreshed periodically (monthly) so it doesn't
-    read as stale, potentially sourced from state PUC filings, EIA data, or
-    ISO-New England. Recommendation given (not yet built or agreed in
-    detail): don't try to automate the sourcing/searching, this is a
-    static site with no backend, and content meant to alarm readers needs a
-    human judgment call on whether a source is actually authoritative
-    before it's published, similar to why the OBBBA tax content above was
+11. ~~Backlog: a "Rate News" section on `index.html`~~ — **stubbed in.**
+    Added as its own section (`id="rate-news"`, right after How This Works,
+    before Who I Serve) framing the hook Bill wanted: homeowners have zero
+    control over utility rate increases (no contract, no leverage, it just
+    happens to them), and solar hands some of that control back via a
+    predictable payment. The actual content is still `[bracketed
+    placeholder]` text plus a placeholder source link, same stub convention
+    as the state incentives section. **Still needs a real monthly update**
+    before it's live-ready: don't automate the sourcing, this is a static
+    site with no backend, and content meant to create urgency needs a human
+    judgment call on whether a source is actually authoritative before
+    publishing, similar to why the OBBBA tax content above was
     independently verified rather than trusted from a pasted summary.
-    Instead, structure the section so a manual monthly update is a fast
-    copy-paste job, and anchor every claim to a linked, named source. Not
-    yet scoped or built.
+    Anchor every future update to a linked, named source (state PUC
+    filings, EIA data, ISO-New England).
 12. **Backlog, CRM side not website (pointer only)**: Bill separately noted
     a monthly "rate news" email to his CRM database as a related idea. That
     belongs with the Zoho/Cal.com workflow decisions, not this repo, see
