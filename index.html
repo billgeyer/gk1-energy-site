@@ -434,15 +434,27 @@
 
     <h3 id="incentives" style="font-size:1.15rem; margin-top:40px;">State-by-state incentives</h3>
     <p style="color:var(--text-mid); margin-top:10px; max-width:64ch;">Most states also offer their own incentive programs, on top of anything federal. A plain-language starting point for each below, always verify current terms with the linked source before relying on any figure.</p>
-    <div class="tiles" style="margin-top:16px;">
-      <details class="tile"><summary><span class="tile-title">Connecticut</span><span class="tile-plus" aria-hidden="true"></span></summary>
-        <div class="tile-body"><p>[Plain-language summary in your own words, still stub content.]</p><p>Source: <a href="#" style="color:var(--sky);">[link to CT state energy office]</a></p></div></details>
-      <details class="tile"><summary><span class="tile-title">Massachusetts</span><span class="tile-plus" aria-hidden="true"></span></summary>
-        <div class="tile-body"><p>[Plain-language summary, Mass Save / SMART Program. Still stub content.]</p><p>Source: <a href="#" style="color:var(--sky);">[link to Mass Save / SMART official page]</a></p></div></details>
-      <details class="tile"><summary><span class="tile-title">New Hampshire</span><span class="tile-plus" aria-hidden="true"></span></summary>
-        <div class="tile-body"><p>[Plain-language summary, note the federal ITC as primary driver given NH's thinner state-level incentives. Still stub content.]</p><p>Source: <a href="#" style="color:var(--sky);">[link to NH state energy office]</a></p></div></details>
-      <details class="tile"><summary><span class="tile-title">Maine</span><span class="tile-plus" aria-hidden="true"></span></summary>
-        <div class="tile-body"><p>[Plain-language summary in your own words, still stub content.]</p><p>Source: <a href="#" style="color:var(--sky);">[link to Efficiency Maine or state source]</a></p></div></details>
+    <div class="cards-2" style="margin-top:16px;">
+      <div style="background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); padding:20px;">
+        <div style="font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem;">Connecticut</div>
+        <p style="color:var(--text-mid); margin-top:8px; font-size:0.9rem;">[Plain-language summary in your own words, still stub content.]</p>
+        <p style="margin-top:10px; font-size:0.9rem;">Source: <a href="#" style="color:var(--sky);">[link to CT state energy office]</a></p>
+      </div>
+      <div style="background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); padding:20px;">
+        <div style="font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem;">Massachusetts</div>
+        <p style="color:var(--text-mid); margin-top:8px; font-size:0.9rem;">[Plain-language summary, Mass Save / SMART Program. Still stub content.]</p>
+        <p style="margin-top:10px; font-size:0.9rem;">Source: <a href="#" style="color:var(--sky);">[link to Mass Save / SMART official page]</a></p>
+      </div>
+      <div style="background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); padding:20px;">
+        <div style="font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem;">New Hampshire</div>
+        <p style="color:var(--text-mid); margin-top:8px; font-size:0.9rem;">[Plain-language summary, note the federal ITC as primary driver given NH's thinner state-level incentives. Still stub content.]</p>
+        <p style="margin-top:10px; font-size:0.9rem;">Source: <a href="#" style="color:var(--sky);">[link to NH state energy office]</a></p>
+      </div>
+      <div style="background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); padding:20px;">
+        <div style="font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem;">Maine</div>
+        <p style="color:var(--text-mid); margin-top:8px; font-size:0.9rem;">[Plain-language summary in your own words, still stub content.]</p>
+        <p style="margin-top:10px; font-size:0.9rem;">Source: <a href="#" style="color:var(--sky);">[link to Efficiency Maine or state source]</a></p>
+      </div>
     </div>
 
     <p class="note-line">Not sure what applies to your situation? <a href="#contact" style="color:var(--sky);">Let's talk it through →</a></p>
@@ -473,12 +485,7 @@
           <div><label for="phone">Phone</label><input id="phone" name="Phone" type="tel" placeholder="(555) 555-0123" required></div>
           <div><label for="email">Email</label><input id="email" name="Email" ftype="email" type="email" placeholder="you@example.com" required></div>
         </div>
-        <div class="form-full">
-          <label for="streetAddress">Street Address</label>
-          <input id="streetAddress" name="Address - Street Address" type="text" required>
-        </div>
-        <div class="form-row-3">
-          <div><label for="city">City</label><input id="city" name="Address - City" type="text" required></div>
+        <div class="form-row">
           <div>
             <label for="state">State</label>
             <select id="state" name="LEADCF6" required>
@@ -537,7 +544,7 @@
               <option value="WY">WY · Wyoming</option>
             </select>
           </div>
-          <div><label for="zip">Zip Code</label><input id="zip" name="Address - Zip / Postal Code" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" required></div>
+          <div><label for="zip">Zip Code (optional)</label><input id="zip" name="Address - Zip / Postal Code" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5"></div>
         </div>
         <div class="form-full">
           <label>Which of these are you interested in? (check all that apply)</label>
@@ -652,8 +659,8 @@
     return true;
   }
   function checkMandatory7504064000000701086(isAjax){
-    var mndFileds = new Array('First Name', 'Last Name', 'Email', 'Phone', 'LEADCF53', 'LEADCF6', 'Address - Street Address', 'Address - City', 'Address - Zip / Postal Code');
-    var fldLangVal = new Array('First Name', 'Last Name', 'Email', 'Phone', 'SMS\/Contact Consent', 'State (2\-Letter)', 'Address \- Street Address', 'Address \- City', 'Address \- Zip \/ Postal Code');
+    var mndFileds = new Array('First Name', 'Last Name', 'Email', 'Phone', 'LEADCF53', 'LEADCF6');
+    var fldLangVal = new Array('First Name', 'Last Name', 'Email', 'Phone', 'SMS\/Contact Consent', 'State (2\-Letter)');
     for (i = 0; i < mndFileds.length; i++ ) {
       var fieldObj = document.forms['WebToLeads7504064000000701086'] [mndFileds[i]];
       if (fieldObj) {

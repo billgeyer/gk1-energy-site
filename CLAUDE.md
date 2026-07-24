@@ -16,9 +16,11 @@ land here. It's not optimized for cold organic search traffic.
   content) → What I Offer (absorbs the old Who I Serve audience framing) →
   The Process (4 steps) → Background & Credentials (includes Recheck
   verification as a 4th tile) → Financing (4 equipment-agnostic ways to
-  pay, plus a State-by-state incentives sub-block, CT/MA/NH/ME — still
-  stub content) → Get in touch (the lead form, `#leadForm`). Trimmed from
-  11 sections to 8 — see "Index.html section consolidation" below for why.
+  pay, plus a State-by-state incentives sub-block rendered as a compact
+  `.cards-2` grid rather than accordion tiles, CT/MA/NH/ME — still stub
+  content) → Get in touch (the lead form, `#leadForm`, no longer asks for
+  Street Address or City). Trimmed from 11 sections to 8 — see "Index.html
+  section consolidation" below for why.
 - `business-solar.html` — Business Solar site for local business owners
   with owner-occupied buildings (`gk1.energy/business-solar.html` — renamed
   from `commercial-solar.html` to match the positioning; see "Business
@@ -172,7 +174,14 @@ content into an existing section rather than cutting the underlying ideas:
   "here's the external, sourced landscape" content. Financing kept its own
   section-head; the incentive tiles now sit under a plain `<h3
   id="incentives">` sub-heading after the tax-credit note, closing with one
-  combined note-line instead of two separate ones.
+  combined note-line instead of two separate ones. The 4 state tiles
+  underneath were later redone as plain, always-visible cards in a
+  `.cards-2` grid instead of `<details>` accordions, the accordion
+  treatment gave a one-sentence-plus-a-link amount of content the same
+  visual weight as Financing's much longer tiles. `.cards-2` was already
+  defined in the stylesheet but unused, no new CSS needed, and there's no
+  expand/collapse markup left to maintain, just edit the paragraph text
+  directly when real per-state content is ready.
 
 **Rate News stayed its own short section** rather than merging, on
 purpose: Bill wants it as an urgency hook early in the page, right after
@@ -343,14 +352,29 @@ don't push anything live without confirming first.
   bill doesn't skew the estimate. Don't reintroduce file upload later
   without checking in first; this was a deliberate choice, not a
   temporary workaround.
+- **Street Address and City removed entirely from `#leadForm`** (not just
+  made optional), per Bill's explicit call that the form was too long and
+  felt like data mining. His own sales process starts with a phone call,
+  not a site visit, he finds out where someone lives on that first call,
+  so a full mailing address isn't needed at lead-capture time. Required
+  fields are now just First Name, Last Name, Phone, Email, State, and the
+  SMS consent checkbox. Zip stayed as a single optional field (fast,
+  low-friction geographic signal) rather than being cut too. Zoho's
+  client-side mandatory-field JS (`checkMandatory7504064000000701086`) was
+  updated to match, Street Address/City/Zip were removed from its
+  `mndFileds`/`fldLangVal` arrays. **Still needs a Zoho-side check**: if
+  the Web-to-Lead form Bill built in Zoho's own form builder (Setup →
+  Developer Space → Webforms) still has Street Address or City marked
+  required there, submissions could fail server-side even though the
+  client-side check no longer blocks them, since those fields no longer
+  exist in the HTML to POST at all. Mark those non-required on Zoho's side
+  too before trusting a live test (see checklist #1).
 - **Form field structure — current state**, for whoever maps this into
   Zoho's Web-to-Lead form builder: `firstName` / `lastName` (split, not a
-  single Name field), `phone`, `email`, `streetAddress`, `city`, `state`
+  single Name field), `phone`, `email`, `state`
   (2-letter abbreviation via a `<select>`, ME/NH/VT/RI/MA/CT/NY/NJ/PA/MD
-  prioritized at top then the rest alphabetical — split out from the
-  original single "Town & State" text field so it maps straight onto
-  Zoho's native Street/City/State/Zip Lead fields), `zip` (5-digit,
-  numeric-patterned), seven `techInterest` checkboxes sharing one `name`
+  prioritized at top then the rest alphabetical), `zip` (optional,
+  5-digit, numeric-patterned), seven `techInterest` checkboxes sharing one `name`
   (Solar panels / Solar panels + battery backup / EV charger / Heat pumps
   (heating & AC) / Heat pump water heater / Generators / Not sure yet —
   **sentence case throughout** (capitalize only the first word of each
