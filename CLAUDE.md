@@ -12,12 +12,13 @@ land here. It's not optimized for cold organic search traffic.
 
 - `index.html` — residential site, lives at the site root (`gk1.energy/`).
   Sections top to bottom: hero (headshot + headline) → How This Works (+
-  Recheck trust strip) → Rate News (rate-volatility hook, stub content) →
-  Who I Serve (single-family homeowners only) → What I Offer → The Process
-  (4 steps) → Background & Credentials → Verified & Certified (collapsed
-  into a single expandable tile) → Financing (4 equipment-agnostic ways to
-  pay) → State-by-state incentives (CT/MA/NH/ME — still stub content) →
-  Get in touch (the lead form, `#leadForm`).
+  Recheck trust strip) → Rate News (short rate-volatility hook, stub
+  content) → What I Offer (absorbs the old Who I Serve audience framing) →
+  The Process (4 steps) → Background & Credentials (includes Recheck
+  verification as a 4th tile) → Financing (4 equipment-agnostic ways to
+  pay, plus a State-by-state incentives sub-block, CT/MA/NH/ME — still
+  stub content) → Get in touch (the lead form, `#leadForm`). Trimmed from
+  11 sections to 8 — see "Index.html section consolidation" below for why.
 - `business-solar.html` — Business Solar site for local business owners
   with owner-occupied buildings (`gk1.energy/business-solar.html` — renamed
   from `commercial-solar.html` to match the positioning; see "Business
@@ -75,13 +76,14 @@ description-based slugs (e.g. `business-solar.html`), not
   Don't "fix" this to match the residential wording; it's describing two
   genuinely different use cases.
 - **Multifamily & Rental Property angle deliberately dropped from
-  `index.html`** (it used to be its own tile in Who I Serve, built around
-  the split-incentive problem: owner covers the capital cost, tenants on
-  individual meters see the electric savings). Bill's call: landlord/rental
-  economics aren't his current expertise right now, and keeping the angle
-  in blurred an otherwise straightforward pitch. Who I Serve covers
-  single-family homeowners only. He may come back to landlords later if he
-  builds that expertise; don't reintroduce the tile without checking first.
+  `index.html`** (it used to be its own tile in a standalone Who I Serve
+  section, built around the split-incentive problem: owner covers the
+  capital cost, tenants on individual meters see the electric savings).
+  Bill's call: landlord/rental economics aren't his current expertise right
+  now, and keeping the angle in blurred an otherwise straightforward pitch.
+  The site now covers single-family homeowners only. He may come back to
+  landlords later if he builds that expertise; don't reintroduce the tile
+  without checking first.
 - **Financing section is deliberately equipment-agnostic, not solar-only.**
   Bill arranges financing for heat pumps and generators too (e.g. Team
   Sunshine's HVAC loan program in Massachusetts), so Cash Purchase and Loan
@@ -142,6 +144,50 @@ why the copy reads the way it does:
   out what had been an open question flagged more than once. The
   `?interest=commercial` query param value was deliberately left unchanged
   (it's internal/functional, not visible copy, see the Pages section above).
+
+## Index.html section consolidation
+
+`index.html` was trimmed from 11 sections down to 8 after Bill's critique
+that it "reads like a novel." Three merges, each folding redundant or thin
+content into an existing section rather than cutting the underlying ideas:
+
+- **Who I Serve → What I Offer.** Once the Multifamily & Rental Property
+  tile was dropped (see above), Who I Serve's remaining copy was nearly a
+  duplicate of the hero lede (both said "homeowners deciding whether solar,
+  battery backup, heat pumps, or a standby generator..."). Folded into What
+  I Offer's intro instead of standing alone as its own section. The merged
+  section still carries `id="serve"` since the hero's "Who I help" ghost
+  button links there, don't rename that id without updating the hero CTA
+  too.
+- **Verified & Certified → Background & Credentials (4th tile).** How This
+  Works already teases Recheck verification with a one-line trust strip and
+  a link; a full second writeup in its own section right below Background &
+  Credentials was true duplication, not just adjacent content. Added as a
+  4th expandable tile there instead, with `id="verified"` moved onto the
+  tile itself so the anchor still resolves. The section's h2 changed from
+  "Three vantage points on the same industry" to "Where this experience
+  comes from, and how it's verified" since it's no longer literally three
+  items.
+- **State-by-state incentives → sub-block inside Financing.** Both were
+  "here's the external, sourced landscape" content. Financing kept its own
+  section-head; the incentive tiles now sit under a plain `<h3
+  id="incentives">` sub-heading after the tax-credit note, closing with one
+  combined note-line instead of two separate ones.
+
+**Rate News stayed its own short section** rather than merging, on
+purpose: Bill wants it as an urgency hook early in the page, right after
+How This Works, not buried in the money-focused cluster near Financing.
+Its stub content (the bracketed placeholder + source link) moved out
+though, that level of detail now lives with the state-incentive tiles;
+Rate News itself is just the headline, one framing paragraph, and a CTA
+line.
+
+**Hero H1 rewritten** to stop duplicating the lede: the old H1 listed the
+same products ("solar, backup power...") the lede immediately re-lists by
+name. The new H1 leads with the plain-talk/insider-experience positioning
+instead ("Home energy decisions, explained plainly by someone who's worked
+inside the equipment industry."), leaving the specific product list and
+the "I'm Bill Geyer" introduction entirely to the lede.
 
 ## Hosting & deployment (Spaceship / cPanel)
 
@@ -240,7 +286,7 @@ the remaining thing to clear before it's safe to print/scan.
    (recheck.co) and his Cal.com profile — keep all three (site, Recheck,
    Cal.com) consistent. Bill does this himself, no site access needed.
 9. ~~Backlog: standalone "already have a quote?" second-opinion CTA~~ —
-   **done.** Added as its own note-line in "Who I Serve" ("Already have a
+   **done.** Added as its own note-line in What I Offer ("Already have a
    quote from another company? Get a second opinion →"), plus a matching
    optional checkbox on the form itself (`#secondOpinion`) so the intent
    is captured even if someone lands straight on the form.
@@ -254,7 +300,7 @@ the remaining thing to clear before it's safe to print/scan.
     appointment-reminder texts or any automated texting gets added).
 11. ~~Backlog: a "Rate News" section on `index.html`~~ — **stubbed in.**
     Added as its own section (`id="rate-news"`, right after How This Works,
-    before Who I Serve) framing the hook Bill wanted: homeowners have zero
+    before What I Offer) framing the hook Bill wanted: homeowners have zero
     control over utility rate increases (no contract, no leverage, it just
     happens to them), and solar hands some of that control back via a
     predictable payment. The actual content is still `[bracketed
