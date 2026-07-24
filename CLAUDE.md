@@ -287,9 +287,23 @@ the remaining thing to clear before it's safe to print/scan.
    are now confirmed matching by diffing Zoho's regenerated export.
    **Still not uploaded to Spaceship, and not yet tested end-to-end with a
    real submission** — do a live test before trusting this fully.
-2. **CT/MA/NH/ME incentive tiles are still stub/placeholder copy** (visible
-   `[bracketed placeholder]` text) — needs real state-specific content and
-   source links, or the section should be hidden until ready.
+2. ~~CT/MA/NH/ME incentive tiles are stub/placeholder copy~~ — **MA done,
+   CT/NH/ME still stub.** Massachusetts now has real content (SMART
+   Program per-kWh production incentive, the 15%/$1,000 state income tax
+   credit, and a mention of Eversource's ConnectedSolutions battery
+   incentive), sourced from a Massachusetts policy digest Bill provided
+   (originally compiled by Ohm Analytics, each item links to a primary
+   `.mass.gov` or utility source) rather than independently
+   WebSearch-verified from scratch, the digest's own source links were
+   trusted as sufficient given they're official state/utility URLs, not
+   ambiguous secondhand claims. The same digest also surfaced a concrete
+   MA rate-hike example (Unitil's 2026 DPU-approved ~6% residential
+   increase), added into the Rate News card alongside the NJ story to back
+   up its "pressure is the same across Maine, New Hampshire,
+   Massachusetts, and Connecticut" line with real evidence instead of just
+   naming the state. CT/NH/ME still need their own content and sources,
+   nothing usable for those three surfaced in this particular digest since
+   it was Massachusetts-specific.
 3. ~~CTA phrasing inconsistency~~ — **done.** Both pages now standardize on
    "Request a Consultation" / "Request a free consultation" for actual CTA
    buttons and links (site + business card + QR tag, replacing "free
