@@ -253,6 +253,17 @@ the "I'm Bill Geyer" introduction entirely to the lede.
 
 ## Open checklist, roughly in priority order
 
+**`index.html` copy/structure is finalized** as of this pass (8-section
+consolidation, Rate News live with a real sourced example, lead form
+trimmed, all icons/wording pushes described elsewhere in this file). What
+genuinely remains open on this page specifically: the CT/MA/NH/ME
+incentive tiles (#2 below, still stub), the hero "what I do" tagline line
+(#4), favicon/OG tags (#5), and an actual live end-to-end form submission
+test (#1). Everything else has been through at least one full read-through
+audit (checked for stray em dashes, dead CSS, broken anchors, stale
+wording) with no issues found. Next work moves to `business-solar.html`,
+bringing the same terminology/structure lessons over.
+
 **Sequencing note**: Bill's actual stated priority right now is Zoho
 Web-to-Lead wiring (#1 below) **then** business cards next, since printing
 and shipping takes several days and he doesn't want that on the critical
