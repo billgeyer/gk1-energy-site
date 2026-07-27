@@ -13,16 +13,18 @@ land here. It's not optimized for cold organic search traffic.
 - `index.html` — residential site, lives at the site root (`gk1.energy/`).
   Sections top to bottom: hero (headshot + headline) → How This Works
   (plain section-head, not boxed, + Recheck trust strip) → Rate News
-  (rate-volatility hook + a real sourced example, refresh periodically) →
-  What I Offer (absorbs the old Who I Serve audience framing) → The
-  Process (4 steps) → Background & Credentials (includes Recheck
-  verification as a 4th tile) → Financing (4 equipment-agnostic ways to
-  afford your project, plus a State-by-state incentives sub-block rendered
-  as a compact `.cards-2` grid rather than accordion tiles, all four
-  states — CT/MA/NH/ME — now have real sourced content) → Get in touch
-  (the lead form, `#leadForm`, no longer asks for Street Address or
-  City). Trimmed from 11 sections to 8 — see "Index.html
-  section consolidation" below for why.
+  (rate-volatility hook always visible, the state-by-state evidence
+  collapsed into a single tile, refresh periodically) → What I Offer
+  (Solar / Battery Backup / Heating & Cooling as three separate tiles,
+  absorbs the old Who I Serve audience framing) → The Process (4 steps) →
+  Background & Credentials (3 background tiles + Recheck verification as
+  a 4th) → Financing (4 equipment-agnostic ways to afford your project,
+  plus a State-by-state incentives sub-block, now its own collapsible
+  tile per state so adding more states doesn't require rebalancing a
+  grid, all four states — CT/MA/NH/ME — have real sourced content) → Get
+  in touch (the lead form, `#leadForm`, no longer asks for Street Address
+  or City). Trimmed from 11 sections to 8 — see "Index.html section
+  consolidation" below for why.
 - `business-solar.html` — Business Solar site for local business owners
   with owner-occupied buildings (`gk1.energy/business-solar.html` — renamed
   from `commercial-solar.html` to match the positioning; see "Business
@@ -213,14 +215,21 @@ content into an existing section rather than cutting the underlying ideas:
   "here's the external, sourced landscape" content. Financing kept its own
   section-head; the incentive tiles now sit under a plain `<h3
   id="incentives">` sub-heading after the tax-credit note, closing with one
-  combined note-line instead of two separate ones. The 4 state tiles
-  underneath were later redone as plain, always-visible cards in a
-  `.cards-2` grid instead of `<details>` accordions, the accordion
-  treatment gave a one-sentence-plus-a-link amount of content the same
-  visual weight as Financing's much longer tiles. `.cards-2` was already
-  defined in the stylesheet but unused, no new CSS needed, and there's no
-  expand/collapse markup left to maintain, just edit the paragraph text
-  directly when real per-state content is ready.
+  combined note-line instead of two separate ones. **The visual treatment
+  of the 4 state tiles has gone back and forth, worth knowing the full
+  history before changing it again.** Started as `<details>` accordions,
+  redone as plain always-visible cards in a `.cards-2` grid when the
+  content was still one sentence plus a link (accordion felt oversized for
+  that little text), then changed back to `<details>` accordions once the
+  content grew substantially (Massachusetts alone reached 3 paragraphs + 4
+  sources), at which point the accordion treatment fit better and the
+  "don't have to rebalance a 2-column grid every time a state gets added"
+  argument started to matter. `.cards-2` was removed from the stylesheet
+  after the second switch since nothing referenced it anymore, if a
+  future card-style layout is needed again, it's a simple 2-column
+  `display:grid` rule to re-add. **Read the actual content weight before
+  picking a layout here**: thin content favors cards/always-visible,
+  substantial content favors accordion tiles.
 
 **Rate News stayed its own short section** rather than merging, on
 purpose: Bill wants it as an urgency hook early in the page, right after
@@ -248,6 +257,24 @@ name. The new H1 leads with the plain-talk/insider-experience positioning
 instead ("Home energy decisions, explained plainly by someone who's worked
 inside the equipment industry."), leaving the specific product list and
 the "I'm Bill Geyer" introduction entirely to the lede.
+
+**Rate News's evidence collapsed into a single tile**, matching the
+Background & Credentials pattern: the headline and "no contract, no
+negotiation, no vote" framing paragraph stay always-visible (that's the
+emotional hook), but the causes list, the state-by-state rate-hike
+bullets, and the closing line all moved inside one `<details class="tile">`
+titled "The evidence, state by state." Tradeoff worth remembering: anyone
+who doesn't click won't see the actual evidence, just the headline and one
+abstract sentence. Accepted deliberately, the headline alone still carries
+real emotional weight, and the people most likely to click through are
+exactly the ones checking "does this apply to my state," which is who the
+evidence is for anyway.
+
+**Background & Credentials tile title shortened**: "Residential Inverter &
+Battery Manufacturer, Sales & Business Development" → "Inverter & Battery
+Manufacturer Representative." The body now defines EPC on first use
+("EPCs (engineering, procurement, and construction firms)") since it's
+used without explanation elsewhere on the page.
 
 ## Hosting & deployment (Spaceship / cPanel)
 
@@ -326,9 +353,10 @@ the remaining thing to clear before it's safe to print/scan.
    **Still not uploaded to Spaceship, and not yet tested end-to-end with a
    real submission** — do a live test before trusting this fully.
 2. ~~CT/MA/NH/ME incentive tiles are stub/placeholder copy~~ — **all four
-   states now have real content**, and the `.cards-2` grid visual
-   imbalance flagged earlier resolved itself once CT/NH/ME were filled in
-   too. Sourcing history, since it's a mix of methods:
+   states now have real content**, and the layout went back to `<details>`
+   accordion tiles once the content grew past what a compact card fits
+   comfortably (see "Index.html section consolidation" for the full
+   back-and-forth). Sourcing history, since it's a mix of methods:
    - **Massachusetts** (solar/battery/tax-credit content): sourced from a
      Massachusetts-specific Ohm Analytics policy digest Bill provided,
      each item links to a primary `.mass.gov` or utility source, trusted
