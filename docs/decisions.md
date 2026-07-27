@@ -1,0 +1,394 @@
+# GK1 Energy Site — Decision History
+
+Rationale, sourcing trails, and the back-and-forth behind choices already
+reflected in the live site. Read this when a task needs to know *why*
+something is the way it is (e.g. "why does battery framing differ between
+pages," "why was the multifamily angle dropped," "what's the sourcing for
+the MA heat pump figures"). For current state and active conventions, see
+`../CLAUDE.md` instead — that file is what loads every session; this one is
+read on demand.
+
+## Site strategy (why the copy reads the way it does)
+
+- Positioning is deliberately anti-pushy-solar-sales: "independent," "not
+  shopping the market," "I'll tell you honestly if a quote is fair." Bill is
+  an advisor who places projects with regional EPC partners — he does not
+  design/engineer/install himself. Copy should never imply otherwise (e.g.
+  the Process sections say "my installation partner handles..." not "I
+  handle...").
+- Trust/verification (Recheck) is a first-class element, not a footnote —
+  the target audience is explicitly wary of solar sales tactics.
+- Financing content stays general/educational (cash, loan, PPA, lease) —
+  never cite a specific lender's rates, FICO minimums, or program terms as if
+  they're Bill's own offer, since he isn't bound to one EPC's negotiated
+  partner terms and those numbers go stale fast.
+- **Battery framing is deliberately different between the two pages — not
+  an inconsistency.** `index.html`'s "What I Offer" has a standalone
+  "Battery Backup" tile because most residential buyers are shopping for
+  resilience (keeping the lights on), and that wording also matches the
+  lead form's "Solar panels + battery backup" checkbox.
+  `business-solar.html`'s tile instead says "Battery Storage" and
+  explains that commercial batteries are mainly about mitigating demand
+  charges (peak shaving), with true outage backup for critical
+  infrastructure normally being a separate standby generator — the
+  battery there just absorbs load spikes, it doesn't carry the building.
+  Don't "fix" this to match the residential wording; it's describing two
+  genuinely different use cases.
+- **Standby generators deliberately dropped as a residential offering on
+  `index.html`.** Bill's call: generators run on fossil fuel, which reads
+  as incongruent next to a solar/battery/heat-pump pitch built around
+  "renewable," there are no state-level incentives for generators (unlike
+  the other three), and the sales conversation for a generator is
+  genuinely different from the other three. What I Offer went from 3
+  tiles (Solar & Battery Backup combined, Heating & Cooling, Backup
+  Generators) to 3 different tiles: **Solar** and **Battery Backup** split
+  into their own tiles, **Backup Generators** dropped entirely. The
+  Background & Credentials "Generator Contractor, Long Island, NY" tile
+  was also removed, but that career history wasn't erased, it moved into
+  the new Battery Backup tile as a credibility line ("I got my start in
+  backup power at a standby generator company, so I understand critical
+  loads and whole-home coverage..."), since that experience directly
+  supports how Bill sizes a battery backup system, a better home for it
+  than a standalone career-history tile. The "Generators" checkbox was
+  also removed from `#leadForm`'s tech-interest list. **This was scoped
+  to `index.html` only** — `business-solar.html` never offered generators
+  as a product in the first place, nothing to change there for this
+  reason specifically.
+- **Terminology: "Heating & Cooling" is the section/tile label, "heat
+  pump(s)" is the product term, used consistently everywhere else.**
+  Matches how Mass Save itself structures the topic (their own site path
+  is `.../heating-and-cooling/heat-pumps/...`, category then product).
+  Don't use "mini-split" or "HVAC" as a competing term in visible copy,
+  "mini-split" is just one installation style of heat pump and naming it
+  separately undercuts single-term consistency; "HVAC" got swapped to
+  "heat pump" in the Financing Loan tile for the same reason. `HVAC` is
+  still fine inside the JS mandatory-field script text (Zoho-generated,
+  not visible copy) and in code comments, that scope exclusion is the
+  same one already established for the em-dash rule.
+- **Multifamily & Rental Property angle deliberately dropped from
+  `index.html`** (it used to be its own tile in a standalone Who I Serve
+  section, built around the split-incentive problem: owner covers the
+  capital cost, tenants on individual meters see the electric savings).
+  Bill's call: landlord/rental economics aren't his current expertise right
+  now, and keeping the angle in blurred an otherwise straightforward pitch.
+  The site now covers single-family homeowners only. He may come back to
+  landlords later if he builds that expertise; don't reintroduce the tile
+  without checking first.
+- **Financing section is deliberately equipment-agnostic, not solar-only.**
+  Bill arranges financing for heat pumps and generators too (e.g. Team
+  Sunshine's HVAC loan program in Massachusetts), so Cash Purchase and Loan
+  are written generically. PPA and Lease stay solar-specific language
+  though: PPA doesn't have an HVAC/generator equivalent, and Lease is
+  explicitly flagged solar-first with a pointer to "comfort solution
+  plans," the HVAC-world term for lease-style heat pump financing.
+- **Word choice: "commercial" is reserved for citing actual external
+  legal/tax-code terminology or established industry classifications**
+  (e.g. "Section 48E," "commercial EPCs," a utility's "commercial rate
+  class"), **never for describing GK1's own offering.** GK1's own copy says
+  "business solar" / "business-scale," not "commercial solar" /
+  "commercial-scale" — a deliberate marketing lane, not a legal distinction.
+  See "Business Solar repositioning" below for the full history.
+- **No em dashes in visible copy, site-wide.** Bill's explicit call ("makes
+  it look like AI wrote it") — use a comma, a period splitting into two
+  sentences, or a colon depending on what reads best, never a mechanical
+  find-replace. Scope is reader-facing copy only; internal CSS/HTML code
+  comments (invisible to visitors) were deliberately left alone. Title tags
+  and footer/eyebrow separators use `·` instead. Watch for this drifting
+  back in on future edits, since it's a stylistic tic that's easy to lapse
+  into.
+
+## Business Solar repositioning (business-solar.html)
+
+`commercial-solar.html` was rewritten from "Commercial & Nonprofit Solar" to
+"Business Solar" (new positioning and copy throughout: hero, nav CTA, tile
+content, footer link text), and then the file itself was renamed to
+`business-solar.html` to match, with every internal link across the site
+updated (git history preserved via `git mv`). Key decisions, for context on
+why the copy reads the way it does:
+
+- **Audience test is the building and the bill, not the business type.**
+  Bill was explicit: "It's all about qualifying the building, not the
+  business, not the person, not the industry." The old "Who This Is For"
+  section (5 segment cards: Professional & Industrial, Agricultural,
+  Hospitality, Nonprofits, a Schools & Government exclusion) was **removed
+  entirely**, not demoted, and replaced with three plain yes/no questions:
+  is it owner-occupied, does it have a good roof, is the electric bill high
+  enough to justify doing something about it. Anyone who doesn't fit is
+  told to call anyway, no pressure either way.
+- **Tax/incentive content** cites the federal Section 48E credit's
+  Dec 31, 2027 placed-in-service deadline, plus 100% first-year bonus
+  depreciation under current law, heavily caveated as general information
+  (not tax advice) with an explicit "confirm with your accountant" line.
+  **Deliberately does not mention** the earlier July 4, 2026
+  "begin-construction" safe-harbor pathway to 2030, since independent
+  verification (WebSearch, not just trusting a pasted AI summary) confirmed
+  that deadline has already passed as of this repositioning — Bill's
+  instruction was to drop it entirely as stale information, not explain
+  that it closed.
+- **CT/MA state-specific program numbers were kept out of the evergreen
+  copy on purpose** (e.g. CT's NRES size brackets) since those figures are
+  time-sensitive and expire; the state-by-state incentives section on
+  `index.html` is the intended home for citable, sourced state program
+  detail, and now has that content for all four states (see checklist #2
+  in `../CLAUDE.md`).
+- **File renamed**: `commercial-solar.html` → `business-solar.html`, closing
+  out what had been an open question flagged more than once. The
+  `?interest=commercial` query param value was deliberately left unchanged
+  (it's internal/functional, not visible copy).
+
+## Index.html section consolidation
+
+`index.html` was trimmed from 11 sections down to 8 after Bill's critique
+that it "reads like a novel." Three merges, each folding redundant or thin
+content into an existing section rather than cutting the underlying ideas:
+
+- **Who I Serve → What I Offer.** Once the Multifamily & Rental Property
+  tile was dropped (see above), Who I Serve's remaining copy was nearly a
+  duplicate of the hero lede (both said "homeowners deciding whether solar,
+  battery backup, heat pumps, or a standby generator..."). Folded into What
+  I Offer's intro instead of standing alone as its own section. The merged
+  section still carries `id="serve"` since the hero's "Who I help" ghost
+  button links there, don't rename that id without updating the hero CTA
+  too.
+- **Verified & Certified → Background & Credentials (4th tile).** How This
+  Works already teases Recheck verification with a one-line trust strip and
+  a link; a full second writeup in its own section right below Background &
+  Credentials was true duplication, not just adjacent content. Added as a
+  4th expandable tile there instead, with `id="verified"` moved onto the
+  tile itself so the anchor still resolves. The section's h2 changed from
+  "Three vantage points on the same industry" to "Where this experience
+  comes from, and how it's verified" since it's no longer literally three
+  items.
+- **State-by-state incentives → sub-block inside Financing.** Both were
+  "here's the external, sourced landscape" content. Financing kept its own
+  section-head; the incentive tiles now sit under a plain `<h3
+  id="incentives">` sub-heading after the tax-credit note, closing with one
+  combined note-line instead of two separate ones. **The visual treatment
+  of the 4 state tiles has gone back and forth, worth knowing the full
+  history before changing it again.** Started as `<details>` accordions,
+  redone as plain always-visible cards in a `.cards-2` grid when the
+  content was still one sentence plus a link (accordion felt oversized for
+  that little text), then changed back to `<details>` accordions once the
+  content grew substantially (Massachusetts alone reached 3 paragraphs + 4
+  sources), at which point the accordion treatment fit better and the
+  "don't have to rebalance a 2-column grid every time a state gets added"
+  argument started to matter. `.cards-2` was removed from the stylesheet
+  after the second switch since nothing referenced it anymore, if a
+  future card-style layout is needed again, it's a simple 2-column
+  `display:grid` rule to re-add. **Read the actual content weight before
+  picking a layout here**: thin content favors cards/always-visible,
+  substantial content favors accordion tiles.
+
+**Rate News stayed its own short section** rather than merging, on
+purpose: Bill wants it as an urgency hook early in the page, right after
+How This Works, not buried in the money-focused cluster near Financing.
+Its original placeholder content moved out at first (that level of detail
+was meant to live with the state-incentive tiles), but it later got real
+content instead of staying a stub, see "Rate News sourcing" below for the
+current New England rate-hike examples and the source-verification history
+behind them.
+
+**How This Works lost its `.contact-panel` box** in a later pass, to
+match Rate News's plain, unboxed treatment right below it and reduce
+visual weight. The Recheck trust-strip line (the one-line teaser, not the
+full writeup in Background & Credentials) stayed in this section; it
+earns its place here because How This Works is the first substantive
+trust content after the hero, and a compact early signal is cheap
+insurance for anyone who won't scroll as far as the fuller Background &
+Credentials tile. Watch the width if this section gets edited again: the
+Recheck line and the two intro paragraphs need matching `max-width` (58ch)
+or they visibly misalign, that happened once already.
+
+**Hero H1 rewritten** to stop duplicating the lede: the old H1 listed the
+same products ("solar, backup power...") the lede immediately re-lists by
+name. The new H1 leads with the plain-talk/insider-experience positioning
+instead ("Home energy decisions, explained plainly by someone who's worked
+inside the equipment industry."), leaving the specific product list and
+the "I'm Bill Geyer" introduction entirely to the lede.
+
+**Rate News's evidence collapsed into a single tile**, matching the
+Background & Credentials pattern: the headline and "no contract, no
+negotiation, no vote" framing paragraph stay always-visible (that's the
+emotional hook), but the causes list, the state-by-state rate-hike
+bullets, and the closing line all moved inside one `<details class="tile">`
+titled "The evidence, state by state." Tradeoff worth remembering: anyone
+who doesn't click won't see the actual evidence, just the headline and one
+abstract sentence. Accepted deliberately, the headline alone still carries
+real emotional weight, and the people most likely to click through are
+exactly the ones checking "does this apply to my state," which is who the
+evidence is for anyway.
+
+**Background & Credentials tile title shortened**: "Residential Inverter &
+Battery Manufacturer, Sales & Business Development" → "Inverter & Battery
+Manufacturer Representative." The body now defines EPC on first use
+("EPCs (engineering, procurement, and construction firms)") since it's
+used without explanation elsewhere on the page.
+
+## Rate News sourcing
+
+Rate News's boxed card leads with the grid-problem causes (aging
+infrastructure, PJM capacity auctions, data center demand, natural gas
+volatility), then a bulleted list of approved (and one pending) New
+England rate cases: Unitil MA ~6% (2026), NH Liberty 17.54% + Eversource
+10.3% (2025), CT United Illuminating ~7-8% (2025), ME Versant Power ~23%
+(2025) plus Central Maine Power's pending ~11% filing, each with its own
+inline source link. **New Jersey's rate-hike story was in this card at
+first but was deliberately removed** at Bill's request, it's not his core
+market, so the section now opens directly with the causes instead of an
+out-of-region anecdote. (History, in case a similar out-of-region example
+gets considered again: Bill's original NJ percentages needed a framing
+correction before publishing, he'd attributed them to "all four utilities
+raising rates the same month," but those numbers were actually Rep. Josh
+Gottheimer's office's framing of the increase *over the past year*, not a
+single-month action. Verified via WebSearch before publishing, same
+discipline as the OBBBA tax content.) **This needs the same discipline
+going forward regardless of region**: don't automate the sourcing, this is
+a static site with no backend, and content meant to create urgency needs a
+human judgment call on source authority each time it's refreshed. Update
+periodically and always anchor to a linked, named source.
+
+## State incentive tile sourcing
+
+All state incentive card content should be treated as a snapshot, not
+evergreen: rebate amounts, caps, and per-ton rates in these programs
+change yearly, so don't assume these figures are still current without
+checking before citing them again.
+
+- **Massachusetts** (solar/battery/tax-credit content): sourced from a
+  Massachusetts-specific Ohm Analytics policy digest Bill provided, each
+  item links to a primary `.mass.gov` or utility source, trusted as
+  sufficient given the digest itself only cites official URLs.
+- **Massachusetts** (heat pump detail, added later): sourced from a
+  second, separate Bill-provided summary that ended with "AI responses may
+  include mistakes" (unlike the Ohm digest). Because of that, the specific
+  dollar figures ($8,500 standard / $16,000 income-qualified / $25,000 0%
+  HEAT Loan, and the 2025→2026 standard-tier cut from $3,000/ton-$10,000 to
+  $2,650/ton-$8,500) were independently WebSearch-verified against Mass
+  Save's own program pages before publishing. **One correction made in the
+  process**: Bill remembered the $16,000 figure as having dropped to
+  $8,500, but those are two different tiers, $16,000 is the
+  income-qualified cap and hasn't moved; $8,500 is the standard-tier cap,
+  down from $10,000. The "rebates shrink, not grow" urgency framing he
+  wanted is accurate, it just needed to be anchored to the right tier.
+- **Connecticut, New Hampshire, Maine**: solar/battery content sourced
+  from state-specific Ohm Analytics digests Bill provided (same
+  official-source-linked format as the MA one). Heat pump content for all
+  three wasn't in any Ohm digest (those are solar/storage/EV focused, no
+  state's summary mentioned heat pumps), so it was independently
+  researched via WebSearch and cross-checked against each state's own
+  program page (energizect.com, nhsaves.com, efficiencymaine.com) rather
+  than trusted from third-party HVAC contractor blogs alone.
+
+## Favicon / OG image implementation
+
+The business-card icon (hexagon badge + lightning bolt mark, mint
+`#47e0b8` hex, orange `#f2a33b` bolt) was copied from the separate
+`gk1-business-card` repo into `gk1-energy-site/images/`
+(`gk1-icon-transparent.svg` and `gk1-icon-navy-bg.svg`) and is wired in
+three places on both pages:
+
+- **Favicon**: navy-bg version, `<link rel="icon" type="image/svg+xml">`,
+  stays visible on both light and dark browser chrome.
+- **Nav-bar lockup icon** next to "GK1.energy": transparent version, since
+  it blends into the nav's dark translucent background with no visible
+  edge. `.nav-name` picked up `display:flex` and a `.nav-logo{
+  height:1.6em; }` rule (sized up from an initial 1.3em, and the gap
+  tightened from 8px to 4px, per Bill's feedback that it should read at
+  similar size/weight to the "GK1" text and sit closer to the G) to align
+  the icon with the text.
+- **Open Graph/Twitter share image**: a new `images/gk1-og-image.png`
+  (1200×630, the standard OG size), generated by rasterizing
+  `gk1-icon-navy-bg.svg` to a 630×630 square via `sharp` (installed
+  temporarily via `npx`/scratch dir, not a project dependency, this is a
+  static site with no build step, nothing was added to the repo beyond
+  the output PNG), then extending the canvas with matching navy
+  (`#10182c`) padding on both sides. **Watch for this if regenerating**:
+  the navy-bg SVG's background rect has rounded corners (`rx="48"`), so
+  extending the canvas without first flattening transparency
+  (`.flatten({ background: '#10182c' })`) leaves visible white gaps at
+  the corners where the rounded rect meets the padding, that happened on
+  the first attempt and had to be redone.
+
+## Lead form history
+
+- **File upload field — removed, not just deferred.** Zoho's Web-to-Lead
+  file-attachment support is grayed out on Bill's current 15-day trial
+  (paid editions only) — but separately, Bill decided it's not worth
+  having regardless, since asking someone to dig up and upload a bill cuts
+  against the site's low-pressure positioning. `#leadForm` no longer has
+  an upload/dropzone field (nor the JS/CSS that supported it). In its
+  place: a **"LOWEST monthly electric bill (rough estimate)"** dropdown
+  (Under $100 / $100–149 / $150–199 / $200–299 / $300–399 / $400+ / Not
+  sure — rationalized to non-overlapping bands; the original list had
+  boundary values like 150/200/300 double-counted between adjacent
+  options) — asks for the *lowest* month specifically so a summer-inflated
+  bill doesn't skew the estimate. Don't reintroduce file upload later
+  without checking in first; this was a deliberate choice, not a
+  temporary workaround.
+- **Street Address and City removed entirely from `#leadForm`** (not just
+  made optional), per Bill's explicit call that the form was too long and
+  felt like data mining. His own sales process starts with a phone call,
+  not a site visit, he finds out where someone lives on that first call,
+  so a full mailing address isn't needed at lead-capture time. Required
+  fields are just First Name, Last Name, Phone, Email, State, and the SMS
+  consent checkbox. Zip stayed as a single optional field (fast,
+  low-friction geographic signal) rather than being cut too. Zoho's
+  client-side mandatory-field JS (`checkMandatory7504064000000701086`) was
+  updated to match, Street Address/City/Zip were removed from its
+  `mndFileds`/`fldLangVal` arrays. **Zoho-side check: done.** Bill marked
+  Street Address, City, and Zip as `aria-required="false"` on Zoho's own
+  Web-to-Lead form builder and sent back the regenerated source; it now
+  matches client-side validation exactly (same 6 mandatory fields: First
+  Name, Last Name, Email, Phone, LEADCF53, LEADCF6). Confirmed by diffing
+  Zoho's fresh export against `#leadForm`: field names/ids, the `LEADCF1`
+  tech-interest values, `LEADCF52`/`LEADCF5`/`Lead Source`/`Lead Status`
+  defaults, and the honeypot field all already matched, no other changes
+  needed there. Two things were deliberately **not** copied from Zoho's
+  regenerated export: (1) `returnURL` — Zoho's fresh default is bare
+  `https://gk1.energy/`, but `#leadForm` intentionally keeps
+  `https://gk1.energy/?submitted=true#contact` so the on-page "Thanks,
+  that came through" message still fires; (2) Zoho's own multi-select
+  `<select multiple>` markup for `LEADCF1` and bare state-code options for
+  `LEADCF6` — the checkbox-group and `CT · Connecticut`-style labels are
+  better UX and POST the identical wire format, so no functional risk in
+  keeping that version. The two Web-to-Lead security tokens (`xnQsjsdp`,
+  `xmIwtLD`) and the analytics script's `rid`/`tw` values *were* refreshed
+  to match Zoho's new export, those aren't safe to diverge on.
+- Full current field structure (for whoever maps this into Zoho's
+  Web-to-Lead form builder next): `firstName` / `lastName` (split, not a
+  single Name field), `phone`, `email`, `state` (2-letter abbreviation via
+  a `<select>`, ME/NH/VT/RI/MA/CT/NY/NJ/PA/MD prioritized at top then the
+  rest alphabetical), `zip` (optional, 5-digit, numeric-patterned), seven
+  `techInterest` checkboxes sharing one `name` (Solar panels / Solar
+  panels + battery backup / EV charger / Heat pumps (heating & AC) / Heat
+  pump water heater / Generators / Not sure yet — sentence case throughout
+  (capitalize only the first word of each option, plus genuine acronyms
+  EV/AC — not Title Case), matching Bill's Zoho Multi-Pick field values so
+  a future Web-to-Lead submission maps correctly. Heat pump water heater
+  was added as its own option rather than folded into the heating/cooling
+  item, since Bill wanted it explicitly captured, not left to the
+  free-text notes field) — a multi-select, not single-select, so more
+  than one can be checked — `secondOpinion` (optional checkbox),
+  `referredBy` (optional), hidden `refCode` and `propertySegment`
+  (silently set to `"commercial"` via JS when arriving from
+  `business-solar.html`'s `?interest=commercial` link — replaces the old
+  single-dropdown prefill logic), `lowestBill`, `message`, and the
+  required `smsConsent` checkbox. Zoho's multi-select checkbox handling
+  may need a specific `name`/`value` convention once the Web-to-Lead form
+  is generated — check what Zoho outputs for a multi-select picklist
+  field before assuming `techInterest` as-is works.
+
+## Do not use: Helio Solar internal finance training PDF
+
+Bill has (or may again) share a PDF titled "Helio Solar Finance Training
+Guide" for reference. It is marked **Confidential — Internal Use Only** on
+every page — it's Helio's internal sales-rep training material (compliance
+scripts, specific lender partner terms/FICO minimums/contacts for GoodLeap,
+Sungage, Palmetto LightReach, Climate First Bank, CT Green Bank, EnFin).
+Decision made: **do not pull lender-specific details, contacts, or sales
+scripts from it into the public site** — it's not Bill's to republish, the
+numbers are Helio-specific (Bill works with multiple EPCs, not just Helio)
+and go stale fast, and some of it is legally load-bearing for Helio's own
+sales compliance, not general education. The site's Financing section
+already covers the general (safe, public-knowledge) four-methods framework;
+that's the ceiling for this topic unless Bill decides otherwise.
