@@ -74,8 +74,8 @@ description-based slugs (e.g. `business-solar.html`), not
   they're Bill's own offer, since he isn't bound to one EPC's negotiated
   partner terms and those numbers go stale fast.
 - **Battery framing is deliberately different between the two pages — not
-  an inconsistency.** `index.html`'s "What I Offer" tile says "Solar &
-  Battery Backup" because most residential buyers are shopping for
+  an inconsistency.** `index.html`'s "What I Offer" has a standalone
+  "Battery Backup" tile because most residential buyers are shopping for
   resilience (keeping the lights on), and that wording also matches the
   lead form's "Solar panels + battery backup" checkbox.
   `business-solar.html`'s tile instead says "Battery Storage" and
@@ -85,6 +85,37 @@ description-based slugs (e.g. `business-solar.html`), not
   battery there just absorbs load spikes, it doesn't carry the building.
   Don't "fix" this to match the residential wording; it's describing two
   genuinely different use cases.
+- **Standby generators deliberately dropped as a residential offering on
+  `index.html`.** Bill's call: generators run on fossil fuel, which reads
+  as incongruent next to a solar/battery/heat-pump pitch built around
+  "renewable," there are no state-level incentives for generators (unlike
+  the other three), and the sales conversation for a generator is
+  genuinely different from the other three. What I Offer went from 3
+  tiles (Solar & Battery Backup combined, Heating & Cooling, Backup
+  Generators) to 3 different tiles: **Solar** and **Battery Backup** split
+  into their own tiles, **Backup Generators** dropped entirely. The
+  Background & Credentials "Generator Contractor, Long Island, NY" tile
+  was also removed, but that career history wasn't erased, it moved into
+  the new Battery Backup tile as a credibility line ("I got my start in
+  backup power at a standby generator company, so I understand critical
+  loads and whole-home coverage..."), since that experience directly
+  supports how Bill sizes a battery backup system, a better home for it
+  than a standalone career-history tile. The "Generators" checkbox was
+  also removed from `#leadForm`'s tech-interest list. **This was scoped
+  to `index.html` only** — `business-solar.html` never offered generators
+  as a product in the first place, nothing to change there for this
+  reason specifically.
+- **Terminology: "Heating & Cooling" is the section/tile label, "heat
+  pump(s)" is the product term, used consistently everywhere else.**
+  Matches how Mass Save itself structures the topic (their own site path
+  is `.../heating-and-cooling/heat-pumps/...`, category then product).
+  Don't use "mini-split" or "HVAC" as a competing term in visible copy,
+  "mini-split" is just one installation style of heat pump and naming it
+  separately undercuts single-term consistency; "HVAC" got swapped to
+  "heat pump" in the Financing Loan tile for the same reason. `HVAC` is
+  still fine inside the JS mandatory-field script text (Zoho-generated,
+  not visible copy) and in code comments, that scope exclusion is the
+  same one already established for the em-dash rule.
 - **Multifamily & Rental Property angle deliberately dropped from
   `index.html`** (it used to be its own tile in a standalone Who I Serve
   section, built around the split-incentive problem: owner covers the
