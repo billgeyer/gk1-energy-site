@@ -38,8 +38,11 @@ land here. It's not optimized for cold organic search traffic.
   deliberate fix for the long single-page scroll. When adding a new section,
   add one of these too, phrased for that section's topic (see existing ones
   for the pattern/tone).
-- `images/` — site assets (currently just the headshot). Not committed
-  casually; keep images compressed (<500KB) before adding.
+- `images/` — site assets: the headshot, plus `gk1-icon-transparent.svg`
+  and `gk1-icon-navy-bg.svg` (the business-card logo mark, copied over
+  from the separate `gk1-business-card` repo, used as favicon and nav
+  lockup icon on both pages — see checklist #5). Not committed casually;
+  keep images compressed (<500KB) before adding.
 - `privacy-policy.html` — plain-language privacy policy, linked from both
   pages' footers. Written to match actual current practice (Zoho CRM +
   Cal.com as the only data processors named, no analytics/cookies claimed
@@ -346,16 +349,22 @@ the remaining thing to clear before it's safe to print/scan.
    Battery Backup · Heat Pumps · Generators" / "Residential ·
    Commercial"** (two lines). Not yet added to the site — we added the
    headshot instead, this is still separate/outstanding.
-5. Add a favicon + Open Graph/Twitter card meta tags — needed before links
-   get shared via text/QR/social, currently missing entirely. **A usable
-   icon now exists** — a hexagon badge + lightning bolt mark (mint
-   `#47e0b8` hex, orange `#f2a33b` bolt), built for the business card in
-   the separate `gk1-business-card` repo
-   (`C:\Dev\clients\bill-geyer\gk1-business-card\images\gk1-icon-transparent.svg`
-   and `gk1-icon-navy-bg.svg`). It doesn't appear anywhere on the live
-   site yet — this item is now really "wire the existing icon in as
-   favicon/OG image (and maybe nav lockup)," not "design one from
-   scratch."
+5. ~~Add a favicon~~ — **done.** ~~Open Graph/Twitter card meta tags~~ —
+   **still open.** The business-card icon (hexagon badge + lightning bolt
+   mark, mint `#47e0b8` hex, orange `#f2a33b` bolt) was copied from the
+   separate `gk1-business-card` repo into `gk1-energy-site/images/`
+   (`gk1-icon-transparent.svg` and `gk1-icon-navy-bg.svg`) and wired in
+   two places on both pages: as the browser-tab favicon (navy-bg version,
+   `<link rel="icon" type="image/svg+xml">`, stays visible on both light
+   and dark browser chrome) and as a nav-bar lockup icon next to
+   "GK1.energy" (transparent version, since it blends into the nav's dark
+   translucent background with no visible edge). `.nav-name` picked up
+   `display:flex` and a `.nav-logo{ height:1.3em; }` rule to align the
+   icon with the text. **Open Graph/Twitter meta tags (for social/text
+   share previews) are still not done** — that needs a PNG/JPG version of
+   the logo since SVG isn't universally supported for `og:image` (X/Twitter
+   in particular requires a raster format), which this pass didn't
+   generate.
 6. QR code destination — **decided**: `https://gk1.energy/#contact`
    (straight to the "Get in touch" section — Cal.com link + lead form).
    Already used in the business card QR codes. Still blocked on the live
@@ -410,6 +419,20 @@ the remaining thing to clear before it's safe to print/scan.
     a monthly "rate news" email to his CRM database as a related idea. That
     belongs with the Zoho/Cal.com workflow decisions, not this repo, see
     "Other context" below for where that work is tracked.
+13. **Backlog: Google Business Profile + Facebook Business Page, neither
+    set up yet.** Discussed and deliberately deferred, not this session's
+    task, but Bill was explicit not to lose track of it. Recommendation
+    given: prioritize Google Business Profile first (bigger lever than any
+    social platform for a local service business, reviews + map
+    visibility), set up as a **service-area business** so no home address
+    is ever displayed publicly. Facebook Business Page modeled on how
+    real estate agents use theirs (local incentive/rate updates, project
+    photos, 1-3 posts/week, not a hard-sell channel), content can reuse
+    the site's own Rate News and state-incentive copy. **LinkedIn was
+    explicitly ruled out**: Bill wants GK1 Energy kept low-profile
+    relative to his current W-2 employer, Ampt, and doesn't want the two
+    publicly connected. Keep that constraint in mind for any future
+    social/marketing recommendation, not just LinkedIn specifically.
 
 Bill is planning a broader round of content rewrites across both pages;
 don't push anything live without confirming first.
