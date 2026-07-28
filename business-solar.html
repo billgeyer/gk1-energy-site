@@ -87,19 +87,6 @@
   .btn-ghost{ color:var(--text-hi); border:1px solid var(--line); padding:13px 24px; border-radius:999px; text-decoration:none; font-size:0.95rem; }
   .btn-ghost:hover{ border-color:var(--sky); }
 
-  /* Signature graphic — a rooftop panel array, standing in for the commercial thesis:
-     "large roof, high usage" — distinct from the residential page's sun-arc signature */
-  .array-wrap{ margin-top:56px; width:100%; max-width:640px; }
-  .array-caption{
-    font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--text-low);
-    letter-spacing:0.08em; margin-top:10px;
-  }
-  .panel-cell{ animation: glint 5s ease-in-out infinite; }
-  .panel-cell:nth-child(3n+1){ animation-delay:0s; }
-  .panel-cell:nth-child(3n+2){ animation-delay:0.6s; }
-  .panel-cell:nth-child(3n+3){ animation-delay:1.2s; }
-  @keyframes glint{ 0%,100%{ opacity:0.55; } 50%{ opacity:1; } }
-
   .section{ padding:60px 0; border-top:1px solid var(--line); }
   .section-head{ margin-bottom:36px; max-width:60ch; }
   .section-head h2{ font-size:clamp(1.5rem,3vw,2rem); margin-top:10px; }
@@ -169,16 +156,6 @@
       <a class="btn-ghost" href="#fit">Is my building a fit?</a>
     </div>
     <p class="note-line">If energy is a real, recurring cost on your P&amp;L, it's usually worth a look.</p>
-    <div class="array-wrap" aria-hidden="true">
-      <svg viewBox="0 0 640 140" width="100%" height="auto" role="presentation">
-        <rect x="20" y="20" width="600" height="90" rx="4" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
-        <g stroke="var(--sun)" stroke-width="1.4" fill="none">
-          <!-- 8x3 grid of panel cells -->
-          <g id="panelGrid"></g>
-        </g>
-      </svg>
-      <div class="array-caption">A large roof, fully arrayed.</div>
-    </div>
   </div>
 </header>
 
@@ -351,25 +328,6 @@
     <div><a href="./index.html" style="color:var(--text-low); text-decoration:underline;">← Back to residential site</a></div>
   </div>
 </footer>
-
-<script>
-  // Draw an 8x3 grid of panel cells for the hero signature graphic
-  const svgNS = "http://www.w3.org/2000/svg";
-  const grid = document.getElementById('panelGrid');
-  const cols = 8, rows = 3, x0 = 32, y0 = 30, cw = 68, ch = 24, gap = 4;
-  for (let r = 0; r < rows; r++){
-    for (let c = 0; c < cols; c++){
-      const rect = document.createElementNS(svgNS, 'rect');
-      rect.setAttribute('x', x0 + c * (cw + gap));
-      rect.setAttribute('y', y0 + r * (ch + gap));
-      rect.setAttribute('width', cw);
-      rect.setAttribute('height', ch);
-      rect.setAttribute('rx', 2);
-      rect.setAttribute('class', 'panel-cell');
-      grid.appendChild(rect);
-    }
-  }
-</script>
 
 </body>
 </html>
