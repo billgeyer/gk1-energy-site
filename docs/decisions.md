@@ -409,6 +409,24 @@ three places on both pages:
   keeping that version. The two Web-to-Lead security tokens (`xnQsjsdp`,
   `xmIwtLD`) and the analytics script's `rid`/`tw` values *were* refreshed
   to match Zoho's new export, those aren't safe to diverge on.
+- **Second Zoho sync, 2026-07-29**: Bill rebuilt the Web-to-Lead form
+  again after the `techInterest` picklist got trimmed to four items (see
+  above), and its `LEADCF1` `<select multiple>` options now exactly match
+  the four checkbox values on `#leadForm`. Diffing the new export against
+  `#leadForm` again found one real mismatch worth remembering: the
+  "Not sure yet, just exploring" checkbox's `value` attribute had drifted
+  to just `"Not sure yet"` (a leftover from before the picklist trim) while
+  Zoho's Multi-Pick option value is the full `"Not sure yet, just
+  exploring"` string — fixed to match exactly, since a mismatched value
+  silently fails to map into the Zoho field rather than erroring visibly.
+  Same pattern as before: `xnQsjsdp`/`xmIwtLD` and the analytics
+  `rid`/`tw` were refreshed to Zoho's new values, `returnURL` and the
+  checkbox-group/styled-`<select>` UX were deliberately kept as-is rather
+  than reverted to Zoho's defaults. **Lesson for next time**: whenever
+  Zoho regenerates the form, diff every `value` attribute on `LEADCF1`
+  character-for-character against the fresh export, not just the option
+  labels/count — a UX-driven checkbox value can silently drift out of
+  sync with Zoho's picklist value while looking identical to a reader.
 - Full current field structure (for whoever maps this into Zoho's
   Web-to-Lead form builder next): `firstName` / `lastName` (split, not a
   single Name field), `phone`, `email`, `state` (2-letter abbreviation via

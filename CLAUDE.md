@@ -131,8 +131,14 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
   phone/Google Meet "touchpoint" call, Bill calls the attendee. Evenings/
   weekends only. The in-person first appointment is scheduled manually by
   Bill after the call, not self-service bookable.
-- **Zoho Web-to-Lead — still pending.** Waiting on Bill to generate the
-  Web-to-Lead form in Zoho CRM and send back the field mapping.
+- **Zoho Web-to-Lead — form-side synced, live test still pending.** Bill
+  has generated and regenerated the Zoho Web-to-Lead form twice now (most
+  recently 2026-07-29, to match the trimmed 4-item tech-interest picklist)
+  and `#leadForm` has been diffed and kept current against each export
+  (security tokens, analytics rid/tw, field names/values) — see
+  `docs/decisions.md` "Lead form history" for the diff details. What's
+  still missing: an actual end-to-end submission test once this is live
+  on Spaceship.
 - **Backlog: Cal.com bookings aren't captured as Zoho Leads** — no native
   connector yet. Options to check in order: Zoho Flow, Zapier/Make,
   Cal.com webhooks. Not yet researched.
@@ -141,8 +147,9 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
 
 ## Open checklist (priority order)
 
-1. Zoho Web-to-Lead — form wired client-side, not yet uploaded to
-   Spaceship, not tested end-to-end with a real submission.
+1. Zoho Web-to-Lead — form wired and kept in sync client-side (tokens,
+   field values), not yet tested end-to-end with a real submission once
+   this is live on Spaceship.
 2. Add hero tagline line: "Solar · Battery Backup · Heat Pumps" /
    "Residential · Commercial" (not yet added to the site). Originally
    confirmed wording included "Generators" — dropped from this suggestion
