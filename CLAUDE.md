@@ -16,6 +16,13 @@ every state incentive figure, the OG-image gotcha, etc.) lives in
 `docs/decisions.md` — read that on demand when a task needs the *why*, not
 every session. This file is the always-loaded current-state summary.
 
+**State as of 2026-07-29, ~10:00 AM ET**: both pages are live on gk1.energy
+and match this repo exactly, lead form tested end-to-end and working, no
+open bugs. If picking this up in a later session, check git log for
+anything committed after this point before trusting the section-by-section
+descriptions below at face value — they were accurate as of this tie-off,
+not guaranteed to stay that way.
+
 ## Pages
 
 - `index.html` — residential site, root (`gk1.energy/`). Sections top to
@@ -108,12 +115,15 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
   to GitHub does **not** touch the live site.
 - **Commit and push after essentially every change** — Bill's only copy of
   this work lives on one laptop, git push is the off-machine backup.
-- **IMPORTANT — live site is stale.** As of the last session, gk1.energy
-  only has the very first round of manual uploads. Everything since
-  (Recheck section, Process sections, headshot, Financing, contextual
-  CTAs) exists only in git/GitHub, not live. Don't assume gk1.energy
-  reflects the current repo state — check with Bill before referencing
-  "what's live."
+- **Live site is current as of 2026-07-29, ~10:00 AM ET.** gk1.energy and
+  business-solar.html were fully uploaded (all 7 files: 3 pages + 4
+  images) and match this repo's `main` branch as of the commits below.
+  Bill confirmed both pages render correctly live and the mobile nav fix
+  works. **This will go stale again the moment new changes are committed
+  without a corresponding upload** — deploys are still manual, git push
+  alone does not touch the live site. Don't assume gk1.energy reflects
+  the current repo state in a future session without checking; ask Bill
+  whether the latest changes have actually been uploaded yet.
 
 ## Contact info
 
@@ -131,14 +141,14 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
   phone/Google Meet "touchpoint" call, Bill calls the attendee. Evenings/
   weekends only. The in-person first appointment is scheduled manually by
   Bill after the call, not self-service bookable.
-- **Zoho Web-to-Lead — form-side synced, live test still pending.** Bill
-  has generated and regenerated the Zoho Web-to-Lead form twice now (most
-  recently 2026-07-29, to match the trimmed 4-item tech-interest picklist)
-  and `#leadForm` has been diffed and kept current against each export
-  (security tokens, analytics rid/tw, field names/values) — see
-  `docs/decisions.md` "Lead form history" for the diff details. What's
-  still missing: an actual end-to-end submission test once this is live
-  on Spaceship.
+- **Zoho Web-to-Lead — done, live, and tested.** Bill generated and
+  regenerated the Zoho Web-to-Lead form twice (most recently 2026-07-29,
+  to match the trimmed 4-item tech-interest picklist); `#leadForm` was
+  diffed and kept current against each export (security tokens, analytics
+  rid/tw, field names/values — see `docs/decisions.md` "Lead form history"
+  for the diff details). Bill submitted a real test lead through the live
+  form on 2026-07-29 and confirmed it worked end-to-end. Fully closed out,
+  not a backlog item anymore.
 - **Backlog: Cal.com bookings aren't captured as Zoho Leads** — no native
   connector yet. Options to check in order: Zoho Flow, Zapier/Make,
   Cal.com webhooks. Not yet researched.
@@ -147,22 +157,28 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
 
 ## Open checklist (priority order)
 
-1. Zoho Web-to-Lead — form wired and kept in sync client-side (tokens,
-   field values), not yet tested end-to-end with a real submission once
-   this is live on Spaceship.
-2. Add hero tagline line: "Solar · Battery Backup · Heat Pumps" /
+1. Add hero tagline line: "Solar · Battery Backup · Heat Pumps" /
    "Residential · Commercial" (not yet added to the site). Originally
    confirmed wording included "Generators" — dropped from this suggestion
    since generators were later removed as a residential offering entirely;
    don't reintroduce without a deliberate call.
-3. *(Optional)* basic analytics — currently none.
-4. Reminder for Bill (not a site task): once copy is finalized, sync his
+2. *(Optional)* basic analytics — currently none.
+3. Reminder for Bill (not a site task): once copy is finalized, sync his
    bio across the site, Recheck profile, and Cal.com profile.
-5. Backlog: Google Business Profile (prioritize this — service-area
+4. Backlog: Google Business Profile (prioritize this — service-area
    business, no home address shown) + Facebook Business Page. LinkedIn
    explicitly ruled out — Bill wants GK1 kept low-profile relative to his
    W-2 employer, Ampt.
-6. Cal.com→Zoho Lead sync (see above).
+5. Cal.com→Zoho Lead sync (see above).
+6. Backlog, flagged for later, no urgency: referral-partner tracking via
+   `?ref=` links / QR codes into the existing hidden `LEADCF3` field —
+   mechanism already works (see `docs/decisions.md` "Lead form history"),
+   just nothing generating or distributing referral links yet. Coordinate
+   referral-code conventions with the separate Zoho CRM referral-
+   commissions object design (see "Other context" below) before rolling
+   this out to any partner.
+
+**Zoho Web-to-Lead is done** (see above) — no longer an open item.
 
 Bill is planning a broader round of content rewrites across both pages —
 don't push anything live without confirming first.

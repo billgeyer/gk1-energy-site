@@ -477,3 +477,15 @@ and go stale fast, and some of it is legally load-bearing for Helio's own
 sales compliance, not general education. The site's Financing section
 already covers the general (safe, public-knowledge) four-methods framework;
 that's the ceiling for this topic unless Bill decides otherwise.
+
+## Session tie-off, 2026-07-29 ~10:00 AM ET
+
+Everything above through the "Business Solar 2026-07-29 changes" section
+and the second Zoho sync note was verified against the actual live site,
+not just the repo, as of this timestamp: both pages were uploaded to
+Spaceship, the mobile nav overflow bug was fixed and reverified, the lead
+form's tech-interest picklist was trimmed and re-synced with Bill's
+regenerated Zoho form, and Bill submitted a real test lead that landed
+successfully. `CLAUDE.md` carries the same tie-off marker. A future
+session picking this up should check `git log` for anything past this
+point before assuming either doc is still current.
