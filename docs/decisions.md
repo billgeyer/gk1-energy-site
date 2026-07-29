@@ -119,6 +119,11 @@ why the copy reads the way it does:
   Dec 31, 2027 placed-in-service deadline, plus 100% first-year bonus
   depreciation under current law, heavily caveated as general information
   (not tax advice) with an explicit "confirm with your accountant" line.
+  The depreciation line later picked up "(under MACRS)" as a named term
+  when the How This Works panel gained a paragraph mentioning MACRS
+  depreciation schedules (see "Business Solar 2026-07-29 changes" below) —
+  same underlying mechanism, just named explicitly once it appeared
+  elsewhere on the page.
   **Deliberately does not mention** the earlier July 4, 2026
   "begin-construction" safe-harbor pathway to 2030, since independent
   verification (WebSearch, not just trusting a pasted AI summary) confirmed
