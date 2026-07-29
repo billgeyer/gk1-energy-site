@@ -407,8 +407,11 @@ three places on both pages:
 - Full current field structure (for whoever maps this into Zoho's
   Web-to-Lead form builder next): `firstName` / `lastName` (split, not a
   single Name field), `phone`, `email`, `state` (2-letter abbreviation via
-  a `<select>`, ME/NH/VT/RI/MA/CT/NY/NJ/PA/MD prioritized at top then the
-  rest alphabetical), `zip` (optional, 5-digit, numeric-patterned), six
+  a `<select>`, New England + NY prioritized at top in alphabetical order
+  (CT/MA/ME/NH/NY/RI/VT), a disabled divider option, then the rest fully
+  alphabetical — NJ/PA/MD are in that rest-alphabetical group, not
+  prioritized, despite an earlier version of this note claiming otherwise),
+  `zip` (optional, 5-digit, numeric-patterned), six
   `techInterest` checkboxes sharing one `name` (Solar panels / Solar
   panels + battery backup / EV charger / Heat pumps (heating & AC) / Heat
   pump water heater / Not sure yet — was seven with a Generators option,
