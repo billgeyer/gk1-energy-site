@@ -79,6 +79,19 @@
   .hero h1{ font-size:clamp(1.9rem, 4.6vw, 2.9rem); color:var(--text-hi); max-width:18ch; }
   .hero p.lede{ margin-top:20px; max-width:56ch; color:var(--text-mid); font-size:1.05rem; }
   .hero-ctas{ margin-top:32px; display:flex; gap:14px; flex-wrap:wrap; }
+
+  .hero-grid{ display:grid; grid-template-columns:1fr 240px; gap:40px; align-items:start; }
+  @media (max-width:760px){ .hero-grid{ grid-template-columns:1fr; } }
+  .hero-photo-wrap{ text-align:center; }
+  @media (max-width:760px){ .hero-photo-wrap{ order:-1; max-width:200px; margin:0 auto; } }
+  .hero-photo{
+    width:100%; aspect-ratio:4/5; object-fit:cover; object-position:top center;
+    border-radius:var(--radius); border:1px solid var(--line); display:block;
+  }
+  .hero-photo-caption{
+    margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--text-low);
+    letter-spacing:0.05em; line-height:1.5;
+  }
   .btn-primary{
     background:var(--sun); color:#1a1300; font-weight:600; padding:13px 24px;
     border-radius:999px; text-decoration:none; font-size:0.95rem; border:1px solid var(--sun);
@@ -143,14 +156,22 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow">Primary service area: New England, with relationships beyond</div>
-    <h1>Solar evaluated the way you'd evaluate any capital investment in your business.</h1>
-    <p class="lede">I'm Bill Geyer, an independent Energy Advisor. I work with local business owners on the numbers that actually matter for the building they own: energy costs, demand charges, and available tax incentives. No generic pitch, just a straight look at whether the numbers work for your building.</p>
-    <div class="hero-ctas">
-      <a class="btn-primary" href="./index.html?interest=commercial#contact">Request a free consultation</a>
-      <a class="btn-ghost" href="#fit">Is my building a fit?</a>
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Primary service area: New England, with relationships beyond</div>
+        <h1>Solar evaluated the way you'd evaluate any capital investment in your business.</h1>
+        <p class="lede">I'm Bill Geyer, an independent Energy Advisor. I work with local business owners on the numbers that actually matter for the building they own: energy costs, demand charges, and available tax incentives. No generic pitch, just a straight look at whether the numbers work for your building.</p>
+        <div class="hero-ctas">
+          <a class="btn-primary" href="./index.html?interest=commercial#contact">Request a free consultation</a>
+          <a class="btn-ghost" href="#fit">Is my building a fit?</a>
+        </div>
+        <p class="note-line">If energy is a real, recurring cost on your P&amp;L, it's usually worth a look.</p>
+      </div>
+      <div class="hero-photo-wrap">
+        <img class="hero-photo" src="./images/bill-geyer-headshot.jpg" alt="Bill Geyer, independent Energy Advisor at GK1 Energy" width="240" height="300">
+        <div class="hero-photo-caption">Bill Geyer<br>Energy Advisor, GK1 Energy</div>
+      </div>
     </div>
-    <p class="note-line">If energy is a real, recurring cost on your P&amp;L, it's usually worth a look.</p>
   </div>
 </header>
 
