@@ -416,19 +416,26 @@ three places on both pages:
   (CT/MA/ME/NH/NY/RI/VT), a disabled divider option, then the rest fully
   alphabetical — NJ/PA/MD are in that rest-alphabetical group, not
   prioritized, despite an earlier version of this note claiming otherwise),
-  `zip` (optional, 5-digit, numeric-patterned), six
+  `zip` (optional, 5-digit, numeric-patterned), four
   `techInterest` checkboxes sharing one `name` (Solar panels / Solar
-  panels + battery backup / EV charger / Heat pumps (heating & AC) / Heat
-  pump water heater / Not sure yet — was seven with a Generators option,
-  removed when generators were dropped as a residential offering
-  entirely, see the standby-generator decision above — sentence case throughout
-  (capitalize only the first word of each option, plus genuine acronyms
-  EV/AC — not Title Case), matching Bill's Zoho Multi-Pick field values so
-  a future Web-to-Lead submission maps correctly. Heat pump water heater
-  was added as its own option rather than folded into the heating/cooling
-  item, since Bill wanted it explicitly captured, not left to the
-  free-text notes field) — a multi-select, not single-select, so more
-  than one can be checked — `secondOpinion` (optional checkbox),
+  panels + battery backup / Heat pumps (heating & cooling) / Not sure
+  yet — trimmed from six on 2026-07-29, per Bill's call that the picklist
+  had grown too long for a low-pressure form. EV charger and Heat pump
+  water heater were dropped: neither is featured anywhere else on the
+  site (not a What I Offer tile, not mentioned in the hero or Process),
+  so keeping them as checkboxes read as scope creep relative to what's
+  actually pitched; someone who specifically wants either can still say
+  so in the free-text "Anything else worth knowing" field. "Heat pumps
+  (heating & AC)" was also relabeled to "Heat pumps (heating & cooling)"
+  to match the site's established "Heating & Cooling" terminology
+  convention (see "Terminology" above) — was seven with a Generators
+  option before that, removed when generators were dropped as a
+  residential offering entirely, see the standby-generator decision
+  above — sentence case throughout (capitalize only the first word of
+  each option), matching Bill's Zoho Multi-Pick field values so a future
+  Web-to-Lead submission maps correctly) — a multi-select, not
+  single-select, so more than one can be checked — `secondOpinion`
+  (optional checkbox),
   `referredBy` (optional), hidden `refCode` and `propertySegment`
   (silently set to `"commercial"` via JS when arriving from
   `business-solar.html`'s `?interest=commercial` link — replaces the old
