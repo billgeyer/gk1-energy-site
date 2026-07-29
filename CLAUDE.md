@@ -1,8 +1,11 @@
 # GK1 Energy Site
 
 Static marketing site for Bill Geyer / GK1 Energy — an independent energy advisor
-(solar, battery storage, heat pumps, generators). Two hand-coded HTML pages, no
-build step, no framework.
+(solar, battery storage, heat pumps). Three hand-coded HTML pages
+(`index.html`, `business-solar.html`, `privacy-policy.html`), no build step,
+no framework. Generators were deliberately dropped as a residential
+offering — see `docs/decisions.md`; don't reintroduce the term without a
+deliberate positioning decision.
 
 Mental model: the site is designed as an extension of Bill's business card —
 most visitors will already know who he is before they land here. It's not
@@ -17,10 +20,13 @@ every session. This file is the always-loaded current-state summary.
 
 - `index.html` — residential site, root (`gk1.energy/`). Sections top to
   bottom: hero → How This Works (+ Recheck trust strip) → Rate News →
-  What I Offer (Solar / Battery Backup / Heating & Cooling) → The Process
-  (4 steps) → Background & Credentials (4 tiles incl. Recheck) → Financing
+  What I Offer (Solar / Battery Backup / Heating & Cooling tiles) → The
+  Process (4 steps, converted to the same details/summary tile pattern as
+  the rest of the site 2026-07-28, was a static 4-column grid before) →
+  Background & Credentials (3 tiles: Inverter & Battery Manufacturer Rep,
+  Utility-Scale & Community Solar, Recheck verification) → Financing
   (4 methods + state-by-state incentives, CT/MA/NH/ME) → Get in touch
-  (`#leadForm`). 8 sections (trimmed from 11 — see `docs/decisions.md`).
+  (`#leadForm`). 7 `<section>` blocks plus the hero header.
 - `business-solar.html` — Business Solar site for local business owners.
   Primarily owner-occupied buildings, but as of 2026-07-29 the "Who This Is
   For" copy also acknowledges landlords with commercial tenants as
@@ -31,7 +37,9 @@ every session. This file is the always-loaded current-state summary.
   owner-occupied/roof/bill test) → System Types (System Types / Battery
   Storage tiles) → What It Actually Delivers (Cost Savings / Sustainability
   & ESG / Tax Incentives tiles, pure benefits, no product tiles mixed in) →
-  The Process (4 tiles, same details/summary pattern as index.html) → Get
+  The Process (5 tiles, same details/summary pattern as index.html:
+  Discovery / Proposal / Letter of Intent and Deposit / Site survey &
+  engineering / Installation & turn-on — LOI step added 2026-07-29) → Get
   in touch. CTAs route to `index.html`'s shared contact form via
   `?interest=commercial#contact`. System Types and What It Delivers used to
   be one combined section; split 2026-07-29 because mixing product tiles
@@ -125,9 +133,11 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
 
 1. Zoho Web-to-Lead — form wired client-side, not yet uploaded to
    Spaceship, not tested end-to-end with a real submission.
-2. Add hero tagline line: "Solar · Battery Backup · Heat Pumps ·
-   Generators" / "Residential · Commercial" (confirmed wording, not yet
-   added to the site).
+2. Add hero tagline line: "Solar · Battery Backup · Heat Pumps" /
+   "Residential · Commercial" (not yet added to the site). Originally
+   confirmed wording included "Generators" — dropped from this suggestion
+   since generators were later removed as a residential offering entirely;
+   don't reintroduce without a deliberate call.
 3. *(Optional)* basic analytics — currently none.
 4. Reminder for Bill (not a site task): once copy is finalized, sync his
    bio across the site, Recheck profile, and Cal.com profile.
@@ -142,9 +152,9 @@ don't push anything live without confirming first.
 
 ## Other context
 
-- A future third page (solar estimator: roof type + bill → calculation)
-  was discussed and confirmed as a good idea but deliberately deferred —
-  needs real backend logic, don't stub it in unprompted.
+- A future solar estimator page (roof type + bill → calculation) was
+  discussed and confirmed as a good idea but deliberately deferred — needs
+  real backend logic, don't stub it in unprompted.
 - **Separate, unrelated CRM build-out — not tracked in this repo.** Bill's
   Zoho CRM object design (Contact/Property/Lead fields, referral
   commissions) lives as its own handoff docs in Google Drive:
