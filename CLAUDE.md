@@ -21,8 +21,11 @@ every session. This file is the always-loaded current-state summary.
   (4 steps) → Background & Credentials (4 tiles incl. Recheck) → Financing
   (4 methods + state-by-state incentives, CT/MA/NH/ME) → Get in touch
   (`#leadForm`). 8 sections (trimmed from 11 — see `docs/decisions.md`).
-- `business-solar.html` — Business Solar site for local business owners with
-  owner-occupied buildings. Sections: hero → How This Works (incl. a
+- `business-solar.html` — Business Solar site for local business owners.
+  Primarily owner-occupied buildings, but as of 2026-07-29 the "Who This Is
+  For" copy also acknowledges landlords with commercial tenants as
+  potentially viable, depending on lease structure, not a hard exclusion
+  anymore. Sections: hero → How This Works (incl. a
   paragraph on why commercial engineering/financing/tax treatment differs
   from residential, not just "bigger") → Who This Is For (3-question
   owner-occupied/roof/bill test) → System Types (System Types / Battery
