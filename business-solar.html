@@ -120,15 +120,10 @@
 
   .note-line{ margin-top:16px; color:var(--text-low); font-size:0.88rem; max-width:60ch; }
 
-  .process-steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-  @media (max-width:760px){ .process-steps{ grid-template-columns:1fr; } }
-  .process-step{ background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
   .process-num{
     font-family:'IBM Plex Mono',monospace; font-size:0.78rem; color:var(--sun); border:1px solid var(--sun-dim);
     width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center;
   }
-  .process-step h3{ font-size:1.05rem; margin-top:12px; }
-  .process-step p{ color:var(--text-mid); margin-top:8px; font-size:0.9rem; }
 
   footer{ border-top:1px solid var(--line); padding:36px 0 48px; }
   .footer-inner{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; font-size:0.82rem; color:var(--text-low); }
@@ -212,7 +207,6 @@
         <div class="tile-body">
           <p><strong>Rooftop:</strong> systems on large, flat warehouse or office roofs, using space that's otherwise unused.</p>
           <p><strong>Ground-mounted:</strong> for properties with open land, like farms or facilities with room to spare.</p>
-          <p>Solar carports are not part of my current scope.</p>
         </div>
       </details>
       <details class="tile">
@@ -283,29 +277,32 @@
       <h2>Solar evaluated like any capital project, and executed like one too</h2>
       <p>It starts with a plain conversation about your numbers, not a sales pitch. Here's exactly what happens along the way.</p>
     </div>
-    <div class="process-steps">
-      <div class="process-step">
-        <div class="process-num">1</div>
-        <h3>Discovery</h3>
-        <p>A plain conversation about your property, usage, and the numbers that matter to your P&amp;L or budget. No jargon, no pressure, just enough to understand whether solar makes sense for your building.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-num">2</div>
-        <h3>Proposal</h3>
-        <p>Using satellite mapping and your utility data, we build a system design before anyone sets foot on your roof or property. You receive a full proposal: system size, financing options, applicable incentives, and projected savings. The proposal is based on digital analysis, the site visit that confirms it comes next.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-num">3</div>
-        <h3>Site survey &amp; engineering</h3>
-        <p>A licensed technician visits to verify the digital design against real-world conditions: roof structure, electrical panel, shading, and site layout. If anything needs to change, you see a revised design before the project moves forward. Your contract includes a feasibility contingency: if a required change makes the project unworkable, you can walk away.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-num">4</div>
-        <h3>Installation &amp; turn-on</h3>
-        <p>Your installation partner handles permits, utility interconnection, and the licensed crew. I stay your point of contact through commissioning, there when the system goes live, not gone the moment the contract was signed.</p>
-      </div>
+    <div class="tiles">
+      <details class="tile">
+        <summary><div class="process-num" style="flex:0 0 auto;">1</div><span class="tile-title">Discovery</span><span class="tile-plus" aria-hidden="true"></span></summary>
+        <div class="tile-body">
+          <p>A plain conversation about your property, usage, and the numbers that matter to your P&amp;L or budget. No jargon, no pressure, just enough to understand whether solar makes sense for your building.</p>
+        </div>
+      </details>
+      <details class="tile">
+        <summary><div class="process-num" style="flex:0 0 auto;">2</div><span class="tile-title">Proposal</span><span class="tile-plus" aria-hidden="true"></span></summary>
+        <div class="tile-body">
+          <p>Using satellite mapping and your utility data, we build a system design before anyone sets foot on your roof or property. You receive a full proposal: system size, financing options, applicable incentives, and projected savings. The proposal is based on digital analysis, the site visit that confirms it comes next.</p>
+        </div>
+      </details>
+      <details class="tile">
+        <summary><div class="process-num" style="flex:0 0 auto;">3</div><span class="tile-title">Site survey &amp; engineering</span><span class="tile-plus" aria-hidden="true"></span></summary>
+        <div class="tile-body">
+          <p>A licensed technician visits to verify the digital design against real-world conditions: roof structure, electrical panel, shading, and site layout. If anything needs to change, you see a revised design before the project moves forward. Your contract includes a feasibility contingency: if a required change makes the project unworkable, you can walk away.</p>
+        </div>
+      </details>
+      <details class="tile">
+        <summary><div class="process-num" style="flex:0 0 auto;">4</div><span class="tile-title">Installation &amp; turn-on</span><span class="tile-plus" aria-hidden="true"></span></summary>
+        <div class="tile-body">
+          <p>Your installation partner handles permits, utility interconnection, and the licensed crew. I stay your point of contact through commissioning, there when the system goes live, not gone the moment the contract was signed.</p>
+        </div>
+      </details>
     </div>
-    <p class="note-line">Aging roof on the building? Not a dealbreaker. My EPC partners can coordinate a roof replacement or reinforcement as part of the project, so it doesn't rule solar out.</p>
     <p class="note-line">Ready to start with a conversation? <a href="./index.html?interest=commercial#contact" style="color:var(--sky);">Let's talk it through →</a></p>
   </div>
 </section>
