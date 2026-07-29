@@ -136,6 +136,50 @@ why the copy reads the way it does:
   `?interest=commercial` query param value was deliberately left unchanged
   (it's internal/functional, not visible copy).
 
+## Business Solar 2026-07-29 changes (scope, structure, Process)
+
+Several changes landed on `business-solar.html` in one session, worth
+recording together since they compound:
+
+- **Landlord/commercial-tenant scope opened up.** The "Who This Is For"
+  first question changed from a hard "Is it owner-occupied?" exclusion to
+  "Do you control the building? Owner-occupied is the most straightforward
+  deal. Landlords with commercial tenants are often viable too, depending
+  on the lease structure." This reverses the spirit of the earlier
+  owner-occupied-only positioning (see "Audience test is the building and
+  the bill" above) — confirmed with Bill as intentional, not a slip from
+  a hand-off doc missing context. The `og:description`/`twitter:description`
+  meta tags initially weren't updated to match and had to be caught and
+  fixed separately; check those tags whenever a scope/positioning change
+  like this lands, they're easy to miss since they're invisible in normal
+  browsing.
+- **"What it actually delivers" split into two sections.** It used to be
+  one section mixing product tiles (System Types, Battery Storage) with
+  benefit tiles (Cost Savings, Sustainability & ESG, Tax Incentives) under
+  one heading, which read as incoherent once actually reviewed. Split into
+  a new "System Types" section (product/technical tiles) placed right
+  after "Who This Is For," and a trimmed "What It Actually Delivers" that's
+  now pure benefits.
+- **Process expanded from 4 to 5 steps**: a "Letter of Intent and Deposit"
+  step was inserted between Proposal and Site survey & engineering. Framed
+  entirely from the prospect's perspective (what it protects them from —
+  not locked into a contract before engineering confirms the numbers), not
+  the EPC/developer's perspective (submitting interconnection applications,
+  collecting deposits, executing binding agreements) — those EPC-side
+  actions were deliberately excluded as out of scope for Bill's advisor
+  positioning, don't reintroduce them without a deliberate call. The
+  Proposal step's closing line was also rewritten to name the LOI as the
+  actual next step instead of vaguely gesturing at "the site visit."
+  Step 4 (Site survey & engineering) first paragraph was rewritten from a
+  single "licensed technician visit" to an "engineering team" review with
+  specific criteria (structural load, electrical service/switchgear,
+  shading/orientation, interconnection, site/title) to better set up the
+  feasibility-contingency payoff in the second paragraph.
+- **Headshot added to the hero**, matching `index.html`'s hero-grid layout
+  exactly (same CSS, copied verbatim) — reinforces the same
+  independent-advisor trust signal that the residential page already had;
+  the business page previously had no photo at all.
+
 ## Index.html section consolidation
 
 `index.html` was trimmed from 11 sections down to 8 after Bill's critique
@@ -227,12 +271,18 @@ used without explanation elsewhere on the page.
 ## Rate News sourcing
 
 Rate News's boxed card leads with the grid-problem causes (aging
-infrastructure, PJM capacity auctions, data center demand, natural gas
-volatility), then a bulleted list of approved (and one pending) New
-England rate cases: Unitil MA ~6% (2026), NH Liberty 17.54% + Eversource
-10.3% (2025), CT United Illuminating ~7-8% (2025), ME Versant Power ~23%
-(2025) plus Central Maine Power's pending ~11% filing, each with its own
-inline source link. **New Jersey's rate-hike story was in this card at
+infrastructure, data center demand, natural gas volatility — PJM capacity
+auction pressure was cut from this list in the 2026-07-28 copy pass as
+unnecessary throat-clearing, not because it's inaccurate), then a bulleted
+list of approved (and one pending) New England rate cases: Unitil MA ~6%
+(2026), NH Liberty 17.54% + Eversource 10.3% (2025), CT United Illuminating
+~7-8% (2025), ME Versant Power ~23% (2025) plus Central Maine Power's
+pending ~11% filing, each with its own inline source link. **Source links
+were swapped 2026-07-28** from official docket/PUC filings (harder for a
+general reader to parse) to readable news articles (Boston Globe, NHPR,
+NBC Connecticut, Maine Public, Portland Press Herald) covering the same
+rate cases — Maine has two source links since it cites both the Versant
+and CMP filings separately. **New Jersey's rate-hike story was in this card at
 first but was deliberately removed** at Bill's request, it's not his core
 market, so the section now opens directly with the causes instead of an
 out-of-region anecdote. (History, in case a similar out-of-region example
@@ -358,10 +408,12 @@ three places on both pages:
   Web-to-Lead form builder next): `firstName` / `lastName` (split, not a
   single Name field), `phone`, `email`, `state` (2-letter abbreviation via
   a `<select>`, ME/NH/VT/RI/MA/CT/NY/NJ/PA/MD prioritized at top then the
-  rest alphabetical), `zip` (optional, 5-digit, numeric-patterned), seven
+  rest alphabetical), `zip` (optional, 5-digit, numeric-patterned), six
   `techInterest` checkboxes sharing one `name` (Solar panels / Solar
   panels + battery backup / EV charger / Heat pumps (heating & AC) / Heat
-  pump water heater / Generators / Not sure yet — sentence case throughout
+  pump water heater / Not sure yet — was seven with a Generators option,
+  removed when generators were dropped as a residential offering
+  entirely, see the standby-generator decision above — sentence case throughout
   (capitalize only the first word of each option, plus genuine acronyms
   EV/AC — not Title Case), matching Bill's Zoho Multi-Pick field values so
   a future Web-to-Lead submission maps correctly. Heat pump water heater
