@@ -22,13 +22,23 @@ every session. This file is the always-loaded current-state summary.
   (4 methods + state-by-state incentives, CT/MA/NH/ME) → Get in touch
   (`#leadForm`). 8 sections (trimmed from 11 — see `docs/decisions.md`).
 - `business-solar.html` — Business Solar site for local business owners with
-  owner-occupied buildings. Sections: hero → How This Works → Who This Is
-  For (3-question owner-occupied/roof/bill test) → What It Delivers → The
-  Process (business-flavored) → Get in touch. CTAs route to `index.html`'s
-  shared contact form via `?interest=commercial#contact`.
+  owner-occupied buildings. Sections: hero → How This Works (incl. a
+  paragraph on why commercial engineering/financing/tax treatment differs
+  from residential, not just "bigger") → Who This Is For (3-question
+  owner-occupied/roof/bill test) → System Types (System Types / Battery
+  Storage tiles) → What It Actually Delivers (Cost Savings / Sustainability
+  & ESG / Tax Incentives tiles, pure benefits, no product tiles mixed in) →
+  The Process (4 tiles, same details/summary pattern as index.html) → Get
+  in touch. CTAs route to `index.html`'s shared contact form via
+  `?interest=commercial#contact`. System Types and What It Delivers used to
+  be one combined section; split 2026-07-29 because mixing product tiles
+  (System Types, Battery Storage) with benefit tiles (Cost Savings, ESG,
+  Tax Incentives) under one heading read as incoherent.
 - Almost every major section on both pages ends with a short contextual
   "Let's talk it through →" line linking to the contact form. When adding a
-  new section, add one of these too, phrased for that section's topic.
+  new section, add one of these too, phrased for that section's topic. Use
+  `&nbsp;→` (not a plain space) before the arrow so it can't wrap onto its
+  own line.
 - `images/` — headshot, `gk1-icon-transparent.svg` / `gk1-icon-navy-bg.svg`
   (business-card logo mark, favicon + nav icon on both pages),
   `gk1-og-image.png` (OG/Twitter share image — see `docs/decisions.md`
