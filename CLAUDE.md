@@ -31,8 +31,9 @@ every session. This file is the always-loaded current-state summary.
   Primarily owner-occupied buildings, but as of 2026-07-29 the "Who This Is
   For" copy also acknowledges landlords with commercial tenants as
   potentially viable, depending on lease structure, not a hard exclusion
-  anymore. Sections: hero → How This Works (incl. a
-  paragraph on why commercial engineering/financing/tax treatment differs
+  anymore. Sections: hero (headshot + hero-grid layout added 2026-07-29,
+  matches index.html's pattern exactly, same CSS copied verbatim) → How
+  This Works (incl. a paragraph on why commercial engineering/financing/tax treatment differs
   from residential, not just "bigger") → Who This Is For (3-question
   owner-occupied/roof/bill test) → System Types (System Types / Battery
   Storage tiles) → What It Actually Delivers (Cost Savings / Sustainability
@@ -50,10 +51,19 @@ every session. This file is the always-loaded current-state summary.
   new section, add one of these too, phrased for that section's topic. Use
   `&nbsp;→` (not a plain space) before the arrow so it can't wrap onto its
   own line.
-- `images/` — headshot, `gk1-icon-transparent.svg` / `gk1-icon-navy-bg.svg`
-  (business-card logo mark, favicon + nav icon on both pages),
-  `gk1-og-image.png` (OG/Twitter share image — see `docs/decisions.md`
-  before regenerating). Keep images compressed (<500KB) before adding.
+- `images/` — headshot (hero photo on both pages as of 2026-07-29;
+  previously index.html only), `gk1-icon-transparent.svg` /
+  `gk1-icon-navy-bg.svg` (business-card logo mark, favicon + nav icon on
+  both pages), `gk1-og-image.png` (OG/Twitter share image — see
+  `docs/decisions.md` before regenerating). Keep images compressed
+  (<500KB) before adding.
+- When a positioning/scope change lands (e.g. the landlord-inclusion
+  change above), check the `<meta property="og:description">` /
+  `<meta name="twitter:description">` tags too — they're easy to miss
+  since they're invisible in normal browsing, only surface in social
+  previews and search results, and drifted stale once already
+  (business-solar.html said "owner-occupied buildings" for a day after
+  the copy itself had already broadened to include landlords).
 - `privacy-policy.html` — linked from both footers. Matches actual current
   practice (Zoho CRM + Cal.com as the only data processors, no analytics/SMS
   automation claimed). **Keep accurate as practices change.**
