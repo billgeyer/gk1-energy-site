@@ -602,6 +602,22 @@ session. QR codes should target `gk1.energy/hello.html` explicitly unless
 Bill confirms cPanel-side URL rewriting is configured, in which case this
 note should be corrected.
 
+**`download` attribute removed from the vCard button, 2026-07-31.** The
+original hand-off doc specified `<a href="bill-geyer.vcf"
+download="bill-geyer.vcf">`, which was implemented as written and deployed.
+Bill tested it live: the `download` attribute forces a raw file download
+into the phone's Downloads/Files app on every platform, rather than the
+"Add Contact" native preview screen he expected (and that's the actual
+selling point of a vCard: someone reviews and commits it, they don't dig a
+.vcf out of Downloads to import manually). Removed `download` from the
+`<a>` so the browser follows the file's `Content-Type` header instead.
+Confirmed locally that a plain static file server returns `text/x-vcard`
+for `.vcf` with no extra config, and Apache's stock `mime.types` (which
+cPanel uses) maps `.vcf` the same way, so this should carry over to
+production, but it's worth Bill re-testing on his phone after the next
+upload to confirm the native "Add Contact" screen actually appears, since
+MIME handling can still vary by hosting config or browser.
+
 ## Do not use: Helio Solar internal finance training PDF
 
 Bill has (or may again) share a PDF titled "Helio Solar Finance Training
