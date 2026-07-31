@@ -54,14 +54,33 @@
     margin-top:28px; font-family:'IBM Plex Mono',monospace; font-size:0.72rem;
     color:var(--text-low); letter-spacing:0.04em;
   }
+  .contact-card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px 22px; margin:24px 0; text-align:left;
+  }
+  .contact-card .name{
+    font-family:'Fraunces',serif; font-weight:600; font-size:1.25rem; color:var(--text-hi);
+  }
+  .contact-card .role{ margin-top:2px; color:var(--text-mid); font-size:0.92rem; }
+  .contact-card .details{ margin-top:14px; display:flex; flex-direction:column; gap:6px; }
+  .contact-card .details a{ text-decoration:none; font-size:0.95rem; }
+  .contact-card .details a:hover{ color:var(--sky); }
 </style>
 </head>
 <body>
   <div class="card">
     <div class="eyebrow">BILL GEYER · GK1 ENERGY</div>
     <h1>Thanks for connecting.</h1>
-    <p class="subhead">Save my contact info or request a free consultation below.</p>
-    <a class="btn-primary" href="./bill-geyer.vcf">Save my contact info</a>
+    <p class="subhead">Here's my contact info, or request a free consultation below.</p>
+    <div class="contact-card">
+      <div class="name">Bill Geyer</div>
+      <div class="role">Independent Energy Advisor, GK1 Energy</div>
+      <div class="details">
+        <a href="tel:+19783581296">(978) 358-1296</a>
+        <a href="mailto:bill@gk1.energy">bill@gk1.energy</a>
+      </div>
+    </div>
+    <a class="btn-primary" href="./bill-geyer.vcf" download="bill-geyer.vcf">Save to my contacts</a>
     <a class="btn-ghost" id="consultLink" href="./index.html#contact">Request a consultation</a>
     <p class="footnote">Serving New England &amp; the East End of Long Island</p>
   </div>

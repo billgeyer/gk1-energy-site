@@ -618,6 +618,24 @@ production, but it's worth Bill re-testing on his phone after the next
 upload to confirm the native "Add Contact" screen actually appears, since
 MIME handling can still vary by hosting config or browser.
 
+**Superseded same day: on-page contact card added instead of relying on
+native vCard preview.** Bill's actual complaint wasn't the download
+mechanism specifically, it was that tapping "Save my contact info"
+produced friction with no chance to see what they were getting before
+committing. Relying on the OS to show a native "Add Contact" screen for a
+correctly MIME-typed `.vcf` (the fix above) is real but inconsistent
+across browsers and in-app browser webviews (Instagram/LinkedIn in-app
+browsers, some Android Chrome configurations, etc. don't always honor
+`text/x-vcard` the same way iOS Safari does), so it wasn't a reliable
+fix for "let them review before they commit" on its own. Added a
+`.contact-card` block directly on `hello.html`, always visible before the
+buttons, showing name, title/org, and tappable `tel:`/`mailto:` links for
+phone and email, so the preview no longer depends on OS/browser vCard
+handling at all. With that in place, the `download` attribute was added
+back to the vCard button (`Save to my contacts`), since forcing a direct
+save is now fine, the person has already seen the info on the page before
+tapping it.
+
 ## Do not use: Helio Solar internal finance training PDF
 
 Bill has (or may again) share a PDF titled "Helio Solar Finance Training
