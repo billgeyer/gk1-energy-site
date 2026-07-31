@@ -105,13 +105,16 @@ live as of this note.
   automation claimed). **Keep accurate as practices change.**
 - `hello.html` (added 2026-07-31) — minimal networking landing page, the
   destination for a QR code Bill shows from his phone in person. Shows an
-  always-visible contact card (name, title, phone, email) above the
-  buttons, so someone can see what they're saving before they tap "Save to
-  my contacts" — added after Bill found relying on the OS to show a native
-  vCard preview was too inconsistent across browsers to be the only
-  review step. Two buttons: download `bill-geyer.vcf`, or go to
-  `index.html#contact`. No nav, no footer, deliberately not part of the
-  normal site navigation
+  always-visible contact card (name, title, phone, email, plus a
+  business-card-style tagline: "Solar · Battery Backup · Heat Pumps ·
+  Residential · Commercial") above the buttons, so someone can see what
+  they're saving before they tap "Save to my contacts" — added after Bill
+  found relying on the OS to show a native vCard preview was too
+  inconsistent across browsers to be the only review step, then extended
+  same-day so the card reads as a mini version of Bill's physical business
+  card rather than just name/phone/email. Two buttons: download
+  `bill-geyer.vcf`, or go to `index.html#contact`. No nav, no footer,
+  deliberately not part of the normal site navigation
   and not linked from `index.html`/`business-solar.html` — reached only via
   direct URL/QR code. Reads `?ref=` from its own URL and appends it to the
   consultation link (`index.html?ref=...#contact`) so referral tracking

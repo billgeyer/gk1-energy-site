@@ -636,6 +636,31 @@ back to the vCard button (`Save to my contacts`), since forcing a direct
 save is now fine, the person has already seen the info on the page before
 tapping it.
 
+**Business-card tagline added to the contact card and vCard NOTE,
+2026-07-31.** Bill wanted the on-page preview to actually read as a mini
+version of his physical business card, not just name/phone/email. Added a
+`.tagline` line to the `.contact-card` (styled like the site's eyebrow
+labels, IBM Plex Mono, small caps) reading "SOLAR · BATTERY BACKUP · HEAT
+PUMPS · RESIDENTIAL · COMMERCIAL" — matches the exact wording from the
+still-open hero-tagline checklist item in `CLAUDE.md`. Also folded the
+same tagline into `bill-geyer.vcf`'s `NOTE` field, ahead of the existing
+service-area sentence, so it's visible in the phone's contact manager
+after saving, not just on the page before saving. Used middle-dot
+separators (`·`) instead of commas deliberately: vCard 3.0's TEXT-value
+grammar technically requires commas/semicolons to be backslash-escaped,
+and switching to `·` sidesteps that entirely rather than relying on every
+contacts app's parser to be lenient about it.
+- **Also fixed in this pass**: the hero-photo captions on `index.html` and
+  `business-solar.html` said "Bill Geyer / Energy Advisor, GK1 Energy",
+  missing "Independent" that's used everywhere else on both pages (title
+  tags, meta descriptions, hero lede, photo alt text). Bill caught this
+  himself; added "Independent" to both captions rather than removing it
+  elsewhere, since "independent, not installer" is a deliberate site-wide
+  positioning point (see "Active conventions" in `CLAUDE.md`).
+- Also dropped "free" from `hello.html`'s subhead ("request a
+  consultation" instead of "a free consultation") — Bill's call, read as
+  slightly salesy for an already low-key page.
+
 ## Do not use: Helio Solar internal finance training PDF
 
 Bill has (or may again) share a PDF titled "Helio Solar Finance Training
