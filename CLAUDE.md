@@ -33,25 +33,34 @@ not guaranteed to stay that way.
 
 **2026-07-31 update, not yet deployed**: added the New York (East End of
 Long Island) incentive tile to `index.html`'s Financing section, updated
-service-area copy site-wide, and built `hello.html` + `bill-geyer.vcf` for
-phone-based networking QR handoffs. These commits exist in the repo but
-have **not** been uploaded to cPanel yet as of this note — don't assume
-gk1.energy reflects them without checking with Bill.
+service-area copy site-wide, built `hello.html` + `bill-geyer.vcf` for
+phone-based networking QR handoffs, added a Long Island entry to Rate News,
+alphabetized both the Financing and Rate News state tiles (CT/ME/MA/NH/NY
+order), and converted Rate News's "evidence" list from one long bulleted
+blob inside a single tile into individual per-state tiles matching the
+Financing section's pattern, for easier one-off updates. These commits
+exist in the repo but have **not** been uploaded to cPanel yet as of this
+note — don't assume gk1.energy reflects them without checking with Bill.
 
 ## Pages
 
 - `index.html` — residential site, root (`gk1.energy/`). Sections top to
-  bottom: hero → How This Works (+ Recheck trust strip) → Rate News →
-  What I Offer (Solar / Battery Backup / Heating & Cooling tiles) → The
-  Process (4 steps, converted to the same details/summary tile pattern as
-  the rest of the site 2026-07-28, was a static 4-column grid before) →
-  Background & Credentials (3 tiles: Inverter & Battery Manufacturer Rep,
-  Utility-Scale & Community Solar, Recheck verification) → Financing
-  (4 methods + state-by-state incentives, CT/MA/ME/NH/NY — NY added
+  bottom: hero → How This Works (+ Recheck trust strip) → Rate News
+  (evidence now individual per-state tiles, alphabetical: CT / Long Island
+  / ME / MA / NH — converted 2026-07-31 from a single tile with one long
+  bulleted list, easier to add/update one state at a time now) → What I
+  Offer (Solar / Battery Backup / Heating & Cooling tiles) → The Process
+  (4 steps, converted to the same details/summary tile pattern as the rest
+  of the site 2026-07-28, was a static 4-column grid before) → Background
+  & Credentials (3 tiles: Inverter & Battery Manufacturer Rep, Utility-Scale
+  & Community Solar, Recheck verification) → Financing (4 methods +
+  state-by-state incentives, alphabetical: CT/ME/MA/NH/NY — NY added
   2026-07-31, scoped specifically to PSEG Long Island's territory, sourced
   from tax.ny.gov, NYSERDA's Long Island dashboard, and PSEG LI's own
   rebate/net-metering pages) → Get in touch (`#leadForm`). 7 `<section>`
-  blocks plus the hero header.
+  blocks plus the hero header. **State tile ordering convention**: both
+  the Financing and Rate News state tiles are alphabetical by state name
+  — keep new state additions sorted in, don't append to the end.
 - `business-solar.html` — Business Solar site for local business owners.
   Primarily owner-occupied buildings, but as of 2026-07-29 the "Who This Is
   For" copy also acknowledges landlords with commercial tenants as

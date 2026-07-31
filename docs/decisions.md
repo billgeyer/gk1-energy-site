@@ -319,6 +319,18 @@ periodically and always anchor to a linked, named source.
   single steady rate-case increase, since PSC is a monthly pass-through
   that swings both directions (it dropped again by August), unlike the
   fixed-in-place rate cases cited for the New England states.
+- **Restructured into per-state tiles, 2026-07-31**: the "evidence, state
+  by state" content used to be one long bulleted `<ul>` inside a single
+  `<details class="tile">`, which Bill flagged as turning into "one long
+  blob" once Long Island was added as a fifth entry. Converted to match
+  the Financing section's existing pattern exactly: an `<h3>` + intro
+  paragraph, then a `.tiles` div with one `<details class="tile">` per
+  state, alphabetical (CT / Long Island / ME / MA / NH). The closing "the
+  homeowners who locked in solar before their state made the next
+  headline" line was kept verbatim, just moved from inside the old wrapper
+  tile to a plain paragraph after the new tiles grid, so it still reads as
+  the section's closing beat rather than getting buried inside one state's
+  expandable content.
 
 ## State incentive tile sourcing
 
@@ -326,6 +338,11 @@ All state incentive card content should be treated as a snapshot, not
 evergreen: rebate amounts, caps, and per-ton rates in these programs
 change yearly, so don't assume these figures are still current without
 checking before citing them again.
+
+**Ordering, 2026-07-31**: both this Financing grid and the Rate News
+per-state tiles are alphabetical by state name (Bill's explicit call,
+"Connecticut down"), not chronological or by when a state was added. New
+state tiles should be inserted in alphabetical position, not appended.
 
 - **Massachusetts** (solar/battery/tax-credit content): sourced from a
   Massachusetts-specific Ohm Analytics policy digest Bill provided, each
