@@ -331,6 +331,18 @@ periodically and always anchor to a linked, named source.
   tile to a plain paragraph after the new tiles grid, so it still reads as
   the section's closing beat rather than getting buried inside one state's
   expandable content.
+- **Header renamed "state by state" → "region by region", 2026-07-31**:
+  Bill caught the inconsistency himself — the Rate News h3 said "The
+  evidence, state by state" while one of its five tiles is titled "Long
+  Island (East End)," not a state. Two ways to fix it: rename the tile to
+  a state name (`New York (East End of Long Island)`, matching the
+  Financing tile) or rename the header. Bill chose to keep the tile as
+  `Long Island (East End)` — shorter, and matches how the rest of the
+  site's copy already refers to the region — so the header changed to
+  "The evidence, region by region" instead. The Financing section's
+  "State-by-state incentives" heading was deliberately left alone: its
+  New York tile is named after the state (`New York (East End of Long
+  Island)`), so "state by state" stays accurate there.
 
 ## State incentive tile sourcing
 
