@@ -302,6 +302,24 @@ a static site with no backend, and content meant to create urgency needs a
 human judgment call on source authority each time it's refreshed. Update
 periodically and always anchor to a linked, named source.
 
+- **Long Island (added 2026-07-31)**, once Long Island became part of the
+  stated service area (see "Networking landing page, vCard & ref code
+  tracking" below): a Long Island entry was requested specifically for
+  Rate News, not just the Financing tile. Two facts, both dated and
+  sourced, not third-party aggregator claims: LIPA's board-approved 3.9%
+  base rate increase for 2025 (~$7/month average household), sourced from
+  a dated FOX 5 NY news article (avoided several stale 2014/2015/2016
+  CBS/ABC7 "PSEG rate hike" articles that resurface in search results for
+  generic queries, none of which were current); and PSEG Long Island's own
+  published monthly Power Supply Charge history, which shows +13.23% in
+  February 2026 and another +12.7% in March 2026, pulled directly from
+  psegliny.com's own rate information page rather than a solar-installer
+  blog restating the same numbers. Framed as "no control over it"
+  volatility (matching the section's existing framing) rather than a
+  single steady rate-case increase, since PSC is a monthly pass-through
+  that swings both directions (it dropped again by August), unlike the
+  fixed-in-place rate cases cited for the New England states.
+
 ## State incentive tile sourcing
 
 All state incentive card content should be treated as a snapshot, not
