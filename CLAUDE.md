@@ -241,10 +241,18 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
    phone-based networking QR destination. Ref code naming convention
    (`soi-[name]`, `dh-[town]`, `flyer-[event]-[yr]`, `biz-[name]`,
    `tp-[name]`, `camp-[channel]-[month-yr]`) is documented in
-   `docs/decisions.md`. **Still backlog**: Bill hasn't generated/printed
-   any actual QR codes yet, and the cPanel `/hello` clean-URL question
-   (see `hello.html` bullet above) is unresolved. Coordinate referral-code
-   conventions with the separate Zoho CRM referral-commissions object
+   `docs/decisions.md`. **QR code generation: use QR Code Monkey (or
+   similar), not Claude Code** — decided 2026-07-31. A QR code just
+   encodes a URL, there's no session history that makes generating the
+   image itself better done here; QR Code Monkey gets Bill logo
+   embedding, brand colors, and fast self-serve generation for new ref
+   codes without waiting on a Claude Code session. Claude Code stays
+   useful for deciding the URL/ref-code itself and keeping the convention
+   documented, not for producing the QR image. **Still backlog**: Bill
+   hasn't generated/printed any actual QR codes yet, and the cPanel
+   `/hello` clean-URL question (see `hello.html` bullet above) is
+   unresolved. Coordinate referral-code conventions with the separate
+   Zoho CRM referral-commissions object
    design (see "Other context" below) before rolling this out to any
    partner.
 
