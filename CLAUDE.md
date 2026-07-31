@@ -31,16 +31,18 @@ anything committed after this point before trusting the section-by-section
 descriptions below at face value — they were accurate as of this tie-off,
 not guaranteed to stay that way.
 
-**2026-07-31 update, not yet deployed**: added the New York (East End of
-Long Island) incentive tile to `index.html`'s Financing section, updated
-service-area copy site-wide, built `hello.html` + `bill-geyer.vcf` for
-phone-based networking QR handoffs, added a Long Island entry to Rate News,
-alphabetized both the Financing and Rate News state tiles (CT/ME/MA/NH/NY
-order), and converted Rate News's "evidence" list from one long bulleted
-blob inside a single tile into individual per-state tiles matching the
-Financing section's pattern, for easier one-off updates. These commits
-exist in the repo but have **not** been uploaded to cPanel yet as of this
-note — don't assume gk1.energy reflects them without checking with Bill.
+**2026-07-31 update, deployed and tested**: added the New York (East End
+of Long Island) incentive tile to `index.html`'s Financing section,
+updated service-area copy site-wide, built `hello.html` + `bill-geyer.vcf`
+for phone-based networking QR handoffs, added a Long Island entry to Rate
+News, alphabetized both the Financing and Rate News state tiles
+(CT/ME/MA/NH/NY order), converted Rate News's "evidence" list from one
+long bulleted blob into individual per-state tiles, renamed that
+section's header to "region by region" (its Long Island tile isn't a
+state), and clarified the Discovery step defaults to in-person. Bill
+uploaded `index.html`, `business-solar.html`, `hello.html`, and
+`bill-geyer.vcf` via cPanel File Manager and confirmed everything works
+live as of this note.
 
 ## Pages
 
@@ -166,15 +168,18 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
   to GitHub does **not** touch the live site.
 - **Commit and push after essentially every change** — Bill's only copy of
   this work lives on one laptop, git push is the off-machine backup.
-- **Live site is current as of 2026-07-29, ~10:00 AM ET.** gk1.energy and
-  business-solar.html were fully uploaded (all 7 files: 3 pages + 4
-  images) and match this repo's `main` branch as of the commits below.
-  Bill confirmed both pages render correctly live and the mobile nav fix
-  works. **This will go stale again the moment new changes are committed
-  without a corresponding upload** — deploys are still manual, git push
-  alone does not touch the live site. Don't assume gk1.energy reflects
-  the current repo state in a future session without checking; ask Bill
-  whether the latest changes have actually been uploaded yet.
+- **Live site is current as of 2026-07-31.** `index.html`,
+  `business-solar.html`, `hello.html`, and `bill-geyer.vcf` were uploaded
+  via cPanel File Manager and Bill confirmed everything works live,
+  covering the NY incentive tile, service-area copy, the new networking
+  page/vCard, the Rate News restructure, and the Discovery copy change.
+  `privacy-policy.html` and `images/` haven't changed since the
+  2026-07-29 upload and are still current. **This will go stale again the
+  moment new changes are committed without a corresponding upload** —
+  deploys are still manual, git push alone does not touch the live site.
+  Don't assume gk1.energy reflects the current repo state in a future
+  session without checking; ask Bill whether the latest changes have
+  actually been uploaded yet.
 
 ## Contact info
 
