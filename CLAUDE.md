@@ -110,9 +110,12 @@ gk1.energy reflects them without checking with Bill.
     the `.html` URL unless/until that's verified.
 - `bill-geyer.vcf` (added 2026-07-31) — vCard 3.0, downloads from
   `hello.html`. Real phone/email (already public in the site footer), plus
-  `URL:https://gk1.energy` so the site is one tap away from a saved
-  contact. No EV charging mention (dropped as an offering, same as
-  generators — see conventions above).
+  `URL:https://gk1.energy/index.html#contact` so a tap on the saved
+  contact's website field drops them straight into the lead form, not just
+  the homepage (deliberate — this vCard is handed out after an in-person
+  conversation, so skipping to the form is the shorter path for someone
+  who's already decided to follow up). No EV charging mention (dropped as
+  an offering, same as generators — see conventions above).
 
 Naming convention: `index.html` stays at the root (deliberate, for
 SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
