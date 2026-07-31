@@ -333,6 +333,24 @@ checking before citing them again.
   researched via WebSearch and cross-checked against each state's own
   program page (energizect.com, nhsaves.com, efficiencymaine.com) rather
   than trusted from third-party HVAC contractor blogs alone.
+- **New York (added 2026-07-31)**, scoped specifically to PSEG Long
+  Island's territory, not New York State generally, since NY-Sun and Clean
+  Heat rebate structure differ sharply by utility (ConEd/National Grid
+  territories run different numbers entirely). Solar: the standard NY-Sun
+  Megawatt Block rebate has been fully allocated on Long Island since
+  2016, so the incentive story here leans on the 25% NY state tax credit
+  (up to $5,000, sourced from the Department of Taxation and Finance's
+  IT-255i instructions at `tax.ny.gov`, not a third-party aggregator),
+  sales/property tax exemptions, and full retail-rate net metering, which
+  matters more here than in the New England tiles given PSEG LI's
+  above-average residential rates. The income-eligible $0.40/watt
+  Affordable Solar adder (≤80% AMI) was verified against NYSERDA's own
+  Long Island Dashboard page, not a solar-installer blog. Heat pump
+  figures ($4,000 market rate / $5,000 disadvantaged-community or
+  moderate-income / $7,500 low-income) came directly from PSEG Long
+  Island's own Home Comfort heat pump rebate page, which administers NYS
+  Clean Heat for the LI territory directly rather than routing through a
+  separate NYSERDA portal like most upstate utilities do.
 
 ## Favicon / OG image implementation
 
@@ -462,6 +480,80 @@ three places on both pages:
   may need a specific `name`/`value` convention once the Web-to-Lead form
   is generated — check what Zoho outputs for a multi-select picklist
   field before assuming `techInterest` as-is works.
+
+## Networking landing page, vCard & ref code tracking (2026-07-31)
+
+Originated from a hand-off doc (`GK1-ClaudeCode-Handoff_NetworkingPage-vCard-RefCodes.md`)
+prepared in a separate planning chat. Several details in that doc were
+stale against the live repo and had to be reconciled before building
+anything — repo state won in every case, per Bill's explicit instruction:
+
+- Doc assumed file names `bill-geyer-solar-energy.html` (now `index.html`)
+  and `bill-geyer-business-solar.html` (actually `business-solar.html`,
+  no `bill-geyer-` prefix per this repo's naming convention) and referenced
+  a `bill-geyer-trade-partners.html` page that doesn't exist anywhere in
+  this repo. Ignored; not acted on.
+- Doc assumed an automated "GitHub Desktop → cPanel Git Version Control
+  pull" deploy pipeline. Actual deploy process is still fully manual
+  (cPanel File Manager upload, see Hosting section in `CLAUDE.md`) — built
+  the files for Bill to upload the normal way, no pipeline changes made.
+- Doc's vCard spec said "leave phone/email as placeholders" but then
+  hard-coded `bill@gk1.energy` as the placeholder value anyway, and both
+  the phone and email were already public in the site footer. Used the
+  real values directly (`(978) 358-1296`, `bill@gk1.energy`) rather than
+  writing bracketed placeholder text into a file Bill would have had to
+  hand-edit before it was usable.
+- Doc's vCard `NOTE` field mentioned EV charging, which isn't and has
+  never been an offering on this site (same category as the removed
+  Generators option, see "Terminology" and the standby-generator decision
+  elsewhere in this doc). Dropped from the note rather than reintroducing
+  scope the rest of the site doesn't support.
+
+**Geographic scope decision**: Bill has family (particularly in Southold)
+on the East End of Long Island and is a lawyer with a New York/Palm Beach
+client base, and wanted to extend GK1's stated service area to follow his
+actual sphere of influence rather than ruling family/network contacts out.
+Decision made to go with the fuller build-out (not just soft "relationships
+beyond the region" hedge language): added a real, sourced New York
+incentive tile (see "State incentive tile sourcing" above) and updated
+service-area copy site-wide (meta descriptions, hero eyebrow, footer, and
+the "outside that area" hedge line on both `index.html` and
+`business-solar.html`) to read "New England & the East End of Long
+Island." Deliberately scoped to "East End of Long Island," not "Long
+Island" broadly or "New York" — matches Bill's actual local knowledge and
+avoids implying coverage of Nassau/NYC-area territory with entirely
+different utilities and incentive programs. Palm Beach was explicitly left
+out — Bill spends winters there but isn't running GK1 activity there, so
+no copy or content changes were made for Florida.
+
+**`hello.html` / `bill-geyer.vcf` build**: styled by borrowing (not
+redefining) `index.html`'s existing CSS variables, font imports, and
+`.btn-primary`/`.btn-ghost` button classes — copied the literal values in
+since `hello.html` is a single small file with no shared stylesheet to
+import from. Deliberately excluded from both pages' nav — it's a
+QR-code-only destination, not part of normal site browsing. Ref passthrough
+uses plain `URLSearchParams` against `window.location.search`, same
+approach already used on `index.html`, unaffected by the `#contact` hash
+fragment.
+
+**Ref code naming convention** (from the hand-off doc, adopted as-is,
+no repo enforcement mechanism, just a documented human convention):
+`[source]-[who/where]`, all lowercase, hyphens only —
+`soi-[firstname-lastinitial]` for sphere-of-influence/personal contacts,
+`dh-[town]` for door hangers, `flyer-[event]-[yr]`, `biz-[businessname]`
+for stacks left at a business, `tp-[firstname-lastinitial]` for trade
+partner referrals, `camp-[channel]-[month-yr]` for paid/campaign, append
+`-2`/`-3` for repeat batches from the same source. These populate the
+hidden `refCode`/`LEADCF3` field already wired into `#leadForm`; the Zoho
+Referral object where fee structure and terms actually get logged is part
+of the separate CRM build-out (see "Other context" in `CLAUDE.md`), not
+this repo.
+
+**Known open item**: `gk1.energy/hello` (no `.html`) won't resolve — this
+repo has no `.htaccess`/rewrite config, and none was found during this
+session. QR codes should target `gk1.energy/hello.html` explicitly unless
+Bill confirms cPanel-side URL rewriting is configured, in which case this
+note should be corrected.
 
 ## Do not use: Helio Solar internal finance training PDF
 

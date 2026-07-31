@@ -1,11 +1,19 @@
 # GK1 Energy Site
 
 Static marketing site for Bill Geyer / GK1 Energy — an independent energy advisor
-(solar, battery storage, heat pumps). Three hand-coded HTML pages
-(`index.html`, `business-solar.html`, `privacy-policy.html`), no build step,
-no framework. Generators were deliberately dropped as a residential
-offering — see `docs/decisions.md`; don't reintroduce the term without a
-deliberate positioning decision.
+(solar, battery storage, heat pumps). Four hand-coded HTML pages
+(`index.html`, `business-solar.html`, `privacy-policy.html`, `hello.html`),
+plus a static vCard (`bill-geyer.vcf`), no build step, no framework.
+Generators were deliberately dropped as a residential offering — see
+`docs/decisions.md`; don't reintroduce the term without a deliberate
+positioning decision.
+
+Primary service area is **New England & the East End of Long Island**
+(added 2026-07-31 — Bill has family/sphere-of-influence ties around
+Southold; scope covers PSEG Long Island's territory specifically, not New
+York State generally). Site-wide "service area" copy (meta descriptions,
+hero eyebrow, footer) reflects this on both `index.html` and
+`business-solar.html`.
 
 Mental model: the site is designed as an extension of Bill's business card —
 most visitors will already know who he is before they land here. It's not
@@ -23,6 +31,13 @@ anything committed after this point before trusting the section-by-section
 descriptions below at face value — they were accurate as of this tie-off,
 not guaranteed to stay that way.
 
+**2026-07-31 update, not yet deployed**: added the New York (East End of
+Long Island) incentive tile to `index.html`'s Financing section, updated
+service-area copy site-wide, and built `hello.html` + `bill-geyer.vcf` for
+phone-based networking QR handoffs. These commits exist in the repo but
+have **not** been uploaded to cPanel yet as of this note — don't assume
+gk1.energy reflects them without checking with Bill.
+
 ## Pages
 
 - `index.html` — residential site, root (`gk1.energy/`). Sections top to
@@ -32,8 +47,11 @@ not guaranteed to stay that way.
   the rest of the site 2026-07-28, was a static 4-column grid before) →
   Background & Credentials (3 tiles: Inverter & Battery Manufacturer Rep,
   Utility-Scale & Community Solar, Recheck verification) → Financing
-  (4 methods + state-by-state incentives, CT/MA/NH/ME) → Get in touch
-  (`#leadForm`). 7 `<section>` blocks plus the hero header.
+  (4 methods + state-by-state incentives, CT/MA/ME/NH/NY — NY added
+  2026-07-31, scoped specifically to PSEG Long Island's territory, sourced
+  from tax.ny.gov, NYSERDA's Long Island dashboard, and PSEG LI's own
+  rebate/net-metering pages) → Get in touch (`#leadForm`). 7 `<section>`
+  blocks plus the hero header.
 - `business-solar.html` — Business Solar site for local business owners.
   Primarily owner-occupied buildings, but as of 2026-07-29 the "Who This Is
   For" copy also acknowledges landlords with commercial tenants as
@@ -74,6 +92,27 @@ not guaranteed to stay that way.
 - `privacy-policy.html` — linked from both footers. Matches actual current
   practice (Zoho CRM + Cal.com as the only data processors, no analytics/SMS
   automation claimed). **Keep accurate as practices change.**
+- `hello.html` (added 2026-07-31) — minimal networking landing page, the
+  destination for a QR code Bill shows from his phone in person. Two
+  buttons only: download `bill-geyer.vcf`, or go to `index.html#contact`.
+  No nav, no footer, deliberately not part of the normal site navigation
+  and not linked from `index.html`/`business-solar.html` — reached only via
+  direct URL/QR code. Reads `?ref=` from its own URL and appends it to the
+  consultation link (`index.html?ref=...#contact`) so referral tracking
+  survives the hop; falls back to no param if absent. Physical print
+  materials (business cards, door hangers, flyers) use a **separate** QR
+  code pointing directly at `gk1.energy`, not `/hello.html` — `hello.html`
+  is the phone-based networking tool only.
+  - **Not resolvable at a clean `/hello` path** — this is a static site with
+    no `.htaccess`/rewrite rules in the repo, so it's only reachable at
+    `gk1.energy/hello.html` unless Bill has configured URL rewriting on the
+    cPanel side (unconfirmed as of 2026-07-31). Generate QR codes against
+    the `.html` URL unless/until that's verified.
+- `bill-geyer.vcf` (added 2026-07-31) — vCard 3.0, downloads from
+  `hello.html`. Real phone/email (already public in the site footer), plus
+  `URL:https://gk1.energy` so the site is one tap away from a saved
+  contact. No EV charging mention (dropped as an offering, same as
+  generators — see conventions above).
 
 Naming convention: `index.html` stays at the root (deliberate, for
 SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
@@ -129,6 +168,7 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
 
 - Footer phone: `(978) 358-1296` (Google Voice), `tel:+19783581296`.
 - Email: `bill@gk1.energy`.
+- Same phone/email are in `bill-geyer.vcf` — keep in sync if either changes.
 
 ## Lead capture & scheduling architecture
 
@@ -170,13 +210,18 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
    explicitly ruled out — Bill wants GK1 kept low-profile relative to his
    W-2 employer, Ampt.
 5. Cal.com→Zoho Lead sync (see above).
-6. Backlog, flagged for later, no urgency: referral-partner tracking via
-   `?ref=` links / QR codes into the existing hidden `LEADCF3` field —
-   mechanism already works (see `docs/decisions.md` "Lead form history"),
-   just nothing generating or distributing referral links yet. Coordinate
-   referral-code conventions with the separate Zoho CRM referral-
-   commissions object design (see "Other context" below) before rolling
-   this out to any partner.
+6. Referral-partner tracking infrastructure — **built 2026-07-31**:
+   `?ref=` passthrough (`hello.html` → `index.html` → hidden `LEADCF3`
+   field) works end-to-end, plus `hello.html`/`bill-geyer.vcf` as the
+   phone-based networking QR destination. Ref code naming convention
+   (`soi-[name]`, `dh-[town]`, `flyer-[event]-[yr]`, `biz-[name]`,
+   `tp-[name]`, `camp-[channel]-[month-yr]`) is documented in
+   `docs/decisions.md`. **Still backlog**: Bill hasn't generated/printed
+   any actual QR codes yet, and the cPanel `/hello` clean-URL question
+   (see `hello.html` bullet above) is unresolved. Coordinate referral-code
+   conventions with the separate Zoho CRM referral-commissions object
+   design (see "Other context" below) before rolling this out to any
+   partner.
 
 **Zoho Web-to-Lead is done** (see above) — no longer an open item.
 
