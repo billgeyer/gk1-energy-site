@@ -687,3 +687,17 @@ regenerated Zoho form, and Bill submitted a real test lead that landed
 successfully. `CLAUDE.md` carries the same tie-off marker. A future
 session picking this up should check `git log` for anything past this
 point before assuming either doc is still current.
+
+## Phone number changed to iPlum, 2026-07-31
+
+Bill switched the business line from a Google Voice number
+(`(978) 358-1296`) to iPlum (`(781) 414-5551`). Updated in all 7 live-copy
+locations across 5 files: `index.html` footer, `business-solar.html`
+footer, `privacy-policy.html` (two inline "contact me" mentions plus its
+own footer), `hello.html`'s contact card, and `bill-geyer.vcf`'s `TEL`
+field. Same display/href format kept throughout: `(XXX) XXX-XXXX` for
+visible text, `tel:+1XXXXXXXXXX` for the link. `CLAUDE.md`'s Contact info
+section updated to match and to note the carrier change. The `(978)
+358-1296` mention earlier in this file (in the vCard placeholder-value
+history note) was deliberately left as-is, it's describing what the
+number was at the time of that past decision, not a live value.

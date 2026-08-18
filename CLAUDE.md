@@ -191,7 +191,8 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
 
 ## Contact info
 
-- Footer phone: `(978) 358-1296` (Google Voice), `tel:+19783581296`.
+- Footer phone: `(781) 414-5551` (iPlum, changed 2026-07-31, was a Google
+  Voice number before), `tel:+17814145551`.
 - Email: `bill@gk1.energy`.
 - Same phone/email are in `bill-geyer.vcf` — keep in sync if either changes.
 
