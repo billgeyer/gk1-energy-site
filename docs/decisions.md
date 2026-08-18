@@ -701,3 +701,50 @@ section updated to match and to note the carrier change. The `(978)
 358-1296` mention earlier in this file (in the vCard placeholder-value
 history note) was deliberately left as-is, it's describing what the
 number was at the time of that past decision, not a live value.
+
+## "Independent Energy Advisor" trimmed to just "Energy Advisor" everywhere except the hero lede, 2026-07-31
+
+Bill's call: "Independent Energy Advisor" only needed to appear once, in
+the hero section's opening paragraph on both `index.html` and
+`business-solar.html` (`"I'm Bill Geyer, an independent Energy Advisor..."`).
+Every other repetition of the title read as over-explaining the same
+point, so "Independent" was dropped from: the hero photo caption and its
+alt text (both pages), the `og:description`/`twitter:description` meta
+tags (both pages), `hello.html`'s contact-card role line, and
+`bill-geyer.vcf`'s `TITLE` and `NOTE` fields. This **reverses** the hero
+photo caption fix made earlier the same day (see "Turn hello.html contact
+card into a mini business card" commit), which added "Independent" to the
+captions for consistency with the rest of the site — that fix wasn't
+wrong given the goal at the time (match everywhere), but the goal itself
+changed today to "say it once, imply it everywhere else."
+
+Left untouched, deliberately: the "Independent, and deliberate about who
+I work with" (`index.html`) and "Independent, and not tied to one
+installer" (`business-solar.html`) section headings — these use
+"independent" as a standalone positioning statement about how Bill works,
+not as part of the "Energy Advisor" title, so they're a different case
+from what Bill was asking to trim. Also left alone: business-solar.html's
+unrelated "independent of your total energy use" (means "regardless of,"
+nothing to do with positioning).
+
+`CLAUDE.md`'s "Active conventions" section got a new bullet clarifying
+this nuance — the *positioning* is still independent-advisor,
+not-installer, that hasn't changed; only the *repetition* of the literal
+title phrase "Independent Energy Advisor" across every mention of his job
+title has been trimmed to a single hero-section mention.
+
+## Service-area phrasing changed to "Long Island's East End", 2026-07-31
+
+Bill's call: "the East End of Long Island" → "Long Island's East End"
+everywhere the phrase appears as part of the site's service-area
+declaration (hero eyebrow and footer on both pages, `hello.html`'s
+footnote, `bill-geyer.vcf`'s `NOTE` field, `CLAUDE.md`'s scope
+description). The `og:description`/`twitter:description` meta tags on
+`index.html`, which use the fuller prose phrase "New England and the East
+End of Long Island," were deliberately left as-is — Bill's request was
+specifically about "the top" (the eyebrow line), and meta-description
+prose has already read slightly differently from the on-page eyebrow/
+footer copy elsewhere on the site (different sentence construction for a
+search-result snippet vs. a short label), so this isn't a new
+inconsistency. Worth aligning those too if Bill wants full-site wording
+uniformity, but not done unprompted.

@@ -8,7 +8,7 @@ Generators were deliberately dropped as a residential offering — see
 `docs/decisions.md`; don't reintroduce the term without a deliberate
 positioning decision.
 
-Primary service area is **New England & the East End of Long Island**
+Primary service area is **New England & Long Island's East End**
 (added 2026-07-31 — Bill has family/sphere-of-influence ties around
 Southold; scope covers PSEG Long Island's territory specifically, not New
 York State generally). Site-wide "service area" copy (meta descriptions,
@@ -144,6 +144,14 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
 
 - Positioning: independent advisor, not installer — "my installation
   partner handles..." not "I handle...". Never imply Bill designs/installs.
+- **"Independent Energy Advisor" as a literal title phrase appears once**:
+  the hero lede on both `index.html` and `business-solar.html` ("I'm Bill
+  Geyer, an independent Energy Advisor..."). Every other mention of his
+  title — hero photo caption/alt text, meta descriptions, `hello.html`'s
+  contact card, `bill-geyer.vcf` — just says "Energy Advisor" (trimmed
+  2026-07-31, see `docs/decisions.md`). This doesn't change the
+  independent-advisor positioning above, just how often the literal
+  phrase repeats.
 - Financing copy stays general/educational — never cite a specific lender's
   rates/FICO minimums as Bill's own offer.
 - Battery framing intentionally differs between pages (residential =
