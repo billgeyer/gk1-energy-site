@@ -748,3 +748,36 @@ footer copy elsewhere on the site (different sentence construction for a
 search-result snippet vs. a short label), so this isn't a new
 inconsistency. Worth aligning those too if Bill wants full-site wording
 uniformity, but not done unprompted.
+
+## Lead form success state: hide form, show confirmation panel + Cal.com escape hatch, 2026-08-22
+
+**Problem Bill found**: after submitting `#leadForm`, Zoho POSTs the form
+and redirects the browser to `returnURL` (`https://gk1.energy/?submitted=true#contact`).
+That `#contact` hash makes the browser jump to the *top* of the "Get in
+touch" section, but the old confirmation (`#formMsg`, `display:none` by
+default, toggled visible by a `?submitted=true` check) sat in the DOM
+*after the submit button*, at the bottom of a long form. A visitor landed
+at the section heading and had to scroll past a full page of now-blank
+form fields to find out their submission actually went through, a real
+risk of it reading as "did this not work?" and prompting a re-submit.
+
+**Fix**: added a sibling `#formSuccess` panel (same `.contact-panel`
+styling as the form) inside the `#contact` section, hidden by default.
+When `?submitted=true` is present, JS now hides the form's `.contact-panel`
+wrapper entirely, shows `#formSuccess`, and calls `.scrollIntoView()` on
+it, so the visitor's eye lands directly on the confirmation regardless of
+where in the section the hash jump landed. The old `#formMsg` div and its
+CSS rule were removed outright rather than left dead in the DOM.
+
+**Cal.com link added to the confirmation, deliberately framed as
+optional, not a nudge**: "If you'd rather not wait, grab a 15-minute slot
+yourself →", reusing the exact same `https://cal.com/bill-geyer-ragr8q/15min`
+link already offered above the form. Considered and rejected: language
+implying the visitor should also book a call (e.g. "next, book a time"),
+since that would read as "the form submission alone wasn't enough,"
+cutting against the site's no-pressure positioning (see "Site strategy"
+above). The chosen framing mirrors the existing pre-form Cal.com offer
+("Already know you want to talk? Book a 15-minute call directly →"), so a
+visitor sees the same self-serve escape hatch both before and after
+choosing the slower "wait for Bill to reach out" path, consistent rather
+than a new ask.

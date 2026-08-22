@@ -223,6 +223,15 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
   for the diff details). Bill submitted a real test lead through the live
   form on 2026-07-29 and confirmed it worked end-to-end. Fully closed out,
   not a backlog item anymore.
+- **Post-submit success state — added 2026-08-22.** On `?submitted=true`
+  (Zoho's redirect after a successful POST), the form's `.contact-panel`
+  is hidden and replaced with `#formSuccess`, a confirmation panel that's
+  `.scrollIntoView()`'d so it's immediately visible regardless of where
+  the `#contact` hash landed. Includes a low-key Cal.com link ("If you'd
+  rather not wait, grab a 15-minute slot yourself") mirroring the same
+  offer shown above the form. Replaces the old `#formMsg` approach, which
+  sat below the fold at the bottom of the form and was easy to miss. See
+  `docs/decisions.md` for the full before/after.
 - **Backlog: Cal.com bookings aren't captured as Zoho Leads** — no native
   connector yet. Options to check in order: Zoho Flow, Zapier/Make,
   Cal.com webhooks. Not yet researched.

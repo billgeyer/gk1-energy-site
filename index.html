@@ -183,8 +183,6 @@
     border-radius:999px; font-size:0.95rem; cursor:pointer; font-family:'Inter',sans-serif;
   }
   .submit-btn:hover{ background:#ffb54e; }
-  #formMsg{ margin-top:16px; font-size:0.9rem; color:var(--sky); display:none; }
-
   footer{ border-top:1px solid var(--line); padding:36px 0 48px; }
   .footer-inner{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; font-size:0.82rem; color:var(--text-low); }
 </style>
@@ -639,8 +637,12 @@
           <label for="smsConsent">I agree to receive calls and texts from GK1 Energy regarding my inquiry. Msg &amp; data rates may apply. Reply STOP to opt out. <a href="./privacy-policy.html" style="color:var(--sky);">View our Privacy Policy</a>.</label>
         </div>
         <button type="submit" id="formsubmit" class="submit-btn formsubmit">Request a consultation</button>
-        <div id="formMsg">Thanks, that came through. I'll be in touch shortly.</div>
       </form>
+    </div>
+    <div class="contact-panel" id="formSuccess" style="display:none; text-align:center;">
+      <h3 style="font-family:'Fraunces',serif; font-weight:600; font-size:1.3rem; margin:0;">Thanks, that came through.</h3>
+      <p style="color:var(--text-mid); margin-top:10px;">I'll be in touch shortly, usually within a day.</p>
+      <p class="note-line" style="margin-top:16px; max-width:none;">If you'd rather not wait, <a href="https://cal.com/bill-geyer-ragr8q/15min" target="_blank" rel="noopener noreferrer" style="color:var(--sky);">grab a 15-minute slot yourself&nbsp;→</a></p>
     </div>
   </div>
 </section>
@@ -664,7 +666,10 @@
   }
 
   if (params.get('submitted') === 'true'){
-    document.getElementById('formMsg').style.display = 'block';
+    document.getElementById('leadForm').closest('.contact-panel').style.display = 'none';
+    const successPanel = document.getElementById('formSuccess');
+    successPanel.style.display = 'block';
+    successPanel.scrollIntoView({ block: 'start' });
     history.replaceState(null, '', window.location.pathname + window.location.hash);
   }
 </script>
