@@ -123,7 +123,8 @@ live as of this note.
   code pointing directly at `gk1.energy`, not `/hello.html` — `hello.html`
   is the phone-based networking tool only.
   - **Not resolvable at a clean `/hello` path** — this is a static site with
-    no `.htaccess`/rewrite rules in the repo, so it's only reachable at
+    no rewrite rules in the repo's `.htaccess` (see Hosting section — it
+    only sets cache headers, added 2026-08-22), so it's only reachable at
     `gk1.energy/hello.html` unless Bill has configured URL rewriting on the
     cPanel side (unconfirmed as of 2026-07-31). Generate QR codes against
     the `.html` URL unless/until that's verified.
@@ -175,7 +176,20 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
   (`/home/adomzbmfbe/gk1.energy/`), not `public_html` (unrelated/unused).
 - Sitejet Builder in cPanel is a dead end — not what serves the live domain.
 - LiteSpeed Cache (`lscache`) is active — a purge or short wait may be
-  needed after uploading before the live site reflects a change.
+  needed after uploading before the live site reflects a change. **This is
+  separate from browser caching** — see the `.htaccess` bullet below for a
+  case where LiteSpeed's own cache had nothing to purge but a visitor's
+  phone still served a stale page.
+- **`.htaccess` (added 2026-08-22)**: sets `Cache-Control: no-cache,
+  must-revalidate` on `.html`/`.vcf` files so browsers always check back
+  with the server instead of silently reusing an old cached copy after a
+  deploy — this is what fixed a real bug where Bill's own Android Chrome
+  kept showing the pre-update lead-form confirmation text on a page it had
+  visited before, even though the server had the new version and
+  LiteSpeed's cache manager showed nothing to purge. Images get a 30-day
+  cache since they change rarely. **`.htaccess` is a hidden file** — Bill
+  needs "Show Hidden Files" enabled in cPanel File Manager to see and
+  upload it; it won't show in a normal directory listing.
 - **Deploys are manual**: edit locally → commit → when Bill says a change
   is ready, upload the changed file(s) via cPanel File Manager into the
   `gk1.energy` folder. No CI/CD yet (deliberately deferred while Bill is

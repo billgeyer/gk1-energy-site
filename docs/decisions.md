@@ -781,3 +781,43 @@ above). The chosen framing mirrors the existing pre-form Cal.com offer
 visitor sees the same self-serve escape hatch both before and after
 choosing the slower "wait for Bill to reach out" path, consistent rather
 than a new ask.
+
+## Added `.htaccess` for cache headers, 2026-08-22
+
+**Bug report**: after the lead-form success-state deploy above, Bill
+tested on desktop and it worked. On his own Android phone (Chrome), the
+page kept showing the *old* pre-deploy confirmation text verbatim
+("Thanks, that came through. I'll be in touch shortly." as one sentence,
+the exact string that had just been deleted from the file). LiteSpeed's
+cache manager in cPanel showed nothing to purge, which initially looked
+like a contradiction, until we confirmed via an Incognito tab on the same
+phone: the new version loaded correctly there. That isolated it to plain
+browser-side HTTP caching, a layer LiteSpeed's own cache manager doesn't
+track or control, since it's governed by response headers the server
+sends on each request, not anything server-side that can be "purged."
+
+**Root cause**: this static site had no `.htaccess` and no explicit
+`Cache-Control` headers at all, so whatever Apache/LiteSpeed's default
+caching behavior is for static files was left to do whatever it wanted,
+and evidently that included letting Chrome on Android reuse a
+previously-fetched copy of the page without revalidating.
+
+**Fix**: added a repo-root `.htaccess` with `Header set Cache-Control
+"no-cache, must-revalidate"` on `.html`/`.vcf` files, and a 30-day cache
+on image files (which change rarely and weren't implicated in this bug).
+`no-cache` is a bit of a misnomer, per HTTP spec it means "cache this, but
+always ask the server before reusing it," not "never cache" — so this
+doesn't add real load, the server just answers with a cheap 304 when
+nothing changed, but a browser can never again silently serve stale HTML
+the way Bill's phone just did.
+
+**Deploy note**: `.htaccess` is a dotfile, invisible in a normal cPanel
+File Manager listing. Bill needs "Show Hidden Files" enabled in File
+Manager's settings to see and upload it — flagged explicitly since it's
+an easy file to silently skip during a routine multi-file upload.
+
+**Not addressed by this fix**: the still-open `/hello` clean-URL question
+(see `hello.html`'s bullet in `CLAUDE.md`) would need actual rewrite
+rules in this same `.htaccess`, not just cache headers. Deliberately kept
+out of this change to stay scoped to the caching bug that was actually
+reported; worth doing together if Bill ever tackles the clean-URL item.
