@@ -821,3 +821,16 @@ an easy file to silently skip during a routine multi-file upload.
 rules in this same `.htaccess`, not just cache headers. Deliberately kept
 out of this change to stay scoped to the caching bug that was actually
 reported; worth doing together if Bill ever tackles the clean-URL item.
+
+**Verified live, 2026-08-22.** After upload, `curl -I https://gk1.energy/index.html`
+confirmed `cache-control: no-cache, must-revalidate` was actually being
+sent. Bill re-tested on the same Android phone in a normal (non-Incognito)
+tab and it still showed the stale pre-deploy text, which looked like the
+fix hadn't worked, but this was expected: the header only governs copies
+cached *after* it went live, not a copy Chrome had already stored before
+the header existed. A one-time manual cache clear on the phone (Chrome →
+Settings → Privacy → Clear browsing data → "Cached images and files" only,
+"Last hour" range) flushed the stale entry, and the new confirmation panel
+plus Cal.com link then rendered correctly. No further manual clearing
+should be needed after future deploys, this was a one-time flush of a
+copy predating the fix, not a recurring step.

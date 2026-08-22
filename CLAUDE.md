@@ -198,18 +198,18 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
   to GitHub does **not** touch the live site.
 - **Commit and push after essentially every change** — Bill's only copy of
   this work lives on one laptop, git push is the off-machine backup.
-- **Live site is current as of 2026-07-31.** `index.html`,
-  `business-solar.html`, `hello.html`, and `bill-geyer.vcf` were uploaded
-  via cPanel File Manager and Bill confirmed everything works live,
-  covering the NY incentive tile, service-area copy, the new networking
-  page/vCard, the Rate News restructure, and the Discovery copy change.
-  `privacy-policy.html` and `images/` haven't changed since the
-  2026-07-29 upload and are still current. **This will go stale again the
-  moment new changes are committed without a corresponding upload** —
-  deploys are still manual, git push alone does not touch the live site.
-  Don't assume gk1.energy reflects the current repo state in a future
-  session without checking; ask Bill whether the latest changes have
-  actually been uploaded yet.
+- **Live site is current as of 2026-08-22.** All files through that date
+  (phone number change, "Independent Energy Advisor" trim, service-area
+  rewording, the business-solar space question, the lead-form success
+  panel, and `.htaccess`) were uploaded via cPanel File Manager and
+  confirmed working live, including a real Android-phone caching issue
+  that came up after the success-panel deploy and was traced and fixed
+  (see `docs/decisions.md`, ".htaccess" section, for the full story).
+  **This will go stale again the moment new changes are committed without
+  a corresponding upload** — deploys are still manual, git push alone
+  does not touch the live site. Don't assume gk1.energy reflects the
+  current repo state in a future session without checking; ask Bill
+  whether the latest changes have actually been uploaded yet.
 
 ## Contact info
 
@@ -237,15 +237,19 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
   for the diff details). Bill submitted a real test lead through the live
   form on 2026-07-29 and confirmed it worked end-to-end. Fully closed out,
   not a backlog item anymore.
-- **Post-submit success state — added 2026-08-22.** On `?submitted=true`
-  (Zoho's redirect after a successful POST), the form's `.contact-panel`
-  is hidden and replaced with `#formSuccess`, a confirmation panel that's
-  `.scrollIntoView()`'d so it's immediately visible regardless of where
-  the `#contact` hash landed. Includes a low-key Cal.com link ("If you'd
-  rather not wait, grab a 15-minute slot yourself") mirroring the same
-  offer shown above the form. Replaces the old `#formMsg` approach, which
-  sat below the fold at the bottom of the form and was easy to miss. See
-  `docs/decisions.md` for the full before/after.
+- **Post-submit success state — added and verified live 2026-08-22.** On
+  `?submitted=true` (Zoho's redirect after a successful POST), the form's
+  `.contact-panel` is hidden and replaced with `#formSuccess`, a
+  confirmation panel that's `.scrollIntoView()`'d so it's immediately
+  visible regardless of where the `#contact` hash landed. Includes a
+  low-key Cal.com link ("If you'd rather not wait, grab a 15-minute slot
+  yourself") mirroring the same offer shown above the form. Replaces the
+  old `#formMsg` approach, which sat below the fold at the bottom of the
+  form and was easy to miss. Shipped alongside a repo-root `.htaccess`
+  (see Hosting section) after Bill's Android phone initially kept showing
+  the old confirmation text due to browser-side caching predating that
+  file; a one-time cache clear on his phone confirmed the fix works.
+  Fully closed out. See `docs/decisions.md` for the full story.
 - **Backlog: Cal.com bookings aren't captured as Zoho Leads** — no native
   connector yet. Options to check in order: Zoho Flow, Zapier/Make,
   Cal.com webhooks. Not yet researched.
