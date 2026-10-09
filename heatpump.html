@@ -130,6 +130,12 @@
   @media (max-width:600px){ .contact-panel{ padding:24px; } }
   .sources{ margin:0; padding-left:1.1em; color:var(--text-mid); font-size:0.92rem; display:flex; flex-direction:column; gap:8px; }
   .sources a{ color:var(--sky); word-break:break-word; }
+  .price-strip{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--bg-panel); padding:16px 0; }
+  .price-strip .wrap{ display:flex; gap:12px 24px; align-items:baseline; flex-wrap:wrap; }
+  .price-strip .price-main{ font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem; color:var(--text-hi); }
+  .price-strip .price-main .num{ color:var(--sun); }
+  .price-strip .price-src{ font-size:0.82rem; color:var(--text-low); }
+  .price-strip .price-src a{ color:var(--text-mid); }
   footer{ border-top:1px solid var(--line); padding:36px 0 48px; }
   .footer-inner{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; font-size:0.82rem; color:var(--text-low); }
 </style>
@@ -164,6 +170,15 @@
     </div>
   </div>
 </header>
+
+<!-- Live heating oil price. Hidden until fresh data (14 days or newer) loads from the database; no static fallback on purpose,
+     because a stale number is worse than none. Updated weekly by scripts/fetch_oil_price.py in the heat-pump-direct-mail project. -->
+<aside class="price-strip" id="oilStrip" hidden aria-label="Current heating oil price">
+  <div class="wrap">
+    <div class="price-main">Heating oil in Massachusetts averaged <span class="num" id="oilNow"></span> a gallon as of <span id="oilDate"></span>. A year ago it was <span id="oilPrev"></span>.</div>
+    <div class="price-src">Source: <a id="oilSrc" href="https://www.eia.gov/" target="_blank" rel="noopener noreferrer">U.S. Energy Information Administration</a></div>
+  </div>
+</aside>
 
 <section class="section" id="checkup">
   <div class="wrap">
@@ -368,6 +383,32 @@
     for (var i = 0; i < links.length; i++){
       links[i].href = './index.html?ref=' + encodeURIComponent(ref) + '#contact';
     }
+  })();
+
+  // Live heating oil price (public read of one row; see supabase/migrations/..._public_oil_signal_read.sql)
+  (function(){
+    var URL = 'https://qdzkibxlfgvkzpxbhusk.supabase.co/rest/v1/market_signals'
+      + '?signal_key=eq.ma_heating_oil_residential&order=as_of.desc&limit=1&select=as_of,value,prior_year_value,source,source_url';
+    var KEY = 'sb_publishable_LowX6gX23fIKWuNUjGpsjw_8QTkFEfB';   // publishable key: safe to ship, read-only on this one row
+    var MAX_AGE_DAYS = 14;
+    var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    function money(n){ return '$' + Number(n).toFixed(2); }
+    fetch(URL, { headers: { apikey: KEY, Accept: 'application/json' } })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(rows){
+        var row = rows && rows[0];
+        if (!row || row.value == null || row.prior_year_value == null || !row.as_of) return;
+        var p = row.as_of.split('-');
+        var asOf = Date.UTC(+p[0], +p[1] - 1, +p[2]);
+        var ageDays = (Date.now() - asOf) / 86400000;
+        if (!(ageDays >= -1 && ageDays <= MAX_AGE_DAYS)) return;      // stale or nonsense: stay hidden
+        document.getElementById('oilNow').textContent = money(row.value);
+        document.getElementById('oilPrev').textContent = money(row.prior_year_value);
+        document.getElementById('oilDate').textContent = MONTHS[+p[1] - 1] + ' ' + (+p[2]) + ', ' + p[0];
+        if (row.source_url && /^https:\/\/www\.eia\.gov\//.test(row.source_url)) document.getElementById('oilSrc').href = row.source_url;
+        document.getElementById('oilStrip').hidden = false;
+      })
+      .catch(function(){ /* leave hidden */ });
   })();
 </script>
 </body>
