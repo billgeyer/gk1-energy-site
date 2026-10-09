@@ -834,3 +834,31 @@ Settings → Privacy → Clear browsing data → "Cached images and files" only,
 plus Cal.com link then rendered correctly. No further manual clearing
 should be needed after future deploys, this was a one-time flush of a
 copy predating the fix, not a recurring step.
+
+## Lead form spam guard, 2026-10-09
+
+Bots started submitting `#leadForm` in late September 2026 (13 junk leads
+in about two weeks, each firing a Zoho new-lead email). Fingerprint from the
+Zoho export: Referral Code (hidden `LEADCF3`) = `zzz`, so the bot fills even
+hidden fields; message body is a link (telegra.ph, `.buzz`, `nip.io`);
+first name = last name = Referred By; phone is 11 digits starting with 8;
+throwaway email domains.
+
+**What was added to `index.html`** (client-side only): an off-screen
+honeypot text input `gk1_hp` (fakes the success panel if filled), a
+under-3-seconds-since-load block, a link/spam-TLD block on First Name, Last
+Name, Referred By and the message box, and a 10-digit US phone check. It is
+a capture-phase `submit` listener in its own `<script>` (after the
+`?submitted=true` handler), deliberately separate from Zoho's generated
+block so regenerating the Zoho form doesn't wipe it. It must run before
+Zoho's inline `onsubmit`, which disables the submit button. After a Zoho
+regeneration, re-add the honeypot `<div>` inside the form.
+
+**Limits**: bots that POST straight to `crm.zoho.com/crm/WebToLeadForm`
+bypass all of this. Server-side enforcement belongs in Zoho (not done yet,
+Bill's side): a Leads validation rule (Referral Code = `zzz` or Description
+contains `http`, rejected entries land in Leads Approval > Invalid), the
+web form's allowed-domain setting, and reCAPTCHA v2 (paid editions). Also
+gate the planned acknowledgement-email workflow on the same criteria so it
+never emails bot-supplied addresses. Turnstile + proxy (n8n/Worker) was
+considered and skipped as overkill at this volume.

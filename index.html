@@ -494,8 +494,8 @@
       <details class="tile">
         <summary><span class="tile-title">New Hampshire</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
-          <p>New Hampshire's Residential Renewable Electrical Generation Rebate Program offers up to $0.20 per watt (capped at $1,000 or 30% of system cost) for qualifying solar installations, and state law mandates net metering for excess generation. For heat pumps, NHSaves offers $250 per ton (up to $1,250) for switching off oil, gas, or propane, or up to $1,250 per ton (up to $6,250) if you're replacing electric resistance heat.</p>
-          <p>Source: <a href="https://www.energy.nh.gov/renewable-energy/renewable-energy-rebates/residential-renewable-electrical-generation-rebate" target="_blank" rel="noopener noreferrer" style="color:var(--sky);">NH solar rebate</a> · <a href="https://nhsaves.com/residential/electric-heating-cooling-equipment/" target="_blank" rel="noopener noreferrer" style="color:var(--sky);">NHSaves heat pumps</a></p>
+          <p>New Hampshire's state solar rebate program was repealed in 2024 and is no longer available. State law still mandates net metering for excess solar generation, credited at roughly 85% of the retail rate and locked in through 2041. For heat pumps, NHSaves offers $250 per ton (up to $1,250) for switching off oil, gas, or propane, or up to $1,250 per ton (up to $6,250) if you're replacing electric resistance heat.</p>
+          <p>Source: <a href="https://www.energy.nh.gov/renewable-energy/net-metering-and-group-net-metering/net-metering" target="_blank" rel="noopener noreferrer" style="color:var(--sky);">NH net metering</a> · <a href="https://nhsaves.com/residential/electric-heating-cooling-equipment/" target="_blank" rel="noopener noreferrer" style="color:var(--sky);">NHSaves heat pumps</a></p>
         </div>
       </details>
       <details class="tile">
@@ -529,6 +529,10 @@
         <input type="hidden" name="actionType" value="TGVhZHM=">
         <input type="hidden" name="returnURL" value="https://gk1.energy/?submitted=true#contact">
         <input type="hidden" name="aG9uZXlwb3Q" style="display:none;" value="">
+        <div aria-hidden="true" style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">
+          <label for="gk1Hp">Leave this field empty</label>
+          <input type="text" id="gk1Hp" name="gk1_hp" value="" tabindex="-1" autocomplete="off">
+        </div>
         <div class="form-row">
           <div><label for="firstName">First Name</label><input id="firstName" name="First Name" type="text" placeholder="Jane" required></div>
           <div><label for="lastName">Last Name</label><input id="lastName" name="Last Name" type="text" placeholder="Smith" required></div>
@@ -672,6 +676,53 @@
     successPanel.scrollIntoView({ block: 'start' });
     history.replaceState(null, '', window.location.pathname + window.location.hash);
   }
+
+  // Anti-spam guard (added 2026-10-09). Runs in the capture phase so it fires
+  // BEFORE Zoho's inline onsubmit (which disables the submit button), and is a
+  // separate listener so regenerating the Zoho form below doesn't wipe it.
+  // Client-side only: stops bots that load the page, not ones POSTing straight
+  // to Zoho. Server-side enforcement belongs in Zoho (validation rule/CAPTCHA).
+  (function(){
+    var form = document.getElementById('leadForm');
+    var loadedAt = Date.now();
+    form.addEventListener('submit', function(e){
+      function block(msg){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        if (msg) alert(msg);
+      }
+      // 1. Honeypot: real visitors never see or fill this field. Fake a
+      //    success so the bot doesn't learn anything.
+      if (document.getElementById('gk1Hp').value.trim() !== ''){
+        block();
+        form.closest('.contact-panel').style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+        return;
+      }
+      // 2. Too fast to be a human (page load -> submit under 3 seconds).
+      if (Date.now() - loadedAt < 3000){
+        block('That was a little fast. Please check your details and submit again.');
+        return;
+      }
+      // 3. Links in any free-text field (spam payloads are link bait).
+      var linkRe = /https?:\/\/|www\.|\b[a-z0-9-]+\.(buzz|ru|xyz|top|click|cc|nip\.io)\b/i;
+      var textIds = ['firstName', 'lastName', 'referredBy', 'message'];
+      for (var i = 0; i < textIds.length; i++){
+        if (linkRe.test(document.getElementById(textIds[i]).value)){
+          block('Please remove web links from the form. If you need to share one, just mention it when I call you.');
+          return;
+        }
+      }
+      // 4. Phone must be a plausible US number (10 digits, optional leading 1).
+      var digits = document.getElementById('phone').value.replace(/\D/g, '');
+      if (digits.length === 11 && digits.charAt(0) === '1'){ digits = digits.slice(1); }
+      if (digits.length !== 10){
+        block('Please enter a 10-digit US phone number.');
+        document.getElementById('phone').focus();
+        return;
+      }
+    }, true);
+  })();
 </script>
 
 <!-- Zoho Web-to-Lead integration — generated by Zoho, do not modify without

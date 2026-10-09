@@ -238,6 +238,12 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
   for the diff details). Bill submitted a real test lead through the live
   form on 2026-07-29 and confirmed it worked end-to-end. Fully closed out,
   not a backlog item anymore.
+- **Spam guard — added 2026-10-09, not yet uploaded.** Client-side only
+  (honeypot `gk1_hp`, <3s submit block, link block, 10-digit phone check)
+  in its own script after the `?submitted=true` handler in `index.html`.
+  Bots POSTing straight to Zoho bypass it; server-side filtering (validation
+  rule, allowed domain, reCAPTCHA v2) is Bill's to do in Zoho. Details:
+  `docs/decisions.md` "Lead form spam guard".
 - **Post-submit success state — added and verified live 2026-08-22.** On
   `?submitted=true` (Zoho's redirect after a successful POST), the form's
   `.contact-panel` is hidden and replaced with `#formSuccess`, a
