@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heat Pump Check-Up · Bill Geyer</title>
+<link rel="icon" type="image/svg+xml" href="./images/gk1-icon-navy-bg.svg">
+<meta name="robots" content="noindex">
+<meta name="description" content="A free Heating Cost Check-Up from Bill Geyer: a straight answer on whether a heat pump fits your house, what Mass Save would likely pay, and what the winter electric rate could mean for your bill.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Styles copied from index.html so this page matches the site. Keep in sync if the site's styles change. */
+  :root{
+    --bg-dusk:#10182c;
+    --bg-panel:#182446;
+    --bg-panel-2:#1d2c53;
+    --sun:#f2a33b;
+    --sun-dim:#c9832c;
+    --sky:#7fb0be;
+    --mint:#47e0b8;
+    --text-hi:#eef0f6;
+    --text-mid:#a4adc4;
+    --text-low:#6d7896;
+    --line:rgba(255,255,255,0.09);
+    --radius:14px;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; }
+  }
+  body{
+    margin:0; background:var(--bg-dusk); color:var(--text-hi);
+    font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased; line-height:1.55;
+  }
+  h1,h2,h3{ font-family:'Fraunces',serif; font-weight:600; letter-spacing:-0.01em; margin:0; }
+  a{ color:inherit; }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--sky);
+  }
+  :focus-visible{ outline:2px solid var(--sun); outline-offset:3px; border-radius:4px; }
+  .wrap{ max-width:1040px; margin:0 auto; padding:0 24px; }
+
+  .nav{
+    position:sticky; top:0; z-index:20; background:rgba(16,24,44,0.86);
+    backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1040px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+  }
+  .nav-name{ font-family:'Fraunces',serif; font-weight:600; font-size:1.575rem; display:flex; align-items:center; gap:4px; flex:0 0 auto; }
+  .nav-name .mint{ color:var(--mint); }
+  .nav-logo{ height:1.6em; width:auto; display:block; }
+  .nav-links{ display:flex; align-items:center; gap:18px; flex:0 1 auto; min-width:0; }
+  .nav-cta{
+    font-family:'IBM Plex Mono',monospace; font-size:0.78rem; letter-spacing:0.04em;
+    color:var(--sun); border:1px solid var(--sun-dim); padding:8px 14px;
+    border-radius:999px; text-decoration:none; white-space:nowrap; flex:0 0 auto;
+  }
+  .nav-cta:hover{ background:rgba(242,163,59,0.1); }
+  @media (max-width:520px){
+    .nav-inner{ padding:12px 16px; }
+    .nav-name{ font-size:1.25rem; }
+    .nav-cta{ font-size:0.68rem; padding:7px 11px; }
+  }
+
+  .hero{ padding:72px 0 40px; position:relative; overflow:hidden; }
+  .hero-eyebrow{ margin-bottom:18px; }
+  .hero h1{ font-size:clamp(2rem, 5vw, 3.1rem); color:var(--text-hi); max-width:17ch; }
+  .hero p.lede{ margin-top:20px; max-width:56ch; color:var(--text-mid); font-size:1.05rem; }
+  .hero-ctas{ margin-top:32px; display:flex; gap:14px; flex-wrap:wrap; }
+  .hero-grid{ display:grid; grid-template-columns:1fr 240px; gap:40px; align-items:start; }
+  @media (max-width:760px){ .hero-grid{ grid-template-columns:1fr; } }
+  .hero-photo-wrap{ text-align:center; }
+  @media (max-width:760px){ .hero-photo-wrap{ order:-1; max-width:200px; margin:0 auto; } }
+  .hero-photo{
+    width:100%; aspect-ratio:4/5; object-fit:cover; object-position:top center;
+    border-radius:var(--radius); border:1px solid var(--line); display:block;
+  }
+  .hero-photo-caption{
+    margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--text-low);
+    letter-spacing:0.05em; line-height:1.5;
+  }
+  .btn-primary{
+    background:var(--sun); color:#1a1300; font-weight:600; padding:13px 24px;
+    border-radius:999px; text-decoration:none; font-size:0.95rem; border:1px solid var(--sun);
+  }
+  .btn-primary:hover{ background:#ffb54e; }
+  .btn-ghost{ color:var(--text-hi); border:1px solid var(--line); padding:13px 24px; border-radius:999px; text-decoration:none; font-size:0.95rem; }
+  .btn-ghost:hover{ border-color:var(--sky); }
+
+  .section{ padding:60px 0; border-top:1px solid var(--line); }
+  .section-head{ margin-bottom:36px; max-width:58ch; }
+  .section-head h2{ font-size:clamp(1.5rem,3vw,2rem); margin-top:10px; }
+  .section-head p{ color:var(--text-mid); margin-top:12px; }
+
+  .tiles{ display:flex; flex-direction:column; gap:10px; }
+  .tile{ background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; }
+  .tile summary{
+    list-style:none; cursor:pointer; padding:20px 24px; display:flex; align-items:center;
+    gap:16px; -webkit-tap-highlight-color:transparent;
+  }
+  .tile summary::-webkit-details-marker{ display:none; }
+  .tile-title{ flex:1 1 auto; font-family:'Fraunces',serif; font-weight:600; font-size:1.08rem; }
+  .tile-plus{
+    flex:0 0 auto; width:22px; height:22px; position:relative; color:var(--text-mid);
+    transition:transform 0.2s ease;
+  }
+  .tile-plus::before, .tile-plus::after{
+    content:''; position:absolute; background:currentColor; top:50%; left:50%;
+  }
+  .tile-plus::before{ width:14px; height:2px; transform:translate(-50%,-50%); }
+  .tile-plus::after{ width:2px; height:14px; transform:translate(-50%,-50%); }
+  .tile[open] .tile-plus{ transform:rotate(45deg); }
+  .tile-body{ padding:0 24px 22px 24px; color:var(--text-mid); font-size:0.95rem; }
+  .tile-body p{ margin:0 0 10px; }
+  .tile-body p:last-child{ margin-bottom:0; }
+  .tile-body a{ color:var(--sky); }
+
+  .note-line{ margin-top:16px; color:var(--text-low); font-size:0.88rem; max-width:60ch; }
+  .check-list{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:12px; max-width:60ch; }
+  .check-list li{ background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); padding:16px 20px; color:var(--text-mid); }
+  .check-list strong{ color:var(--text-hi); font-family:'Fraunces',serif; font-weight:600; }
+  .contact-panel{ background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); padding:36px; }
+  @media (max-width:600px){ .contact-panel{ padding:24px; } }
+  .sources{ margin:0; padding-left:1.1em; color:var(--text-mid); font-size:0.92rem; display:flex; flex-direction:column; gap:8px; }
+  .sources a{ color:var(--sky); word-break:break-word; }
+  footer{ border-top:1px solid var(--line); padding:36px 0 48px; }
+  .footer-inner{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; font-size:0.82rem; color:var(--text-low); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-name" href="./index.html" style="text-decoration:none; color:inherit;"><img class="nav-logo" src="./images/gk1-icon-transparent.svg" alt="GK1 Energy logo">GK1<span class="mint">.energy</span></a>
+    <div class="nav-links">
+      <a class="nav-cta consult-link" href="./index.html#contact">Book my Check-Up</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow eyebrow">Amesbury · Newburyport · West Newbury</div>
+        <h1>Does a heat pump make sense for your house? I'll give you a straight answer.</h1>
+        <p class="lede">I'm Bill Geyer, an independent energy advisor. I offer a free Heating Cost Check-Up. It takes about 20 minutes. I look at how your house is heated today and tell you whether a heat pump fits, what Mass Save would likely pay, and what the lower winter electric rate could mean for your bill. If it does not make sense for your house, I will tell you. No cost, no pressure.</p>
+        <div class="hero-ctas">
+          <a class="btn-primary consult-link" href="./index.html#contact">Book my free Check-Up</a>
+          <a class="btn-ghost" href="tel:+17814145551">Call or text (781) 414-5551</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <img class="hero-photo" src="./images/bill-geyer-headshot.jpg" alt="Bill Geyer, Energy Advisor" width="240" height="300">
+        <div class="hero-photo-caption">BILL GEYER<br>Energy Advisor</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="checkup">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The free Check-Up</div>
+      <h2>Three questions, answered for your house.</h2>
+      <p>A heat pump is not right for every house. That is why I look before I say anything.</p>
+    </div>
+    <ul class="check-list">
+      <li><strong>Does a heat pump fit?</strong> I look at how the house is heated today and whether a heat pump makes sense for it.</li>
+      <li><strong>What would Mass Save likely pay?</strong> Rebates depend on your system and your home, so I work out what applies to yours.</li>
+      <li><strong>What would the winter electric rate mean for your bill?</strong> Utilities offer a lower winter rate to homes heated with a heat pump. I show you what that could mean.</li>
+    </ul>
+    <p class="note-line">The visit is free and there is no obligation.</p>
+  </div>
+</section>
+
+<section class="section" id="programs">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">What helps with the cost</div>
+      <h2>Switching costs real money up front, but there are programs that help.</h2>
+      <p>Every figure here comes from Mass Save or your utility. Rebate amounts are maximums. What you get depends on your system and home. Last checked October 9, 2026.</p>
+    </div>
+    <div class="tiles">
+      <details class="tile" open>
+        <summary><span class="tile-title">Mass Save heat pump rebates (2026)</span><span class="tile-plus" aria-hidden="true"></span></summary>
+        <div class="tile-body">
+          <p><strong>Whole-home:</strong> $2,650 per ton, up to $8,500, when a heat pump replaces oil, propane, or electric resistance heat. The home has to be weatherized: built in 2000 or later, or an assessment recommends under $1,000 of work.</p>
+          <p><strong>Partial-home:</strong> $1,125 per ton, up to $8,500, when you keep your existing system as a backup. An integrated control is required.</p>
+          <p><strong>Income-based:</strong> up to $16,000 or no cost. See Mass Save's page for who qualifies.</p>
+          <p>Mass Save's own example: a $22,000 install, an $8,500 rebate, and $13,500 net.</p>
+          <p>For 2026, the heat pump has to be installed by December 31, 2026, with paperwork in by February 28, 2027.</p>
+          <p><a href="https://www.masssave.com/en/residential/rebates-offers-services/heating-and-cooling/heat-pumps/air-source-heat-pumps" target="_blank" rel="noopener noreferrer">Mass Save: air-source heat pump rebates&nbsp;→</a></p>
+        </div>
+      </details>
+      <details class="tile">
+        <summary><span class="tile-title">What changed since 2025</span><span class="tile-plus" aria-hidden="true"></span></summary>
+        <div class="tile-body">
+          <p>Mass Save's top whole-home rebate dropped from $10,000 in 2025 ($3,000 per ton) to $8,500 in 2026 ($2,650 per ton). The partial-home rebate went from $1,250 per ton, capped at $10,000, to $1,125 per ton, capped at $8,500.</p>
+          <p>The federal tax credit for heat pumps ended for work done after December 31, 2025. Mass Save's 2025 page had listed up to $2,000.</p>
+          <p><a href="https://web.archive.org/web/20250909040509/https://www.masssave.com/residential/rebates-offers-services/heating-and-cooling/heat-pumps/air-source-heat-pumps" target="_blank" rel="noopener noreferrer">Mass Save's 2025 page (archived September 9, 2025)&nbsp;→</a></p>
+        </div>
+      </details>
+      <details class="tile">
+        <summary><span class="tile-title">0% HEAT Loan</span><span class="tile-plus" aria-hidden="true"></span></summary>
+        <div class="tile-body">
+          <p>Mass Save offers a 0% HEAT Loan of up to $25,000. The length of the loan is set by the lender. For a whole-home heat pump, the loan needs a Home Energy Assessment first.</p>
+          <p>There are other ways to finance it too, including lease-style plans, so a big check up front is not the only path.</p>
+          <p><a href="https://www.masssave.com/residential/rebates-offers-services/financing" target="_blank" rel="noopener noreferrer">Mass Save: financing&nbsp;→</a></p>
+        </div>
+      </details>
+      <details class="tile">
+        <summary><span class="tile-title">A lower winter electric rate</span><span class="tile-plus" aria-hidden="true"></span></summary>
+        <div class="tile-body">
+          <p>National Grid offers a lower winter delivery rate, November 1 through April 30, for homes that use a heat pump to heat. Eversource and Unitil have their own winter heat pump rates. If your electric bill comes from National Grid, this is the one that applies to you.</p>
+          <p>A home heated only with electric baseboards does not get the rate until it has a heat pump.</p>
+          <p>I do not quote a dollar figure here, because the utility's numbers change. At the Check-Up I work out what it would mean for your house.</p>
+          <p><a href="https://www.nationalgridus.com/MA-Home/Rates/Heat-Pump-Rate" target="_blank" rel="noopener noreferrer">National Grid: heat pump rate&nbsp;→</a></p>
+        </div>
+      </details>
+      <details class="tile">
+        <summary><span class="tile-title">It cools the house in summer too</span><span class="tile-plus" aria-hidden="true"></span></summary>
+        <div class="tile-body">
+          <p>A whole-home heat pump heats and cools the house.</p>
+        </div>
+      </details>
+    </div>
+    <p class="note-line">I have no official source for savings on your total energy bill, so I do not promise one. The Check-Up is where I give you real numbers for your house.</p>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="contact-panel">
+      <div class="eyebrow">Next step</div>
+      <h2 style="font-size:clamp(1.5rem,3vw,2rem); margin-top:10px;">Book your free Heating Cost Check-Up.</h2>
+      <p style="color:var(--text-mid); max-width:56ch;">It takes about 30 seconds to pick a time. You can also call or text me.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary consult-link" href="./index.html#contact">Book my free Check-Up</a>
+        <a class="btn-ghost" href="tel:+17814145551">(781) 414-5551</a>
+        <a class="btn-ghost" href="mailto:bill@gk1.energy">bill@gk1.energy</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="sources">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Sources</div>
+      <h2>Where these numbers come from.</h2>
+      <p>Official sources only: Mass Save and the utilities. Checked October 9, 2026.</p>
+    </div>
+    <ol class="sources">
+      <li><a href="https://www.masssave.com/en/residential/rebates-offers-services/heating-and-cooling/heat-pumps/air-source-heat-pumps" target="_blank" rel="noopener noreferrer">Mass Save: air-source heat pump rebates (2026)</a></li>
+      <li><a href="https://web.archive.org/web/20250909040509/https://www.masssave.com/residential/rebates-offers-services/heating-and-cooling/heat-pumps/air-source-heat-pumps" target="_blank" rel="noopener noreferrer">Mass Save's 2025 heat pump page, archived September 9, 2025</a></li>
+      <li><a href="https://www.masssave.com/residential/rebates-offers-services/financing" target="_blank" rel="noopener noreferrer">Mass Save: financing and the HEAT Loan</a></li>
+      <li><a href="https://www.nationalgridus.com/MA-Home/Rates/Heat-Pump-Rate" target="_blank" rel="noopener noreferrer">National Grid: heat pump rate</a></li>
+      <li><a href="https://www.eversource.com/residential/account-billing/manage-bill/about-your-bill/rates-tariffs/heat-pump-rate" target="_blank" rel="noopener noreferrer">Eversource: heat pump rate</a></li>
+      <li><a href="https://unitil.com/ma-heat-pump-rate" target="_blank" rel="noopener noreferrer">Unitil: heat pump rate</a></li>
+    </ol>
+    <p class="note-line">Rebate amounts are maximums. What you get depends on your system and your home. Programs can change, and I re-check them regularly.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div><strong>GK1 Energy</strong> · © 2026 · <a href="./privacy-policy.html" style="color:var(--text-low); text-decoration:underline;">Privacy Policy</a></div>
+    <div><a href="tel:+17814145551" style="color:inherit; text-decoration:none;">(781) 414-5551</a> · bill@gk1.energy</div>
+  </div>
+</footer>
+
+<script>
+  // Keep the household's ?ref= code when they move to the shared consultation form (same pattern as hello.html).
+  (function(){
+    var ref = new URLSearchParams(window.location.search).get('ref');
+    if (!ref) return;
+    var links = document.querySelectorAll('a.consult-link');
+    for (var i = 0; i < links.length; i++){
+      links[i].href = './index.html?ref=' + encodeURIComponent(ref) + '#contact';
+    }
+  })();
+</script>
+</body>
+</html>

@@ -128,6 +128,7 @@ live as of this note.
     `gk1.energy/hello.html` unless Bill has configured URL rewriting on the
     cPanel side (unconfirmed as of 2026-07-31). Generate QR codes against
     the `.html` URL unless/until that's verified.
+- `heatpump.html` (added 2026-10-09, **not yet uploaded**) - landing page for the North Essex County heat pump direct-mail campaign (project: `../heat-pump-direct-mail/`). `noindex`. Hero + free Heating Cost Check-Up + Mass Save / HEAT Loan / utility-rate tiles with source links + sources list. Every claim comes from `../heat-pump-direct-mail/docs/claims-register.md` (official sources only, no installer names, no NEHPA, no dollar figures for utility rates); re-check the register before each mailing and keep this page in sync. Has no form of its own: CTAs go to `index.html#contact` and keep `?ref=` (same pattern as `hello.html`). Reachable at `gk1.energy/heatpump.html` (no clean URL; static site).
 - `bill-geyer.vcf` (added 2026-07-31) — vCard 3.0, downloads from
   `hello.html`. Real phone/email (already public in the site footer), plus
   `URL:https://gk1.energy/index.html#contact` so a tap on the saved
