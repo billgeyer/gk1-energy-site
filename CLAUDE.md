@@ -199,6 +199,10 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
   to GitHub does **not** touch the live site.
 - **Commit and push after essentially every change** — Bill's only copy of
   this work lives on one laptop, git push is the off-machine backup.
+- **2026-10-14 deploy:** Bill uploaded the new `index.html` (reCAPTCHA v2 +
+  spam guard + regenerated Zoho embed) and confirmed the lead form,
+  alert, and visitor confirmation work live. `heatpump.html` upload status
+  is separate; ask Bill.
 - **Live site is current as of 2026-08-22.** All files through that date
   (phone number change, "Independent Energy Advisor" trim, service-area
   rewording, the business-solar space question, the lead-form success
@@ -238,12 +242,17 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
   for the diff details). Bill submitted a real test lead through the live
   form on 2026-07-29 and confirmed it worked end-to-end. Fully closed out,
   not a backlog item anymore.
-- **Spam guard — added 2026-10-09, not yet uploaded.** Client-side only
-  (honeypot `gk1_hp`, <3s submit block, link block, 10-digit phone check)
-  in its own script after the `?submitted=true` handler in `index.html`.
-  Bots POSTing straight to Zoho bypass it; server-side filtering (validation
-  rule, allowed domain, reCAPTCHA v2) is Bill's to do in Zoho. Details:
-  `docs/decisions.md` "Lead form spam guard".
+- **Spam defenses — live as of 2026-10-14.** (1) **reCAPTCHA v2** on the
+  Zoho web form, checked server-side by Zoho (the real fix; bots POST
+  straight to Zoho and skip the page). Site key is in `index.html`; secret
+  key only in Zoho settings. (2) Client-side guard in its own script after
+  the `?submitted=true` handler: honeypot `gk1_hp`, <3s submit block, link
+  block, 10-digit phone check. **Regenerating the Zoho embed changes the
+  security tokens and wipes the CAPTCHA/guard wiring: re-merge, don't
+  overwrite.** **`Referral Code = zzz` is NOT a bot tell** (Zoho defaults
+  every blank Referral Code to `zzz`; real leads carry it). Real tells:
+  State = `Select`, links, random-string names. Details:
+  `docs/decisions.md` "Lead form spam guard" and "reCAPTCHA v2".
 - **Post-submit success state — added and verified live 2026-08-22.** On
   `?submitted=true` (Zoho's redirect after a successful POST), the form's
   `.contact-panel` is hidden and replaced with `#formSuccess`, a
@@ -260,8 +269,14 @@ SEO/bookmarks). New sub-pages use plain description-based slugs (e.g.
 - **Backlog: Cal.com bookings aren't captured as Zoho Leads** — no native
   connector yet. Options to check in order: Zoho Flow, Zapier/Make,
   Cal.com webhooks. Not yet researched.
-- **Acknowledgement email**: planned via a Zoho CRM Workflow Rule on new
-  Lead creation, should include the Cal.com link. Not yet built.
+- **Acknowledgement email — built 2026-10-14**, as the web form's own
+  "Acknowledge Visitor" setting (template "GK1 Energy Website Visitor
+  Confirmation", from/reply-to bill@gk1.energy), not a Workflow Rule. The
+  Leads module has no Workflow Rules. `gk1.energy` is authenticated in Zoho
+  (DKIM TXT `225626606._domainkey` + SPF include `one.zoho.com`, DNS at
+  **Spaceship**, not cPanel). Before that the confirmation went to spam from
+  `viazohocrm.com`. Inbox filter for the alerts and the DNS details are in
+  `docs/decisions.md` "Visitor confirmation email + domain authentication".
 
 ## Open checklist (priority order)
 

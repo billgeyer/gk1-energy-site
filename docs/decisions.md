@@ -398,6 +398,29 @@ state tiles should be inserted in alphabetical position, not appended.
   Island's own Home Comfort heat pump rebate page, which administers NYS
   Clean Heat for the LI territory directly rather than routing through a
   separate NYSERDA portal like most upstate utilities do.
+- **New Hampshire solar rebate — CORRECTED 2026-08-22, exactly the
+  "snapshot, not evergreen" risk flagged at the top of this section
+  materialized.** The tile previously described NH's Residential
+  Renewable Electrical Generation Rebate Program (up to $0.20/watt,
+  capped at $1,000 or 30% of system cost) as available — sourced
+  originally from the state-specific Ohm Analytics digest per the note
+  above. That program was **repealed in 2024 (SB 303)** and is gone as
+  of 2026; the discrepancy surfaced while independently researching a
+  Rockingham County, NH print flyer (see
+  `gk1-energy-flyers/CLAUDE.md`) and was confirmed against multiple
+  independent 2026 sources before this tile was corrected. Updated copy
+  states plainly that the rebate is gone rather than removing the
+  sentence and leaving a gap. Net metering language also tightened to
+  the actual mechanics (~85% of retail rate, locked through 2041) rather
+  than the vaguer original "state law mandates net metering," source
+  swapped from the now-dead rebate-program URL to NH DOE's own net
+  metering page. Heat pump figures (NHSaves $250/ton-$1,250 standard,
+  $1,250/ton-$6,250 electric-resistance-replacement tier) were
+  re-confirmed as still current and left unchanged. **Lesson for next
+  time a state tile gets reused or copied into new material: re-verify
+  the incentive is still active, don't just re-verify the dollar amount
+  is still correct** — a repealed program and a changed dollar figure
+  both look identical if you only check the number.
 
 ## Favicon / OG image implementation
 
@@ -839,10 +862,19 @@ copy predating the fix, not a recurring step.
 
 Bots started submitting `#leadForm` in late September 2026 (13 junk leads
 in about two weeks, each firing a Zoho new-lead email). Fingerprint from the
-Zoho export: Referral Code (hidden `LEADCF3`) = `zzz`, so the bot fills even
-hidden fields; message body is a link (telegra.ph, `.buzz`, `nip.io`);
-first name = last name = Referred By; phone is 11 digits starting with 8;
+Zoho export: message body is a link (telegra.ph, `.buzz`, `nip.io`); first
+name = last name = Referred By; phone is 11 digits starting with 8;
 throwaway email domains.
+
+**CORRECTION (2026-10-14): `Referral Code = zzz` is NOT a bot tell.** This
+note originally listed it as one. It isn't: the Zoho web form has `zzz` set
+as the default for the hidden Referral Code field, and Zoho applies that
+server-side to ANY submission with a blank Referral Code, so real leads
+carry it too (confirmed with Bill's own test lead). A Gmail filter that
+keyed on it binned a real test alert. Never filter or validate on `zzz`.
+Real tells: State (2-Letter) = `Select` (the form's disabled placeholder,
+which the page can't submit, so it means a direct POST), a link in the
+message, random lowercase 10-letter names, Referred By = first name.
 
 **What was added to `index.html`** (client-side only): an off-screen
 honeypot text input `gk1_hp` (fakes the success panel if filled), a
@@ -855,10 +887,77 @@ Zoho's inline `onsubmit`, which disables the submit button. After a Zoho
 regeneration, re-add the honeypot `<div>` inside the form.
 
 **Limits**: bots that POST straight to `crm.zoho.com/crm/WebToLeadForm`
-bypass all of this. Server-side enforcement belongs in Zoho (not done yet,
-Bill's side): a Leads validation rule (Referral Code = `zzz` or Description
-contains `http`, rejected entries land in Leads Approval > Invalid), the
-web form's allowed-domain setting, and reCAPTCHA v2 (paid editions). Also
-gate the planned acknowledgement-email workflow on the same criteria so it
-never emails bot-supplied addresses. Turnstile + proxy (n8n/Worker) was
+bypass all of this, and the newer bot generation (random-string names,
+random Referral Code, State = `Select`) did exactly that. Server-side
+enforcement was added 2026-10-14: see "reCAPTCHA v2 on the Zoho web form"
+below. The Zoho edition on this account has no Leads Validation Rules tab,
+so validation rules were not an option. Turnstile + proxy (n8n/Worker) was
 considered and skipped as overkill at this volume.
+
+## reCAPTCHA v2 on the Zoho web form, 2026-10-14
+
+Bots POST straight to `crm.zoho.com/crm/WebToLeadForm`, so the only real fix
+is a CAPTCHA that Zoho checks server-side. Enabled reCAPTCHA v2 ("I'm not a
+robot" checkbox; Zoho supports v2 only, not v3) on "GK1 Energy Website Form".
+
+- **Registered** at `google.com/recaptcha/admin` for `gk1.energy` and
+  `www.gk1.energy`. The **site key** is public and lives in `index.html`
+  (`data-sitekey`). The **secret key** lives only in the Zoho web form
+  settings; it must never go in a file or chat.
+- **Embed regenerated**, which changed the security tokens (`xnQsjsdp`,
+  `xmIwtLD`), the analytics rid/tw, and added the `WebFormServlet` script
+  plus `rccallback…`/`reCaptchaAlert…` functions (called from
+  `checkMandatory…`). All merged into `index.html`; the custom form markup,
+  `?ref=` passthrough, spam guard, and redirect to
+  `https://gk1.energy/?submitted=true#contact` were kept. Widget uses the
+  dark theme to match the navy contact panel.
+- **Zoho's own default for Referral Code is `zzz`** (see correction above).
+  Not copied into the page; Zoho still applies it server-side.
+- **Order of operations matters:** once Zoho requires the CAPTCHA, the old
+  page (no CAPTCHA) can't submit, so regenerate, merge, and upload in one
+  sitting. Tested live 2026-10-14: thank-you panel, lead in Zoho, alert and
+  confirmation delivered.
+- After any future web form regeneration: re-merge tokens, keep the
+  honeypot `<div>` and the guard script, and re-test.
+
+## Visitor confirmation email + domain authentication, 2026-10-14
+
+- **Zoho web form > Notification settings:** "Notify Leads Owner" (system
+  mail, the "Web to Lead Notification Alert" to Bill) and "Acknowledge
+  Visitor" with the template "GK1 Energy Website Visitor Confirmation"
+  (from/reply-to bill@gk1.energy; booking link is the GK1 Cal.com
+  calendar, confirmed by Bill). There are no Workflow Rules on Leads; this
+  is all in the web form settings.
+- **First send went to spam** (sent from Zoho's shared `viazohocrm.com`
+  because `gk1.energy` wasn't authenticated; Zoho showed "Sender email
+  changed"). Fixed by authenticating the domain in Zoho.
+- **DNS (Spaceship; nameservers launch1/launch2.spaceship.net, so edits go
+  in the domain's DNS settings at Spaceship, NOT cPanel's Zone Editor):**
+  - DKIM: TXT `225626606._domainkey` with Zoho's `k=rsa; p=…` key.
+  - SPF: ONE record on `@`. The Spaceship dashboard shows
+    `v=spf1 include:_spf.google.com include:one.zoho.com ~all`; the
+    published record also carries `include:spf.shared.spaceship.host`
+    (Spaceship adds it itself). Never add a second SPF record.
+  - DMARC (already there): `v=DMARC1; p=none; rua=mailto:bill@gk1.energy`.
+  - Zoho shows gk1.energy as DMARC set / Email verified / Authenticated.
+  - Mail is Google Workspace (aspmx MX records); the Google DKIM records
+    (`google._domainkey`) are separate and untouched.
+- **Result:** after authentication a test lead's alert and the confirmation
+  both landed in the Inbox.
+- **Watch item:** "Acknowledge Visitor" emails whatever address was typed.
+  If bot alerts (State `Select`, junk names) start reaching Zoho again,
+  switch it off until the source is sealed.
+
+## Inbox filtering and CRM cleanup, 2026-10-14
+
+- **Gmail filter on bill@gk1.energy:**
+  `subject:"Web to Lead Notification Alert" {"Letter Select" https}` ->
+  Skip Inbox + label `Zoho Spam`. No "Delete it". Do not add Referral Code
+  / `zzz` (matches every alert, real leads included).
+- **Zoho CRM cleaned** through the Zoho MCP connectors: sample
+  Accounts/Contacts/Deals removed, duplicate Contacts merged (Thomas Geyer,
+  Michael Goulart/Mike Gulart, Brian Bideau/"Name TBD" placeholder), and all
+  ~234 junk web-form leads deleted. Contacts is the real database (~400
+  records, imported "Personal SOI" contacts).
+- Zoho MCP delete permission was opt-in per session via
+  `.claude/settings.local.json` (remove it when finished).
