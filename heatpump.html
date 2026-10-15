@@ -220,8 +220,8 @@
   <div class="deadline">
     <div class="eyebrow">Timing</div>
     <h2>The 2026 Mass Save heat pump rebate has a deadline.</h2>
-    <p>For a 2026 rebate, the heat pump has to be installed by <strong style="color:var(--text-hi);">December 31, 2026</strong>, with the paperwork in by <strong style="color:var(--text-hi);">February 28, 2027</strong>. I do not have 2027 rebate amounts to show you yet.</p>
-    <p>Scheduling and installing takes time, so the sooner we look at your house, the more of that window you have. <a class="inline-cta" href="#contact">Book your Check-Up&nbsp;→</a></p>
+    <p id="deadlineText">For a 2026 rebate, the heat pump has to be installed by <strong id="dlInstall" style="color:var(--text-hi);">December 31, 2026</strong>, with the paperwork in by <strong id="dlPaper" style="color:var(--text-hi);">February 28, 2027</strong>. I do not have 2027 rebate amounts to show you yet.</p>
+    <p id="deadlineHurry">Scheduling and installing takes time, so the sooner we look at your house, the more of that window you have. <a class="inline-cta" href="#contact">Book your Check-Up&nbsp;→</a></p>
   </div>
 </section>
 
@@ -519,6 +519,34 @@
       document.getElementById('lastName').value = cut > 0 ? full.slice(cut + 1) : full;      // Zoho requires a last name
       document.getElementById('message').value = bestTime ? 'Best time to reach: ' + bestTime : '';
     }, true);
+  })();
+
+  // Mass Save rebate deadlines: the dates in the HTML are the fallback; fresh values come from public.site_facts
+  // (anon read of active rows only). Update a row in the database and the page follows, no re-upload.
+  (function(){
+    var URL = 'https://qdzkibxlfgvkzpxbhusk.supabase.co/rest/v1/site_facts'
+      + '?fact_key=in.(masssave_2026_install_deadline,masssave_2026_paperwork_deadline)&status=eq.active&select=fact_key,value_date';
+    var KEY = 'sb_publishable_LowX6gX23fIKWuNUjGpsjw_8QTkFEfB';
+    var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    function pretty(d){ var p = d.split('-'); return MONTHS[+p[1] - 1] + ' ' + (+p[2]) + ', ' + p[0]; }
+    fetch(URL, { headers: { apikey: KEY, Accept: 'application/json' } })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(rows){
+        var f = {};
+        (rows || []).forEach(function(r){ if (/^\d{4}-\d{2}-\d{2}$/.test(r.value_date)) f[r.fact_key] = r.value_date; });
+        var inst = f.masssave_2026_install_deadline, paper = f.masssave_2026_paperwork_deadline;
+        if (!inst || !paper) return;      // missing: keep the static text
+        var today = new Date().toISOString().slice(0, 10);
+        if (today > inst){                // install window closed: stop advertising a dead deadline
+          document.getElementById('deadlineText').textContent = 'The 2026 install window has closed, so 2026 rebate amounts no longer apply to a new project. I do not have 2027 rebate amounts to show you yet. I will tell you what they are as soon as Mass Save publishes them.';
+          document.getElementById('deadlineHurry').style.display = 'none';
+          document.getElementById('deadline').querySelector('h2').textContent = 'The 2026 Mass Save heat pump rebate window has closed.';
+          return;
+        }
+        document.getElementById('dlInstall').textContent = pretty(inst);
+        document.getElementById('dlPaper').textContent = pretty(paper);
+      })
+      .catch(function(){ /* keep static text */ });
   })();
 
   // Live heating oil price (public read of one row; see supabase/migrations/..._public_oil_signal_read.sql)
