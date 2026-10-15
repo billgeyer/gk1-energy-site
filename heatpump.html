@@ -136,6 +136,40 @@
   .price-strip .price-main .num{ color:var(--sun); }
   .price-strip .price-src{ font-size:0.82rem; color:var(--text-low); }
   .price-strip .price-src a{ color:var(--text-mid); }
+  .trust-line{ margin-top:26px; padding-top:18px; border-top:1px solid var(--line); font-size:0.88rem; color:var(--text-mid); max-width:60ch; }
+  .trust-line .tick{ color:var(--mint); }
+  .trust-line a{ color:var(--sky); }
+  .deadline{ background:var(--bg-panel-2); border:1px solid var(--sun-dim); border-radius:var(--radius); padding:24px 28px; }
+  .deadline h2{ font-size:clamp(1.25rem,2.6vw,1.6rem); margin-top:8px; }
+  .deadline p{ color:var(--text-mid); margin:10px 0 0; max-width:62ch; }
+  .deadline .eyebrow{ color:var(--sun); }
+  .tile-body a.inline-cta, .inline-cta{ color:var(--sun); text-decoration:underline; text-underline-offset:3px; }
+  .form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+  @media (max-width:600px){ .form-grid{ grid-template-columns:1fr; } }
+  label{
+    display:block; font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--text-mid); margin-bottom:6px;
+  }
+  input,select,textarea{
+    width:100%; background:var(--bg-dusk); border:1px solid var(--line); color:var(--text-hi);
+    padding:11px 13px; border-radius:8px; font-family:'Inter',sans-serif; font-size:0.95rem;
+  }
+  input::placeholder{ color:var(--text-low); }
+  .form-full{ margin-bottom:16px; }
+  input[type="checkbox"]{ width:16px; height:16px; padding:0; accent-color:var(--sun); flex:0 0 auto; margin-top:3px; }
+  .consent-row{ display:flex; align-items:flex-start; gap:10px; margin-bottom:18px; }
+  .consent-row label{
+    text-transform:none; font-family:'Inter',sans-serif; font-size:0.85rem; letter-spacing:normal;
+    color:var(--text-mid); margin-bottom:0;
+  }
+  .submit-btn{
+    background:var(--sun); color:#1a1300; font-weight:600; border:none; padding:13px 26px;
+    border-radius:999px; font-size:0.95rem; cursor:pointer; font-family:'Inter',sans-serif;
+  }
+  .submit-btn:hover{ background:#ffb54e; }
+  .opt{ text-transform:none; letter-spacing:normal; color:var(--text-low); font-family:'Inter',sans-serif; }
+  .alt-contact{ margin-top:22px; padding-top:18px; border-top:1px solid var(--line); color:var(--text-mid); font-size:0.92rem; }
+  .alt-contact a{ color:var(--sky); }
   footer{ border-top:1px solid var(--line); padding:36px 0 48px; }
   .footer-inner{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; font-size:0.82rem; color:var(--text-low); }
 </style>
@@ -146,7 +180,7 @@
   <div class="nav-inner">
     <a class="nav-name" href="./index.html" style="text-decoration:none; color:inherit;"><img class="nav-logo" src="./images/gk1-icon-transparent.svg" alt="GK1 Energy logo">GK1<span class="mint">.energy</span></a>
     <div class="nav-links">
-      <a class="nav-cta consult-link" href="./index.html#contact">Book my Check-Up</a>
+      <a class="nav-cta" href="#contact">Book my Check-Up</a>
     </div>
   </div>
 </nav>
@@ -155,13 +189,15 @@
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <div class="hero-eyebrow eyebrow">Amesbury · Newburyport · West Newbury</div>
+        <div class="hero-eyebrow eyebrow">Free Heating Cost Check-Up</div>
         <h1>Does a heat pump make sense for your house? I'll give you a straight answer.</h1>
         <p class="lede">I'm Bill Geyer, an independent energy advisor. I offer a free Heating Cost Check-Up. It takes about 20 minutes. I look at how your house is heated today and tell you whether a heat pump fits, what Mass Save would likely pay, and what the lower winter electric rate could mean for your bill. If it does not make sense for your house, I will tell you. No cost, no pressure.</p>
         <div class="hero-ctas">
-          <a class="btn-primary consult-link" href="./index.html#contact">Book my free Check-Up</a>
+          <a class="btn-primary" href="#contact">Book my free Check-Up</a>
           <a class="btn-ghost" href="tel:+17814145551">Call or text (781) 414-5551</a>
         </div>
+        <!-- Same wording as the Background & credentials section on index.html. Keep in sync. -->
+        <p class="trust-line"><span class="tick">&#10003;</span> Recheck Verified &amp; Certified: identity confirmed through government-issued ID verification, and background checked for in-home sales. Certified since July 8, 2026. <a href="https://recheck.co/id/870998999/bill-geyer/#certifiedDetails" target="_blank" rel="noopener noreferrer">View my verification&nbsp;→</a></p>
       </div>
       <div class="hero-photo-wrap">
         <img class="hero-photo" src="./images/bill-geyer-headshot.jpg" alt="Bill Geyer, Energy Advisor" width="240" height="300">
@@ -170,6 +206,15 @@
     </div>
   </div>
 </header>
+
+<section class="wrap" id="deadline" style="padding-bottom:32px;">
+  <div class="deadline">
+    <div class="eyebrow">Timing</div>
+    <h2>The 2026 Mass Save heat pump rebate has a deadline.</h2>
+    <p>For a 2026 rebate, the heat pump has to be installed by <strong style="color:var(--text-hi);">December 31, 2026</strong>, with the paperwork in by <strong style="color:var(--text-hi);">February 28, 2027</strong>. I do not have 2027 rebate amounts to show you yet.</p>
+    <p>Scheduling and installing takes time, so the sooner we look at your house, the more of that window you have. <a class="inline-cta" href="#contact">Book your Check-Up&nbsp;→</a></p>
+  </div>
+</section>
 
 <!-- Live heating oil price. Hidden until fresh data (14 days or newer) loads from the database; no static fallback on purpose,
      because a stale number is worse than none. Updated weekly by scripts/fetch_oil_price.py in the heat-pump-direct-mail project. -->
@@ -199,45 +244,40 @@
 <section class="section" id="programs">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">What helps with the cost</div>
-      <h2>Switching costs real money up front, but there are programs that help.</h2>
-      <p>Every figure here comes from Mass Save or your utility. Rebate amounts are maximums. What you get depends on your system and home. Last checked October 9, 2026.</p>
+      <div class="eyebrow">Making it affordable</div>
+      <h2>Switching costs real money up front. There are ways to ease that.</h2>
+      <p>A rebate, a 0% loan, and installer financing can each take pressure off the up-front cost, so you do not have to start with a large check. Figures here come from Mass Save or your utility. Last checked October 9, 2026.</p>
     </div>
     <div class="tiles">
       <details class="tile" open>
         <summary><span class="tile-title">Mass Save heat pump rebates (2026)</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
-          <p><strong>Whole-home:</strong> $2,650 per ton, up to $8,500, when a heat pump replaces oil, propane, or electric resistance heat. The home has to be weatherized: built in 2000 or later, or an assessment recommends under $1,000 of work.</p>
-          <p><strong>Partial-home:</strong> $1,125 per ton, up to $8,500, when you keep your existing system as a backup. An integrated control is required.</p>
-          <p><strong>Income-based:</strong> up to $16,000 or no cost. See Mass Save's page for who qualifies.</p>
-          <p>Mass Save's own example: a $22,000 install, an $8,500 rebate, and $13,500 net.</p>
-          <p>For 2026, the heat pump has to be installed by December 31, 2026, with paperwork in by February 28, 2027.</p>
+          <p>Mass Save pays a rebate on qualifying heat pumps: up to $8,500 for a whole-home system in 2026. What you get depends on your system and your home. Mass Save also lists offers based on income.</p>
+          <p>Its page has the current amounts and rules, and it is the place to check them.</p>
           <p><a href="https://www.masssave.com/en/residential/rebates-offers-services/heating-and-cooling/heat-pumps/air-source-heat-pumps" target="_blank" rel="noopener noreferrer">Mass Save: air-source heat pump rebates&nbsp;→</a></p>
-        </div>
-      </details>
-      <details class="tile">
-        <summary><span class="tile-title">What changed since 2025</span><span class="tile-plus" aria-hidden="true"></span></summary>
-        <div class="tile-body">
-          <p>Mass Save's top whole-home rebate dropped from $10,000 in 2025 ($3,000 per ton) to $8,500 in 2026 ($2,650 per ton). The partial-home rebate went from $1,250 per ton, capped at $10,000, to $1,125 per ton, capped at $8,500.</p>
-          <p>The federal tax credit for heat pumps ended for work done after December 31, 2025. Mass Save's 2025 page had listed up to $2,000.</p>
-          <p><a href="https://web.archive.org/web/20250909040509/https://www.masssave.com/residential/rebates-offers-services/heating-and-cooling/heat-pumps/air-source-heat-pumps" target="_blank" rel="noopener noreferrer">Mass Save's 2025 page (archived September 9, 2025)&nbsp;→</a></p>
         </div>
       </details>
       <details class="tile">
         <summary><span class="tile-title">0% HEAT Loan</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
           <p>Mass Save offers a 0% HEAT Loan of up to $25,000. The length of the loan is set by the lender. For a whole-home heat pump, the loan needs a Home Energy Assessment first.</p>
-          <p>There are other ways to finance it too, including lease-style plans, so a big check up front is not the only path.</p>
           <p><a href="https://www.masssave.com/residential/rebates-offers-services/financing" target="_blank" rel="noopener noreferrer">Mass Save: financing&nbsp;→</a></p>
+        </div>
+      </details>
+      <details class="tile">
+        <summary><span class="tile-title">Installer financing</span><span class="tile-plus" aria-hidden="true"></span></summary>
+        <div class="tile-body">
+          <p>Some installers offer their own financing, including plans where you pay over time instead of up front. Those terms are set by the company offering them, not by Mass Save, so get them in writing.</p>
+          <p>In the <a class="inline-cta" href="#contact">Check-Up</a> I go through the real terms with you and compare them with the rebate and the loan.</p>
         </div>
       </details>
       <details class="tile">
         <summary><span class="tile-title">A lower winter electric rate</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
-          <p>National Grid offers a lower winter delivery rate, November 1 through April 30, for homes that use a heat pump to heat. Eversource and Unitil have their own winter heat pump rates. If your electric bill comes from National Grid, this is the one that applies to you.</p>
+          <p>Massachusetts electric utilities offer a lower winter rate for homes that heat with a heat pump. Mass Save describes it as running from November through April. Which rate applies depends on who supplies your electricity, and the details differ by utility.</p>
           <p>A home heated only with electric baseboards does not get the rate until it has a heat pump.</p>
           <p>I do not quote a dollar figure here, because the utility's numbers change. At the Check-Up I work out what it would mean for your house.</p>
-          <p><a href="https://www.nationalgridus.com/MA-Home/Rates/Heat-Pump-Rate" target="_blank" rel="noopener noreferrer">National Grid: heat pump rate&nbsp;→</a></p>
+          <p><a href="https://www.nationalgridus.com/MA-Home/Rates/Heat-Pump-Rate" target="_blank" rel="noopener noreferrer">National Grid&nbsp;→</a> &nbsp; <a href="https://www.eversource.com/residential/account-billing/manage-bill/about-your-bill/rates-tariffs/heat-pump-rate" target="_blank" rel="noopener noreferrer">Eversource&nbsp;→</a> &nbsp; <a href="https://unitil.com/ma-heat-pump-rate" target="_blank" rel="noopener noreferrer">Unitil&nbsp;→</a></p>
         </div>
       </details>
       <details class="tile">
@@ -256,46 +296,45 @@
     <div class="section-head">
       <div class="eyebrow">Common questions</div>
       <h2>Questions people ask me.</h2>
-      <p>Short answers, each from Mass Save or your utility. For your own house, the Check-Up is where I get specific.</p>
+      <p>Short answers, each from Mass Save or your utility. For your own house, the <a class="inline-cta" href="#contact">Check-Up</a> is where I get specific.</p>
     </div>
     <div class="tiles">
       <details class="tile">
         <summary><span class="tile-title">Will a heat pump keep my house warm in a New England winter?</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
-          <p>Mass Save only pays its rebate on ENERGY STAR cold-climate models that are on its qualified list, installed by a contractor in its Heat Pump Installer Network. Whether one is enough for your house, or whether you would keep a backup, is something I look at in the Check-Up.</p>
+          <p>Mass Save only pays its rebate on ENERGY STAR cold-climate models that are on its qualified list, installed by a contractor in its Heat Pump Installer Network. Whether one is enough for your house, or whether you would keep a backup, is something I look at in the <a class="inline-cta" href="#contact">Check-Up</a>.</p>
           <p><a href="https://www.masssave.com/en/residential/rebates-offers-services/heating-and-cooling/heat-pumps/air-source-heat-pumps" target="_blank" rel="noopener noreferrer">Mass Save: air-source heat pump rebates&nbsp;→</a></p>
         </div>
       </details>
       <details class="tile">
         <summary><span class="tile-title">What does it cost, and what does Mass Save pay?</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
-          <p>It depends on your house. Mass Save's own example: a $22,000 install, an $8,500 rebate, and $13,500 net. The whole-home rebate is $2,650 per ton, up to $8,500. The Check-Up gives you the numbers for your house, not an example.</p>
+          <p>It depends on your house. Mass Save's page has its current rebate amounts and an example install. The <a class="inline-cta" href="#contact">Check-Up</a> gives you the numbers for your house, not an example.</p>
         </div>
       </details>
       <details class="tile">
         <summary><span class="tile-title">Can I keep my oil system as a backup?</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
-          <p>Yes. Mass Save's partial-home rebate is for homes that keep their existing system as a backup. It pays $1,125 per ton, up to $8,500, and needs an integrated control. The whole-home rebate is for replacing oil, propane, or electric resistance heat.</p>
+          <p>Yes. Mass Save has a partial-home rebate for homes that keep their existing system as a backup, and it needs an integrated control. The whole-home rebate is for replacing oil, propane, or electric resistance heat.</p>
         </div>
       </details>
       <details class="tile">
         <summary><span class="tile-title">Do I need insulation or other work first?</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
-          <p>Possibly. For the whole-home rebate, the home has to be weatherized: built in 2000 or later, or a Mass Save Home Energy Assessment recommends under $1,000 of work, or that work is done. Many older homes need the assessment first.</p>
+          <p>Possibly. For the whole-home rebate, the home has to be weatherized: built in 2000 or later, or a Mass Save Home Energy Assessment recommends a small amount of work and that work is done. Many older homes need the assessment first. Mass Save's page has the exact rule.</p>
         </div>
       </details>
       <details class="tile">
         <summary><span class="tile-title">Will my electric bill go up?</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
-          <p>Your electric use goes up, because the heat pump runs on electricity. That is why utilities offer a lower winter rate, November 1 through April 30, to homes with a heat pump. The rate lowers the price of the electricity. It is not the whole picture, so I compare your actual numbers in the Check-Up.</p>
-          <p>National Grid enrolls homes with a Mass Save-supported heat pump automatically, usually 6 to 8 weeks after the rebate is paid.</p>
-          <p><a href="https://www.nationalgridus.com/MA-Home/Rates/Heat-Pump-Rate" target="_blank" rel="noopener noreferrer">National Grid: heat pump rate&nbsp;→</a></p>
+          <p>Your electric use goes up, because the heat pump runs on electricity. That is why utilities offer a lower winter rate to homes with a heat pump. The rate lowers the price of the electricity. It is not the whole picture, so I compare your actual numbers in the <a class="inline-cta" href="#contact">Check-Up</a>.</p>
+          <p>How a home gets onto the rate differs by utility. Your utility's page explains it, and I can check yours with you.</p>
         </div>
       </details>
       <details class="tile">
         <summary><span class="tile-title">How many heat pumps would I need?</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
-          <p>It depends on the size and layout of your house and how it is heated today. That is one of the things the Check-Up works out.</p>
+          <p>It depends on the size and layout of your house and how it is heated today. That is one of the things the <a class="inline-cta" href="#contact">Check-Up</a> works out.</p>
         </div>
       </details>
       <details class="tile">
@@ -309,6 +348,7 @@
         <summary><span class="tile-title">What about the federal tax credit?</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
           <p>It ended. Mass Save's 2025 page said the credit would no longer apply to work done after December 31, 2025. I mention it because you may still see older pages that list it.</p>
+          <p><a href="https://web.archive.org/web/20250909040509/https://www.masssave.com/residential/rebates-offers-services/heating-and-cooling/heat-pumps/air-source-heat-pumps" target="_blank" rel="noopener noreferrer">Mass Save's 2025 page (archived September 9, 2025)&nbsp;→</a></p>
         </div>
       </details>
       <details class="tile">
@@ -318,15 +358,9 @@
         </div>
       </details>
       <details class="tile">
-        <summary><span class="tile-title">Do I qualify for income-based help?</span><span class="tile-plus" aria-hidden="true"></span></summary>
-        <div class="tile-body">
-          <p>Mass Save lists an income-based rebate of up to $16,000, or no cost. I can't tell you from here whether you qualify. Mass Save's page explains who does, and we can go through it together at the Check-Up.</p>
-        </div>
-      </details>
-      <details class="tile">
         <summary><span class="tile-title">Who installs it?</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
-          <p>For the Mass Save rebate, the installer has to be in Mass Save's Heat Pump Installer Network, and the equipment has to be on its qualified list. Ask any installer to confirm both before you sign.</p>
+          <p>I work with qualified Mass Save installers to complete your project. For the Mass Save rebate, the installer has to be in Mass Save's Heat Pump Installer Network, and the equipment has to be on its qualified list. Ask any installer to confirm both before you sign.</p>
         </div>
       </details>
     </div>
@@ -335,15 +369,66 @@
 
 <section class="section" id="contact">
   <div class="wrap">
-    <div class="contact-panel">
+    <div class="contact-panel" id="formPanel">
       <div class="eyebrow">Next step</div>
       <h2 style="font-size:clamp(1.5rem,3vw,2rem); margin-top:10px;">Book your free Heating Cost Check-Up.</h2>
-      <p style="color:var(--text-mid); max-width:56ch;">It takes about 30 seconds to pick a time. You can also call or text me.</p>
-      <div class="hero-ctas">
-        <a class="btn-primary consult-link" href="./index.html#contact">Book my free Check-Up</a>
-        <a class="btn-ghost" href="tel:+17814145551">(781) 414-5551</a>
-        <a class="btn-ghost" href="mailto:bill@gk1.energy">bill@gk1.energy</a>
-      </div>
+      <p style="color:var(--text-mid); max-width:56ch;">Leave your name and number and I'll call or text you back to set a time. It takes about a minute.</p>
+
+      <form id="leadForm" class="crmWebToEntityForm" name="WebToLeads7504064000000701086" action="https://crm.zoho.com/crm/WebToLeadForm" method="POST" onsubmit="return checkMandatory7504064000000701086();" accept-charset="UTF-8" style="margin-top:22px;">
+        <!-- Posts to the same Zoho Web-to-Lead as index.html (same tokens), so leads land in the same place with the same ref field. -->
+        <input type="hidden" name="xnQsjsdp" value="8595ad3296938ad3e7fb688901e202ae459c56e53a5fc931af0a3f816445bf79">
+        <input type="hidden" name="zc_gad" id="zc_gad" value="">
+        <input type="hidden" name="xmIwtLD" value="d85ede55cd9461d04630cd89c23d711f816ffe3501e87a73f8fba8a348caf34b0761cc7e538e6f91e8238df4f732f811">
+        <input type="hidden" name="actionType" value="TGVhZHM=">
+        <input type="hidden" name="returnURL" value="https://gk1.energy/heatpump.html?submitted=true#contact">
+        <input type="hidden" name="aG9uZXlwb3Q" style="display:none;" value="">
+        <div aria-hidden="true" style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">
+          <label for="gk1Hp">Leave this field empty</label>
+          <input type="text" id="gk1Hp" name="gk1_hp" value="" tabindex="-1" autocomplete="off">
+        </div>
+        <!-- Zoho wants first and last name separately; the visitor types one name and the script splits it on submit. -->
+        <input type="hidden" id="firstName" name="First Name" value="">
+        <input type="hidden" id="lastName" name="Last Name" value="">
+        <div class="form-grid">
+          <div><label for="fullName">Your name</label><input id="fullName" type="text" autocomplete="name" placeholder="Jane Smith" required></div>
+          <div><label for="phone">Phone</label><input id="phone" name="Phone" type="tel" autocomplete="tel" placeholder="(555) 555-0123" required></div>
+        </div>
+        <div class="form-grid">
+          <div><label for="email">Email <span class="opt">(optional)</span></label><input id="email" name="Email" ftype="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+          <div>
+            <label for="bestTime">Best time to reach you <span class="opt">(optional)</span></label>
+            <select id="bestTime">
+              <option value="">Any time</option>
+              <option value="Mornings">Mornings</option>
+              <option value="Afternoons">Afternoons</option>
+              <option value="Evenings">Evenings</option>
+            </select>
+          </div>
+        </div>
+        <input type="hidden" id="message" name="Description" value="">
+        <input type="hidden" id="refCode" name="LEADCF3" value="">
+        <input type="hidden" name="LEADCF6" value="MA">
+        <input type="hidden" name="LEADCF1" value="Heat pumps (heating & cooling)">
+        <input type="hidden" id="propertySegment" name="LEADCF5" value="Residential">
+        <input type="hidden" name="Lead Source" value="Website Form">
+        <input type="hidden" name="Lead Status" value="New">
+        <div class="consent-row">
+          <input type="checkbox" id="smsConsent" name="LEADCF53" required onclick="addAriaChecked7504064000000701086()">
+          <label for="smsConsent">I agree to receive calls and texts from Bill Geyer (GK1 Energy) about my inquiry. Msg &amp; data rates may apply. Reply STOP to opt out. <a href="./privacy-policy.html" style="color:var(--sky);">View our Privacy Policy</a>.</label>
+        </div>
+        <div class="form-full">
+          <div class="g-recaptcha" data-sitekey="6Lc01-8tAAAAAPJPFkjxwEopxR4gbpmol5luT0-_" data-theme="dark" data-callback="rccallback7504064000000701086" captcha-verified="false" id="recap7504064000000701086"></div>
+          <div id="recapErr7504064000000701086" style="font-size:12px; color:#ff8a8a; visibility:hidden;">Captcha validation failed. If you are not a robot then please try again.</div>
+        </div>
+        <button type="submit" id="formsubmit" class="submit-btn formsubmit">Call me back</button>
+      </form>
+
+      <p class="alt-contact">Rather not fill in a form? <a href="tel:+17814145551">Call or text (781) 414-5551</a>, <a href="mailto:bill@gk1.energy">email bill@gk1.energy</a>, or <a href="https://cal.com/bill-geyer-ragr8q/15min" target="_blank" rel="noopener noreferrer">pick a 15-minute time yourself&nbsp;→</a></p>
+    </div>
+    <div class="contact-panel" id="formSuccess" style="display:none; text-align:center;">
+      <h3 style="font-family:'Fraunces',serif; font-weight:600; font-size:1.3rem; margin:0;">Thanks, that came through.</h3>
+      <p style="color:var(--text-mid); margin-top:10px;">I'll call or text you shortly, usually within a day.</p>
+      <p class="note-line" style="margin:16px auto 0;">If you would rather not wait, <a href="https://cal.com/bill-geyer-ragr8q/15min" target="_blank" rel="noopener noreferrer" style="color:var(--sky);">pick a 15-minute time yourself&nbsp;→</a></p>
     </div>
   </div>
 </section>
@@ -375,14 +460,65 @@
 </footer>
 
 <script>
-  // Keep the household's ?ref= code when they move to the shared consultation form (same pattern as hello.html).
+  // Carry the household's ?ref= code into the form's hidden Referral Code field (Zoho LEADCF3), same as index.html.
+  var params = new URLSearchParams(window.location.search);
+  var refCode = params.get('ref');
+  if (refCode){ document.getElementById('refCode').value = refCode; }
+
+  // After Zoho redirects back with ?submitted=true, show the thank-you panel.
+  if (params.get('submitted') === 'true'){
+    document.getElementById('formPanel').style.display = 'none';
+    var successPanel = document.getElementById('formSuccess');
+    successPanel.style.display = 'block';
+    successPanel.scrollIntoView({ block: 'start' });
+    history.replaceState(null, '', window.location.pathname + window.location.hash);
+  }
+
+  // Checks that run before Zoho's own validation (capture phase, so they fire first). Same rules as index.html.
+  // Also builds First/Last Name from the single name box and folds "best time" into the notes field.
   (function(){
-    var ref = new URLSearchParams(window.location.search).get('ref');
-    if (!ref) return;
-    var links = document.querySelectorAll('a.consult-link');
-    for (var i = 0; i < links.length; i++){
-      links[i].href = './index.html?ref=' + encodeURIComponent(ref) + '#contact';
-    }
+    var form = document.getElementById('leadForm');
+    var loadedAt = Date.now();
+    form.addEventListener('submit', function(e){
+      function block(msg){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        if (msg) alert(msg);
+      }
+      if (document.getElementById('gk1Hp').value.trim() !== ''){      // honeypot: fake a success
+        block();
+        document.getElementById('formPanel').style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+        return;
+      }
+      if (Date.now() - loadedAt < 3000){
+        block('That was a little fast. Please check your details and submit again.');
+        return;
+      }
+      var full = document.getElementById('fullName').value.replace(/\s+/g, ' ').trim();
+      var bestTime = document.getElementById('bestTime').value;
+      var linkRe = /https?:\/\/|www\.|\b[a-z0-9-]+\.(buzz|ru|xyz|top|click|cc|nip\.io)\b/i;
+      if (linkRe.test(full)){
+        block('Please remove web links from the form. If you need to share one, just mention it when I call you.');
+        return;
+      }
+      var digits = document.getElementById('phone').value.replace(/\D/g, '');
+      if (digits.length === 11 && digits.charAt(0) === '1'){ digits = digits.slice(1); }
+      if (digits.length !== 10){
+        block('Please enter a 10-digit US phone number.');
+        document.getElementById('phone').focus();
+        return;
+      }
+      if (!full){
+        block('Please enter your name.');
+        document.getElementById('fullName').focus();
+        return;
+      }
+      var cut = full.lastIndexOf(' ');
+      document.getElementById('firstName').value = cut > 0 ? full.slice(0, cut) : '';
+      document.getElementById('lastName').value = cut > 0 ? full.slice(cut + 1) : full;      // Zoho requires a last name
+      document.getElementById('message').value = bestTime ? 'Best time to reach: ' + bestTime : '';
+    }, true);
   })();
 
   // Live heating oil price (public read of one row; see supabase/migrations/..._public_oil_signal_read.sql)
@@ -411,5 +547,71 @@
       .catch(function(){ /* leave hidden */ });
   })();
 </script>
+
+<!-- Zoho Web-to-Lead helpers, copied from index.html (generated by Zoho for form 7504064000000701086). Mandatory here:
+     Last Name, Phone, consent. Email and State are NOT mandatory on this short form: State is a hidden "MA".
+     NOTE: this only works end to end if Zoho's webform itself does not require Email/State server-side. See docs/open-items.md. -->
+<script>
+  function addAriaChecked7504064000000701086(){
+    var checkboxElem = event.target;
+    if (checkboxElem != undefined && checkboxElem.checked) {
+      checkboxElem.ariaChecked = 'true';
+    } else if (checkboxElem != undefined && !checkboxElem.checked) {
+      checkboxElem.ariaChecked = 'false';
+    }
+  }
+  function rccallback7504064000000701086(){
+    if (document.getElementById('recap7504064000000701086') != undefined) {
+      document.getElementById('recap7504064000000701086').setAttribute('captcha-verified', true);
+    }
+    if (document.getElementById('recapErr7504064000000701086') != undefined && document.getElementById('recapErr7504064000000701086').style.visibility == 'visible') {
+      document.getElementById('recapErr7504064000000701086').style.visibility = 'hidden';
+    }
+  }
+  function reCaptchaAlert7504064000000701086(){
+    var recap = document.getElementById('recap7504064000000701086');
+    if (recap != undefined && recap.getAttribute('captcha-verified') == 'false') {
+      document.getElementById('recapErr7504064000000701086').style.visibility = 'visible';
+      return false;
+    }
+    return true;
+  }
+  function validateEmail7504064000000701086(){
+    var form = document.forms['WebToLeads7504064000000701086'];
+    var emailFld = form.querySelectorAll('[ftype=email]');
+    for (var i = 0; i < emailFld.length; i++) {
+      var emailVal = emailFld[i].value;
+      if ((emailVal.replace(/^\s+|\s+$/g, '')).length != 0) {
+        var atpos = emailVal.indexOf('@');
+        var dotpos = emailVal.lastIndexOf('.');
+        if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= emailVal.length) {
+          alert('Please enter a valid email address. ');
+          emailFld[i].focus();
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+  function checkMandatory7504064000000701086(){
+    var mnd = [['Last Name', 'Name'], ['Phone', 'Phone'], ['LEADCF53', 'SMS/Contact Consent']];
+    for (var i = 0; i < mnd.length; i++) {
+      var f = document.forms['WebToLeads7504064000000701086'][mnd[i][0]];
+      if (f) {
+        if (f.type == 'checkbox') {
+          if (!f.checked) { alert('Please accept ' + mnd[i][1]); f.focus(); return false; }
+        } else if (f.value.replace(/^\s+|\s+$/g, '').length == 0) {
+          alert(mnd[i][1] + ' cannot be empty.');
+          return false;
+        }
+      }
+    }
+    if (!validateEmail7504064000000701086()) { return false; }
+    if (!reCaptchaAlert7504064000000701086()) { return false; }
+    document.querySelector('.crmWebToEntityForm .formsubmit').setAttribute('disabled', true);
+    return true;
+  }
+</script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 </html>
