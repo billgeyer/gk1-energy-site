@@ -6,7 +6,7 @@
 <title>Heat Pump Check-Up · Bill Geyer</title>
 <link rel="icon" type="image/svg+xml" href="./images/gk1-icon-navy-bg.svg">
 <meta name="robots" content="noindex">
-<meta name="description" content="A free Heating Cost Check-Up from Bill Geyer: a straight answer on whether a heat pump fits your house, what Mass Save would likely pay, and what the winter electric rate could mean for your bill.">
+<meta name="description" content="A heating cost check-up from Bill Geyer: a straight answer on whether a heat pump fits your house, what Mass Save would likely pay, and what the winter electric rate could mean for your bill.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -95,6 +95,7 @@
   .btn-ghost:hover{ border-color:var(--sky); }
 
   .section{ padding:60px 0; border-top:1px solid var(--line); }
+  #contact{ scroll-margin-top:64px; }          /* keeps the form heading clear of the sticky nav when a scan lands here */
   .section-head{ margin-bottom:36px; max-width:58ch; }
   .section-head h2{ font-size:clamp(1.5rem,3vw,2rem); margin-top:10px; }
   .section-head p{ color:var(--text-mid); margin-top:12px; }
@@ -189,11 +190,11 @@
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <div class="hero-eyebrow eyebrow">Free Heating Cost Check-Up</div>
+        <div class="hero-eyebrow eyebrow">Heating Cost Check-Up</div>
         <h1>Does a heat pump make sense for your house? I'll give you a straight answer.</h1>
-        <p class="lede">I'm Bill Geyer, an independent energy advisor. I offer a free Heating Cost Check-Up. It takes about 20 minutes. I look at how your house is heated today and tell you whether a heat pump fits, what Mass Save would likely pay, and what the lower winter electric rate could mean for your bill. If it does not make sense for your house, I will tell you. No cost, no pressure.</p>
+        <p class="lede">I'm Bill Geyer, an independent energy advisor. My heating cost check-up is a one-hour discovery visit, at no cost to you. We talk through your home energy goals and look at your overall energy costs. Then I take a few measurements, we discuss where units could be installed, and I come back with a plan. If a heat pump does not make sense for your house, I will tell you.</p>
         <div class="hero-ctas">
-          <a class="btn-primary" href="#contact">Book my free Check-Up</a>
+          <a class="btn-primary" href="#contact">Book my Check-Up</a>
           <a class="btn-ghost" href="tel:+17814145551">Call or text (781) 414-5551</a>
         </div>
         <!-- Same wording as the Background & credentials section on index.html. Keep in sync. -->
@@ -219,25 +220,26 @@
 <section class="wrap" id="deadline" style="padding-top:32px; padding-bottom:32px;">
   <div class="deadline">
     <div class="eyebrow">Timing</div>
-    <h2>The 2026 Mass Save heat pump rebate has a deadline.</h2>
-    <p id="deadlineText">For a 2026 rebate, the heat pump has to be installed by <strong id="dlInstall" style="color:var(--text-hi);">December 31, 2026</strong>, with the paperwork in by <strong id="dlPaper" style="color:var(--text-hi);">February 28, 2027</strong>. I do not have 2027 rebate amounts to show you yet.</p>
-    <p id="deadlineHurry">Scheduling and installing takes time, so the sooner we look at your house, the more of that window you have. <a class="inline-cta" href="#contact">Book your Check-Up&nbsp;→</a></p>
+    <h2 id="dlHead">Mass Save's heat pump rebate goes down on January 1.</h2>
+    <p id="deadlineText">Mass Save's top rebate for a heat pump that replaces your current system is up to $8,500 for installs in 2026. For installs starting January 1, 2027, Mass Save has announced it drops to up to $7,500. Most projects that start now will finish in 2027, so I base our numbers on the 2027 amount.</p>
+    <p id="deadlineHurry">If we can get it done by <strong id="dlInstall" style="color:var(--text-hi);">December 31, 2026</strong>, with the paperwork in by <strong id="dlPaper" style="color:var(--text-hi);">February 28, 2027</strong>, the 2026 amount is a bonus. Either way, it is your call. <a class="inline-cta" href="#contact">Book your Check-Up&nbsp;&rarr;</a></p>
   </div>
 </section>
 
 <section class="section" id="checkup">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">The free Check-Up</div>
-      <h2>Three questions, answered for your house.</h2>
-      <p>A heat pump is not right for every house. That is why I look before I say anything.</p>
+      <div class="eyebrow">The Check-Up</div>
+      <h2>What happens during the visit.</h2>
+      <p>A heat pump is not right for every house. That is why I look before I say anything. The visit takes about an hour.</p>
     </div>
     <ul class="check-list">
-      <li><strong>Does a heat pump fit?</strong> I look at how the house is heated today and whether a heat pump makes sense for it.</li>
-      <li><strong>What would Mass Save likely pay?</strong> Rebates depend on your system and your home, so I work out what applies to yours.</li>
-      <li><strong>What would the winter electric rate mean for your bill?</strong> Utilities offer a lower winter rate to homes heated with a heat pump. I show you what that could mean.</li>
+      <li><strong>Your goals.</strong> We talk through what you want from your home energy.</li>
+      <li><strong>Your energy costs.</strong> I look at your overall energy costs: heating, cooling, hot water, and your electric usage.</li>
+      <li><strong>Measurements and placement.</strong> I take a few measurements and we discuss where units could be installed.</li>
+      <li><strong>Then I come back with a plan.</strong> I take it to my team and return with an initial design, what Mass Save would likely pay, and options to afford it.</li>
     </ul>
-    <p class="note-line">The visit is free and there is no obligation.</p>
+    <p class="note-line">There is no cost and no obligation.</p>
   </div>
 </section>
 
@@ -250,9 +252,9 @@
     </div>
     <div class="tiles">
       <details class="tile" open>
-        <summary><span class="tile-title">Mass Save heat pump rebates (2026)</span><span class="tile-plus" aria-hidden="true"></span></summary>
+        <summary><span class="tile-title">Mass Save heat pump rebates (2026 and 2027)</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
-          <p>Mass Save pays a rebate on qualifying heat pumps: up to $8,500 for a whole-home system in 2026. What you get depends on your system and your home. Mass Save also lists offers based on income.</p>
+          <p>Mass Save pays a rebate on qualifying heat pumps: up to $8,500 when a whole-home system that replaces your current heating is installed in 2026, and up to $7,500 for installs starting January 1, 2027. What you get depends on your system and your home. Mass Save also lists offers based on income.</p>
           <p>Its page has the current amounts and rules, and it is the place to check them.</p>
           <p><a href="https://www.masssave.com/en/residential/rebates-offers-services/heating-and-cooling/heat-pumps/air-source-heat-pumps" target="_blank" rel="noopener noreferrer">Mass Save: air-source heat pump rebates&nbsp;→</a></p>
         </div>
@@ -265,10 +267,11 @@
         </div>
       </details>
       <details class="tile">
-        <summary><span class="tile-title">Installer financing</span><span class="tile-plus" aria-hidden="true"></span></summary>
+        <summary><span class="tile-title">Installer financing and monthly plans</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
-          <p>Some installers offer their own financing, including plans where you pay over time instead of up front. Those terms are set by the company offering them, not by Mass Save, so get them in writing.</p>
-          <p>In the <a class="inline-cta" href="#contact">Check-Up</a> I go through the real terms with you and compare them with the rebate and the loan.</p>
+          <p>Some installers offer their own financing. One kind is a monthly plan with $0 down: instead of buying the system, you pay a monthly fee, and maintenance and repairs are included. The one I can walk you through runs 10 or 12 years. The company calls it a subscription, but it works like a lease, so you are paying to use the system. Ask who owns it at the end.</p>
+          <p>Those terms are set by the company offering them, not by Mass Save, so get them in writing.</p>
+          <p>In the <a class="inline-cta" href="#contact">check-up</a> I go through the real terms with you and compare them with the rebate and the loan.</p>
         </div>
       </details>
       <details class="tile">
@@ -276,7 +279,7 @@
         <div class="tile-body">
           <p>Massachusetts electric utilities offer a lower winter rate for homes that heat with a heat pump. Mass Save describes it as running from November through April. Which rate applies depends on who supplies your electricity, and the details differ by utility.</p>
           <p>A home heated only with electric baseboards does not get the rate until it has a heat pump.</p>
-          <p>I do not quote a dollar figure here, because the utility's numbers change. At the Check-Up I work out what it would mean for your house.</p>
+          <p>I do not quote a dollar figure here, because the utility's numbers change. At the check-up I work out what it would mean for your house.</p>
           <p><a href="https://www.nationalgridus.com/MA-Home/Rates/Heat-Pump-Rate" target="_blank" rel="noopener noreferrer">National Grid&nbsp;→</a> &nbsp; <a href="https://www.eversource.com/residential/account-billing/manage-bill/about-your-bill/rates-tariffs/heat-pump-rate" target="_blank" rel="noopener noreferrer">Eversource&nbsp;→</a> &nbsp; <a href="https://unitil.com/ma-heat-pump-rate" target="_blank" rel="noopener noreferrer">Unitil&nbsp;→</a></p>
         </div>
       </details>
@@ -287,7 +290,7 @@
         </div>
       </details>
     </div>
-    <p class="note-line">I have no official source for savings on your total energy bill, so I do not promise one. The Check-Up is where I give you real numbers for your house.</p>
+    <p class="note-line">I have no official source for savings on your total energy bill, so I do not promise one. The check-up is where I give you real numbers for your house.</p>
   </div>
 </section>
 
@@ -296,20 +299,20 @@
     <div class="section-head">
       <div class="eyebrow">Common questions</div>
       <h2>Questions people ask me.</h2>
-      <p>Short answers, each from Mass Save or your utility. For your own house, the <a class="inline-cta" href="#contact">Check-Up</a> is where I get specific.</p>
+      <p>Short answers, each from Mass Save or your utility. For your own house, the <a class="inline-cta" href="#contact">check-up</a> is where I get specific.</p>
     </div>
     <div class="tiles">
       <details class="tile">
         <summary><span class="tile-title">Will a heat pump keep my house warm in a New England winter?</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
-          <p>Mass Save only pays its rebate on ENERGY STAR cold-climate models that are on its qualified list, installed by a contractor in its Heat Pump Installer Network. Whether one is enough for your house, or whether you would keep a backup, is something I look at in the <a class="inline-cta" href="#contact">Check-Up</a>.</p>
+          <p>Mass Save only pays its rebate on ENERGY STAR cold-climate models that are on its qualified list, installed by a contractor in its Heat Pump Installer Network. Whether one is enough for your house, or whether you would keep a backup, is something I look at in the <a class="inline-cta" href="#contact">check-up</a>.</p>
           <p><a href="https://www.masssave.com/en/residential/rebates-offers-services/heating-and-cooling/heat-pumps/air-source-heat-pumps" target="_blank" rel="noopener noreferrer">Mass Save: air-source heat pump rebates&nbsp;→</a></p>
         </div>
       </details>
       <details class="tile">
         <summary><span class="tile-title">What does it cost, and what does Mass Save pay?</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
-          <p>It depends on your house. Mass Save's page has its current rebate amounts and an example install. The <a class="inline-cta" href="#contact">Check-Up</a> gives you the numbers for your house, not an example.</p>
+          <p>It depends on your house. Mass Save's page has its current rebate amounts and an example install. The <a class="inline-cta" href="#contact">check-up</a> gives you the numbers for your house, not an example.</p>
         </div>
       </details>
       <details class="tile">
@@ -327,14 +330,14 @@
       <details class="tile">
         <summary><span class="tile-title">Will my electric bill go up?</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
-          <p>Your electric use goes up, because the heat pump runs on electricity. That is why utilities offer a lower winter rate to homes with a heat pump. The rate lowers the price of the electricity. It is not the whole picture, so I compare your actual numbers in the <a class="inline-cta" href="#contact">Check-Up</a>.</p>
+          <p>Your electric use goes up, because the heat pump runs on electricity. That is why utilities offer a lower winter rate to homes with a heat pump. The rate lowers the price of the electricity. It is not the whole picture, so I compare your actual numbers in the <a class="inline-cta" href="#contact">check-up</a>.</p>
           <p>How a home gets onto the rate differs by utility. Your utility's page explains it, and I can check yours with you.</p>
         </div>
       </details>
       <details class="tile">
         <summary><span class="tile-title">How many heat pumps would I need?</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
-          <p>It depends on the size and layout of your house and how it is heated today. That is one of the things the <a class="inline-cta" href="#contact">Check-Up</a> works out.</p>
+          <p>It depends on the size and layout of your house and how it is heated today. That is one of the things the <a class="inline-cta" href="#contact">check-up</a> works out.</p>
         </div>
       </details>
       <details class="tile">
@@ -354,7 +357,7 @@
       <details class="tile">
         <summary><span class="tile-title">How long does it take, and when do I get the rebate?</span><span class="tile-plus" aria-hidden="true"></span></summary>
         <div class="tile-body">
-          <p>For 2026 rebates, the install has to be done by December 31, 2026, and the paperwork in by February 28, 2027. Mass Save asks you to allow about 8 weeks for processing.</p>
+          <p>For 2026 rebates, the install has to be done by December 31, 2026, and the paperwork in by February 28, 2027. For installs starting January 1, 2027, Mass Save has announced lower amounts, and its page is the place to check the paperwork date. Mass Save asks you to allow about 8 weeks for processing.</p>
         </div>
       </details>
       <details class="tile">
@@ -371,8 +374,8 @@
   <div class="wrap">
     <div class="contact-panel" id="formPanel">
       <div class="eyebrow">Next step</div>
-      <h2 style="font-size:clamp(1.5rem,3vw,2rem); margin-top:10px;">Book your free Heating Cost Check-Up.</h2>
-      <p style="color:var(--text-mid); max-width:56ch;">Leave your name and number and I'll call or text you back to set a time. It takes about a minute.</p>
+      <h2 style="font-size:clamp(1.5rem,3vw,2rem); margin-top:10px;">Book your Heating Cost Check-Up.</h2>
+      <p style="color:var(--text-mid); max-width:56ch;">Leave your name and number and I'll call or text you back to set a time. It takes about a minute. Evening and weekend appointments available.</p>
 
       <form id="leadForm" class="crmWebToEntityForm" name="WebToLeads7504064000000701086" action="https://crm.zoho.com/crm/WebToLeadForm" method="POST" onsubmit="return checkMandatory7504064000000701086();" accept-charset="UTF-8" style="margin-top:22px;">
         <!-- Posts to the same Zoho Web-to-Lead as index.html (same tokens), so leads land in the same place with the same ref field. -->
@@ -420,16 +423,16 @@
           <div class="g-recaptcha" data-sitekey="6Lc01-8tAAAAAPJPFkjxwEopxR4gbpmol5luT0-_" data-theme="dark" data-callback="rccallback7504064000000701086" captcha-verified="false" id="recap7504064000000701086"></div>
           <div id="recapErr7504064000000701086" style="font-size:12px; color:#ff8a8a; visibility:hidden;">Captcha validation failed. If you are not a robot then please try again.</div>
         </div>
-        <button type="submit" id="formsubmit" class="submit-btn formsubmit">Call me back</button>
+        <button type="submit" id="formsubmit" class="submit-btn formsubmit">Submit</button>
       </form>
 
-      <p class="alt-contact">Rather not fill in a form? <a href="tel:+17814145551">Call or text (781) 414-5551</a>, <a href="mailto:bill@gk1.energy">email bill@gk1.energy</a>, or <a href="https://cal.com/bill-geyer-ragr8q/15min" target="_blank" rel="noopener noreferrer">pick a 15-minute time yourself&nbsp;→</a></p>
+      <p class="alt-contact">Rather not fill in a form? <a href="tel:+17814145551">Call or text (781) 414-5551</a>, or <a href="mailto:bill@gk1.energy">email bill@gk1.energy</a>.</p>
     </div>
     <div class="contact-panel" id="formSuccess" style="display:none; text-align:center;">
-      <h3 style="font-family:'Fraunces',serif; font-weight:600; font-size:1.3rem; margin:0;">Thanks, that came through.</h3>
-      <p style="color:var(--text-mid); margin-top:10px;">I'll call or text you shortly, usually within a day.</p>
+      <h3 style="font-family:'Fraunces',serif; font-weight:600; font-size:1.3rem; margin:0;">Thank you. Got your information.</h3>
+      <p style="color:var(--text-mid); margin-top:10px;">You'll hear from me soon.</p>
       <p style="color:var(--text-mid); margin-top:10px;">If you gave me an email address, look for a confirmation from me. If you don't see it, check your spam or junk folder.</p>
-      <p class="note-line" style="margin:16px auto 0;">If you would rather not wait, <a href="https://cal.com/bill-geyer-ragr8q/15min" target="_blank" rel="noopener noreferrer" style="color:var(--sky);">pick a 15-minute time yourself&nbsp;→</a></p>
+      <p class="note-line" style="margin:16px auto 0;">If you would rather not wait, <a href="tel:+17814145551" style="color:var(--sky);">call or text (781) 414-5551</a>.</p>
     </div>
   </div>
 </section>
@@ -439,16 +442,17 @@
     <div class="section-head">
       <div class="eyebrow">Sources</div>
       <h2>Where these numbers come from.</h2>
-      <p>Official sources only: Mass Save and the utilities. Checked October 9, 2026.</p>
+      <p>Official sources only: Mass Save and the utilities. Checked October 17, 2026.</p>
     </div>
     <ol class="sources">
-      <li><a href="https://www.masssave.com/en/residential/rebates-offers-services/heating-and-cooling/heat-pumps/air-source-heat-pumps" target="_blank" rel="noopener noreferrer">Mass Save: air-source heat pump rebates (2026)</a></li>
+      <li><a href="https://www.masssave.com/en/residential/rebates-offers-services/heating-and-cooling/heat-pumps/air-source-heat-pumps" target="_blank" rel="noopener noreferrer">Mass Save: air-source heat pump rebates (2026 and 2027)</a></li>
       <li><a href="https://web.archive.org/web/20250909040509/https://www.masssave.com/residential/rebates-offers-services/heating-and-cooling/heat-pumps/air-source-heat-pumps" target="_blank" rel="noopener noreferrer">Mass Save's 2025 heat pump page, archived September 9, 2025</a></li>
       <li><a href="https://www.masssave.com/residential/rebates-offers-services/financing" target="_blank" rel="noopener noreferrer">Mass Save: financing and the HEAT Loan</a></li>
       <li><a href="https://www.nationalgridus.com/MA-Home/Rates/Heat-Pump-Rate" target="_blank" rel="noopener noreferrer">National Grid: heat pump rate</a></li>
       <li><a href="https://www.eversource.com/residential/account-billing/manage-bill/about-your-bill/rates-tariffs/heat-pump-rate" target="_blank" rel="noopener noreferrer">Eversource: heat pump rate</a></li>
       <li><a href="https://unitil.com/ma-heat-pump-rate" target="_blank" rel="noopener noreferrer">Unitil: heat pump rate</a></li>
     </ol>
+    <p class="note-line">If you came here from my letter, I note which letter brought you so I can see how the mailing is working. I do not use tracking cookies or follow you around the web.</p>
     <p class="note-line">Rebate amounts are maximums. What you get depends on your system and your home. Programs can change, and I re-check them regularly.</p>
   </div>
 </section>
@@ -466,8 +470,36 @@
   var refCode = params.get('ref');
   if (refCode){ document.getElementById('refCode').value = refCode; }
 
+  // Notes which mailed letter brought a visitor here (scan) and when they come back from the form (form), so the mailing can be measured.
+  // Writes one small row to the database by ref code; no cookies, nothing else is collected. Insert-only for the public key; it cannot read anything back.
+  function logVisit(type, ref){
+    try {
+      if (!/^hp-\d{4}-[1-3]$/.test(ref || '')) return;
+      var flag = 'gk1log-' + type + '-' + ref;
+      if (sessionStorage.getItem(flag)) return;      // once per tab
+      sessionStorage.setItem(flag, '1');
+      fetch('https://qdzkibxlfgvkzpxbhusk.supabase.co/rest/v1/events', {
+        method: 'POST',
+        headers: { apikey: 'sb_publishable_LowX6gX23fIKWuNUjGpsjw_8QTkFEfB', 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+        body: JSON.stringify({ ref_code: ref, type: type, source: 'heatpump.html', payload: { ua: (navigator.userAgent || '').slice(0, 120) } }),
+        keepalive: true
+      }).catch(function(){});
+    } catch (e) { /* storage blocked or offline: skip silently */ }
+  }
+  if (refCode){ try { sessionStorage.setItem('gk1ref', refCode); } catch (e) {} logVisit('scan', refCode); }
+
+  // A scan from the letter opens at #contact, the request form. The content above it can change height after load (oil banner, timing box),
+  // so settle the scroll again once, unless the visitor has already started scrolling or typing.
+  if (refCode && location.hash === '#contact'){
+    var moved = false;
+    ['wheel', 'touchmove', 'keydown', 'mousedown'].forEach(function(ev){ window.addEventListener(ev, function(){ moved = true; }, { once: true, passive: true }); });
+    var settle = function(){ if (!moved){ var c = document.getElementById('contact'); if (c) c.scrollIntoView({ block: 'start' }); } };
+    window.addEventListener('load', function(){ setTimeout(settle, 400); setTimeout(settle, 1500); });
+  }
+
   // After Zoho redirects back with ?submitted=true, show the thank-you panel.
   if (params.get('submitted') === 'true'){
+    try { logVisit('form', sessionStorage.getItem('gk1ref')); } catch (e) {}
     document.getElementById('formPanel').style.display = 'none';
     var successPanel = document.getElementById('formSuccess');
     successPanel.style.display = 'block';
@@ -522,32 +554,42 @@
     }, true);
   })();
 
-  // Mass Save rebate deadlines: the dates in the HTML are the fallback; fresh values come from public.site_facts
-  // (anon read of active rows only). Update a row in the database and the page follows, no re-upload.
+  // Rebate timing box. The text in the HTML is the fallback. Dates come from public.site_facts (anon read of active rows only), so a date
+  // change in the database updates the page with no re-upload. rebate_2026_bonus_cutoff is Bill's date after which the 2026 amount is no
+  // longer mentioned as a possible bonus; install deadline passing switches the box to the 2027 amount only.
   (function(){
     var URL = 'https://qdzkibxlfgvkzpxbhusk.supabase.co/rest/v1/site_facts'
-      + '?fact_key=in.(masssave_2026_install_deadline,masssave_2026_paperwork_deadline)&status=eq.active&select=fact_key,value_date';
+      + '?fact_key=in.(masssave_2026_install_deadline,masssave_2026_paperwork_deadline,rebate_2026_bonus_cutoff)&status=eq.active&select=fact_key,value_date';
     var KEY = 'sb_publishable_LowX6gX23fIKWuNUjGpsjw_8QTkFEfB';
     var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var CTA = ' <a class="inline-cta" href="#contact">Book your Check-Up&nbsp;&rarr;</a>';
     function pretty(d){ var p = d.split('-'); return MONTHS[+p[1] - 1] + ' ' + (+p[2]) + ', ' + p[0]; }
+    function apply(f){
+      var today = new Date().toISOString().slice(0, 10);
+      var inst = f.masssave_2026_install_deadline || '2026-12-31';
+      var paper = f.masssave_2026_paperwork_deadline || '2027-02-28';
+      var cutoff = f.rebate_2026_bonus_cutoff || '2026-11-15';      // used if the lookup fails, so the page never keeps promoting the bonus past this date
+      var text = document.getElementById('deadlineText'), hurry = document.getElementById('deadlineHurry'), head = document.getElementById('dlHead');
+      if (today > inst){
+        head.textContent = "Mass Save's 2027 heat pump rebate is up to $7,500.";
+        text.textContent = 'That is down from up to $8,500 in 2026. I base our numbers on the 2027 amount. What you get depends on your system and your home.';
+        hurry.innerHTML = 'It is your call.' + CTA;
+      } else if (today > cutoff){
+        text.textContent = 'For installs starting January 1, 2027, Mass Save has announced that its top rebate for a heat pump that replaces your current system drops from up to $8,500 to up to $7,500. I base our numbers on the 2027 amount.';
+        hurry.innerHTML = 'It is your call.' + CTA;
+      } else {
+        document.getElementById('dlInstall').textContent = pretty(inst);
+        document.getElementById('dlPaper').textContent = pretty(paper);
+      }
+    }
     fetch(URL, { headers: { apikey: KEY, Accept: 'application/json' } })
       .then(function(r){ return r.ok ? r.json() : []; })
       .then(function(rows){
         var f = {};
         (rows || []).forEach(function(r){ if (/^\d{4}-\d{2}-\d{2}$/.test(r.value_date)) f[r.fact_key] = r.value_date; });
-        var inst = f.masssave_2026_install_deadline, paper = f.masssave_2026_paperwork_deadline;
-        if (!inst || !paper) return;      // missing: keep the static text
-        var today = new Date().toISOString().slice(0, 10);
-        if (today > inst){                // install window closed: stop advertising a dead deadline
-          document.getElementById('deadlineText').textContent = 'The 2026 install window has closed, so 2026 rebate amounts no longer apply to a new project. I do not have 2027 rebate amounts to show you yet. I will tell you what they are as soon as Mass Save publishes them.';
-          document.getElementById('deadlineHurry').style.display = 'none';
-          document.getElementById('deadline').querySelector('h2').textContent = 'The 2026 Mass Save heat pump rebate window has closed.';
-          return;
-        }
-        document.getElementById('dlInstall').textContent = pretty(inst);
-        document.getElementById('dlPaper').textContent = pretty(paper);
+        apply(f);
       })
-      .catch(function(){ /* keep static text */ });
+      .catch(function(){ apply({}); });
   })();
 
   // Live heating oil price (public read of one row; see supabase/migrations/..._public_oil_signal_read.sql)
