@@ -156,9 +156,9 @@
     padding:11px 13px; border-radius:8px; font-family:'Inter',sans-serif; font-size:0.95rem;
   }
   input::placeholder{ color:var(--text-low); }
-  .form-full{ margin-bottom:16px; }
+  .form-full{ margin-bottom:12px; }
   input[type="checkbox"]{ width:16px; height:16px; padding:0; accent-color:var(--sun); flex:0 0 auto; margin-top:3px; }
-  .consent-row{ display:flex; align-items:flex-start; gap:10px; margin-bottom:18px; }
+  .consent-row{ display:flex; align-items:flex-start; gap:10px; margin-bottom:12px; }
   .consent-row label{
     text-transform:none; font-family:'Inter',sans-serif; font-size:0.85rem; letter-spacing:normal;
     color:var(--text-mid); margin-bottom:0;
@@ -168,6 +168,9 @@
     border-radius:999px; font-size:0.95rem; cursor:pointer; font-family:'Inter',sans-serif;
   }
   .submit-btn:hover{ background:#ffb54e; }
+  /* The captcha error line is hidden with visibility, which still reserves its height; collapse it until the script shows it. */
+  #recapErr7504064000000701086{ height:0; overflow:hidden; }
+  #recapErr7504064000000701086[style*="visible"]{ height:auto; margin-top:6px; }
   .opt{ text-transform:none; letter-spacing:normal; color:var(--text-low); font-family:'Inter',sans-serif; }
   .alt-contact{ margin-top:22px; padding-top:18px; border-top:1px solid var(--line); color:var(--text-mid); font-size:0.92rem; }
   .alt-contact a{ color:var(--sky); }
