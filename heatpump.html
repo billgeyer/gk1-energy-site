@@ -171,6 +171,7 @@
   /* The captcha error line is hidden with visibility, which still reserves its height; collapse it until the script shows it. */
   #recapErr7504064000000701086{ height:0; overflow:hidden; }
   #recapErr7504064000000701086[style*="visible"]{ height:auto; margin-top:6px; }
+  .field-hint{ margin:6px 0 0; color:var(--text-low); font-size:0.82rem; line-height:1.4; }
   .opt{ text-transform:none; letter-spacing:normal; color:var(--text-low); font-family:'Inter',sans-serif; }
   .alt-contact{ margin-top:22px; padding-top:18px; border-top:1px solid var(--line); color:var(--text-mid); font-size:0.92rem; }
   .alt-contact a{ color:var(--sky); }
@@ -400,7 +401,7 @@
           <div><label for="phone">Phone</label><input id="phone" name="Phone" type="tel" autocomplete="tel" placeholder="(555) 555-0123" required></div>
         </div>
         <div class="form-grid">
-          <div><label for="email">Email <span class="opt">(optional)</span></label><input id="email" name="Email" ftype="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+          <div><label for="email">Email <span class="opt">(optional)</span></label><input id="email" name="Email" ftype="email" type="email" autocomplete="email" placeholder="you@example.com"><p class="field-hint">Add your email and I'll send a written confirmation. Skip it and I'll just call.</p></div>
           <div>
             <label for="bestTime">Best time to reach you <span class="opt">(optional)</span></label>
             <select id="bestTime">
@@ -598,9 +599,8 @@
   // Live heating oil price (public read of one row; see supabase/migrations/..._public_oil_signal_read.sql)
   (function(){
     var URL = 'https://qdzkibxlfgvkzpxbhusk.supabase.co/rest/v1/market_signals'
-      + '?signal_key=eq.ma_heating_oil_residential&order=as_of.desc&limit=1&select=as_of,value,prior_year_value,source,source_url';
+      + '?signal_key=eq.ma_heating_oil_residential&order=as_of.desc&limit=1&select=as_of,value,prior_year_value,source,source_url,extra';
     var KEY = 'sb_publishable_LowX6gX23fIKWuNUjGpsjw_8QTkFEfB';   // publishable key: safe to ship, read-only on this one row
-    var MAX_AGE_DAYS = 14;
     var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     function money(n){ return '$' + Number(n).toFixed(2); }
     fetch(URL, { headers: { apikey: KEY, Accept: 'application/json' } })
@@ -608,10 +608,14 @@
       .then(function(rows){
         var row = rows && rows[0];
         if (!row || row.value == null || row.prior_year_value == null || !row.as_of) return;
+        // max_age_days travels with the row itself (set by fetch_oil_price.py / the n8n refresh job
+        // from config.json's oil.max_age_days), so the staleness cutoff lives in one place, not duplicated here.
+        var maxAge = row.extra && row.extra.max_age_days;
+        if (typeof maxAge !== 'number') return;      // no cutoff published: don't guess, stay hidden
         var p = row.as_of.split('-');
         var asOf = Date.UTC(+p[0], +p[1] - 1, +p[2]);
         var ageDays = (Date.now() - asOf) / 86400000;
-        if (!(ageDays >= -1 && ageDays <= MAX_AGE_DAYS)) return;      // stale or nonsense: stay hidden
+        if (!(ageDays >= -1 && ageDays <= maxAge)) return;      // stale or nonsense: stay hidden
         document.getElementById('oilNow').textContent = money(row.value);
         document.getElementById('oilPrev').textContent = money(row.prior_year_value);
         document.getElementById('oilDate').textContent = MONTHS[+p[1] - 1] + ' ' + (+p[2]) + ', ' + p[0];
